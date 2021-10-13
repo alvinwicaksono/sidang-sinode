@@ -1,0 +1,33 @@
+.custom-blue {
+    color: blue;
+}
+.custom-blue:hover {
+    color: lightblue;
+}
+
+.custom-green {
+    color: green;
+}
+.custom-green:hover {
+    color: lightgreen;
+}
+
+.custom-red {
+    color: red;
+}
+.custom-red:hover {
+    color: lightcoral;
+}
+
+.margin-right-custom {
+    margin-right: 10px;
+}
+
+.margin-left-custom {
+    margin-left: 10px;
+}
+
+.margin-both-custom {
+    margin-right: 10px;
+    margin-left: 10px;
+}

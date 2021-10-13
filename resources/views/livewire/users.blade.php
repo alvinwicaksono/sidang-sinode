@@ -27,7 +27,7 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Role
                     </th>
-                    <th scope="col" class="relative px-6 py-3">
+                    <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                     </tr>
@@ -54,10 +54,10 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         Admin
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a href="#" class="margin-right-custom custom-blue"><i class="fas fa-eye"></i></a>
+                        <a href="#" class="margin-both-custom custom-green"><i class="fas fa-user-edit"></i></a>
+                        <a href="#" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
 

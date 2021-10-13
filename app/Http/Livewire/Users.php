@@ -10,13 +10,5 @@ class Users extends Component
     {
         return view('livewire.users');
     }
-
-    public function repoa(){
-        $this->redirect('/repoa');
-   }
-
-   public function repob(){
-    $this->redirect('/repob');
-}
    
 }
