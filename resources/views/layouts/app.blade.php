@@ -24,6 +24,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" defer></script>
+        <script src="https://kit.fontawesome.com/ef295cf806.js" crossorigin="anonymous"></script>
 
         @if (config('sweetalert.alwaysLoadJS') === true && config('sweetalert.neverLoadJS') === false )
             <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
