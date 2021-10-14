@@ -22,8 +22,8 @@
                     <x-jet-nav-link href="{{ route('prasidang') }}" :active="request()->routeIs('prasidang')">
                         {{ __('Sidang') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('user') }}" :active="request()->routeIs('user')">
-                        {{ __('User') }}
+                    <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
+                        {{ __('Master Data') }}
                     </x-jet-nav-link>
                     <!-- <x-jet-nav-link href="{{ route('document') }}" :active="request()->routeIs('document')">
                         {{ __('Dokumen Arsip') }}

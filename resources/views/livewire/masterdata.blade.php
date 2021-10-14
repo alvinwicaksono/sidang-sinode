@@ -1,7 +1,7 @@
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
     <div
-        wire:click="klasis()"
+        wire:click="sidang()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -16,16 +16,16 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Klasis
+                    Sidang
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{$klasis}}
+                    {{$sidang}}
                 </p>
             </div>
         </div>
     </div>
     <div
-        wire:click="bidang()"
+        wire:click="user()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -42,16 +42,17 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Bidang
+                    
+                    User
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{$bidang}}
+                  {{$user}}
                 </p>
             </div>
         </div>
     </div>
     <div
-        wire:click="subBidang()"
+        wire:click=""
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -66,16 +67,16 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Sub Bidang
+                    
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{$subBidang}}
+                  
                 </p>
             </div>
         </div>
     </div>
     <div
-        wire:click="lembaga()"
+        wire:click=""
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800"
     >
         <div class="p-4 flex items-center">
@@ -92,9 +93,9 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Lembaga
+                   
                 </p>
-                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{$lembaga}}</p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"></p>
             </div>
         </div>
     </div>
@@ -102,7 +103,7 @@
 
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
         <div
-            wire:click="format()"
+            wire:click=""
             class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100 hover:bg-gray-100"
         >
             <div class="p-4 flex items-center">
@@ -117,16 +118,16 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Format
+                        
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$format}}
+                       
                     </p>
                 </div>
             </div>
         </div>
         <div
-            wire:click="rak()"
+            wire:click=""
             class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
         >
             <div class="p-4 flex items-center">
@@ -143,16 +144,16 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Rak
+                        
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$rak}}
+                    
                     </p>
                 </div>
             </div>
         </div>
         <div
-            wire:click="box()"
+            wire:click=""
             class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
         >
             <div class="p-4 flex items-center">
@@ -167,10 +168,9 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Box
+                        
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$box}}
                     </p>
                 </div>
             </div>
