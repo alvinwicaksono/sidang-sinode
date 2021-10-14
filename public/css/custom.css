@@ -120,3 +120,10 @@
 .select select:disabled ~ .select_arrow {
     border-top-color: #cccccc;
 }
+
+
+/* ############# PAGINATION ################## */
+
+.pagination-custom {
+    margin: 10px 15px 10px 15px;
+}

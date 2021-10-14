@@ -40,9 +40,10 @@
                         <input wire:model="klasisId" type="hidden"  name="kode_klasis" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="judul_materi" class="block">Nama</label>
+                            <label for="judul_materi" class="block">Nama (Mininmal 3 Karakter)</label>
                             <input wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            <small class="text-danger">{{ $errors->first('name') }}</small>
+                          </div>
                         <div class="mb-2">
                             <label for="isi_materi" class="block">Email</label>
                             <input wire:model="email" type="text" placeholder="Masukan Email" name="email" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
@@ -76,12 +77,12 @@
                           </div>
                         </div>
                         <div class="mb-2">
-                            <label for="sumber_materi" class="block">Password</label>
-                            <input wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <label for="sumber_materi" class="block">Password (Mininmal 6 Karakter)</label>
+                            <input autocomplete="off" wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
-                            <label for="sumber_materi" class="block">Konfirmasi Password</label>
-                            <input wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <label for="sumber_materi" class="block">Konfirmasi Password (Mininmal 6 Karakter)</label>
+                            <input autocomplete="off" wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                     </div>
 
