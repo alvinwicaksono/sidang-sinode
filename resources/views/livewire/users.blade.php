@@ -33,26 +33,27 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($users as $key => $user)
                     <tr>
                     <td class="px-2 py-4 text-center whitespace-nowrap">
-                        <div class="text-sm text-gray-900">1</div>
+                        <div class="text-sm text-gray-900">{{ $key+1 }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
     
                                 <div class="text-sm font-medium text-gray-900">
-                                Jane Cooper
+                                {{$user->nama}}
                                 </div>
                                 <div class="text-sm text-gray-500">
-                                jane.cooper@example.com
+                                {{$user->email}}
                                 </div>
                             
         
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">Pendeta</div>
+                        <div class="text-sm text-gray-900">{{$user->seksi_id}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        Admin
+                        {{$user->role}}
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a href="#" class="margin-right-custom custom-blue"><i class="fas fa-eye"></i></a>
@@ -60,8 +61,7 @@
                         <a href="#" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
-
-                    <!-- More people... -->
+                @endforeach
                 </tbody>
                 </table>
             </div>
