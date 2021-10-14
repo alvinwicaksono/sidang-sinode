@@ -31,7 +31,7 @@
             <form autocomplete="off">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">User</h3>
+                        <h3 class="text-center font-bold">Seksi</h3>
                         <hr>
                     </div>
 
@@ -43,50 +43,8 @@
                             <label for="judul_materi" class="block">Nama (Mininmal 3 Karakter)</label>
                             <input wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             <small class="text-danger">{{ $errors->first('name') }}</small>
-                          </div>
-                        <div class="mb-2">
-                            <label for="isi_materi" class="block">Email</label>
-                            <input wire:model="email" type="text" placeholder="Masukan Email" name="email" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
-                        <div class="mb-2">
-                            <label class="block">Seksi</label>
-                            <div class="select">
-                              <select wire:model="seksi_id" name="seksi_id">
-                                  <option value="" disabled selected>Pilih Seksi</option>
-                                  <option value="1">Dummy Seksi 1</option>
-                                  <option value="2">Dummy Seksi 2</option>
-                                  <option value="3">Dummy Seksi 3</option>
-                              </select>
-                              <div class="select_arrow">
-                              </div>
-                          </div>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block">Role</label>
-                            <div class="select">
-                              <select wire:model="role" name="role">
-                                  <option value="" disabled selected>Pilih Role</option>
-                                  <option value="Admin">Admin</option>
-                                  <option value="Ketua">Ketua</option>
-                                  <option value="Sekretaris Moderamen">Sekretaris Moderamen</option>
-                                  <option value="Sekretaris Seksi">Sekretaris Seksi</option>
-                                  <option value="Gereja Penghimpun">Gereja Penghimpun</option>
-                              </select>
-                              <div class="select_arrow">
-                              </div>
-                          </div>
-                        </div>
-                        <div class="mb-2">
-                            <label for="sumber_materi" class="block">Password (Mininmal 6 Karakter)</label>
-                            <input autocomplete="off" wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
-                        <div class="mb-2">
-                            <label for="sumber_materi" class="block">Konfirmasi Password (Mininmal 6 Karakter)</label>
-                            <input autocomplete="off" wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                     </div>
-
-
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

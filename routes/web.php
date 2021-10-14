@@ -38,6 +38,7 @@ Route::get('/repoa', \App\Http\Livewire\RepoAs::class)->name('repoa');
 Route::get('/repob', \App\Http\Livewire\RepoBs::class)->name('repob');
 Route::get('/user', \App\Http\Livewire\Users::class)->name('user');
 Route::get('/daftarsidang', \App\Http\Livewire\Sidangs::class)->name('daftar-sidang');
+Route::get('/seksi', \App\Http\Livewire\Seksis::class)->name('seksi');
 
 
 

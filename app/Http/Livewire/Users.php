@@ -50,9 +50,6 @@ class Users extends Component
             'role' => 'required',
             'seksi_id' => 'required'
         ]);
-
-        $password = $this->password;
-        $konfirmasi_password = $this->konfirmasi_password;
         
         User::updateOrCreate(['id' => $this->userId],
         [
@@ -81,6 +78,7 @@ class Users extends Component
 
     public function delete($id){
         User::find($id)->delete();
+        $this->emit('alert',['type'=>'success','message'=>'User Berhasil Dihapus','title'=>'Berhasil']);
     }
    
 }
