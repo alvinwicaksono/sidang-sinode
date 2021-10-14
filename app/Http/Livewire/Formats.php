@@ -10,16 +10,18 @@ class Formats extends Component
 {
     use WithPagination;
 
-   
+    public $search;
     public $isOpen=0;
     public $formatId, $kode_format, $nama_format;
    
 
     public function render()
     {
-        
+        $search = '%'.$this->search. '%';
         return view('livewire.format.formats',[
-            'formats' => Format::latest()->paginate(5)
+            'formats' => Format::where('kode_format','LIKE',$search)->
+                                    orWhere('nama_format','LIKE',$search)
+                                    ->paginate(5)
         ]);
     }
 

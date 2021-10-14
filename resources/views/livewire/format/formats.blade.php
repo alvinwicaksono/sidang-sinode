@@ -10,6 +10,7 @@
         <button wire:click="showModal()" class="ml-3 bg-green-500 mt-4 mb-4 hover:bg-green-700 text-white font-bold py-1 px-4 rounded-full">
             Tambah Format
         </button>
+        <input type="text" class="form-control float-right mt-5 mr-5" placeholder="Cari" wire:model="search">
         @if($isOpen)
             @include('livewire.format.create')
         @endif
