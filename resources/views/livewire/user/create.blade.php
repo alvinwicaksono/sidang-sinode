@@ -48,9 +48,9 @@
                             <input wire:model="email" type="text" placeholder="Masukan Email" name="email" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Seksi</label>
+                            <label class="block">Seksi</label>
                             <div class="select">
-                              <select>
+                              <select wire:model="seksi_id" name="seksi_id">
                                   <option value="" disabled selected>Pilih Seksi</option>
                                   <option value="1">Dummy Seksi 1</option>
                                   <option value="2">Dummy Seksi 2</option>
@@ -61,9 +61,9 @@
                           </div>
                         </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Role</label>
+                            <label class="block">Role</label>
                             <div class="select">
-                              <select>
+                              <select wire:model="role" name="role">
                                   <option value="" disabled selected>Pilih Role</option>
                                   <option value="Admin">Admin</option>
                                   <option value="Ketua">Ketua</option>

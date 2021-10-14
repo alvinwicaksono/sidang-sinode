@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use Alert;
 
 class Users extends Component
 {
@@ -40,8 +41,6 @@ class Users extends Component
             'nama' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'role' => 'required',
-            'seksi_id' => 'required'
         ]);
         
         User::updateOrCreate(['id'=>$this->userId],
