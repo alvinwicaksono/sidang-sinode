@@ -68,8 +68,8 @@
                         {{$user->role}}
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a href="edit({{$user->id}})" class="margin-right-custom custom-blue"><i class="fas fa-user-edit"></i></a>
-                        <a href="delete({{$user->id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="edit({{$user->id}})" class="margin-right-custom custom-blue"><i class="fas fa-user-edit"></i></a>
+                        <a wire:click="delete({{$user->id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach

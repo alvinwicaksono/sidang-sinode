@@ -48,9 +48,9 @@
                             <input wire:model="email" type="text" placeholder="Masukan Email" name="email" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Seksi</label>
+                            <label class="block">Seksi</label>
                             <div class="select">
-                              <select>
+                              <select wire:model="seksi_id" name="seksi_id">
                                   <option value="" disabled selected>Pilih Seksi</option>
                                   <option value="1">Dummy Seksi 1</option>
                                   <option value="2">Dummy Seksi 2</option>
@@ -61,9 +61,9 @@
                           </div>
                         </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Role</label>
+                            <label class="block">Role</label>
                             <div class="select">
-                              <select>
+                              <select wire:model="role" name="role">
                                   <option value="" disabled selected>Pilih Role</option>
                                   <option value="Admin">Admin</option>
                                   <option value="Ketua">Ketua</option>
@@ -79,13 +79,17 @@
                             <label for="sumber_materi" class="block">Password</label>
                             <input wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
+                        <div class="mb-2">
+                            <label for="sumber_materi" class="block">Konfirmasi Password</label>
+                            <input wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                        </div>
                     </div>
 
 
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-          <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+          <button wire:click="store()" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
             Submit
           </button>
         </span>
