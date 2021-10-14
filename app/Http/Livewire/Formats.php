@@ -4,16 +4,23 @@ namespace App\Http\Livewire;
 
 use App\Models\Format;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Formats extends Component
 {
-    public $formats;
+    use WithPagination;
+
+   
     public $isOpen=0;
     public $formatId, $kode_format, $nama_format;
+   
+
     public function render()
     {
-        $this->formats=Format::all();
-        return view('livewire.format.formats');
+        
+        return view('livewire.format.formats',[
+            'formats' => Format::latest()->paginate(5)
+        ]);
     }
 
     public function showModal() {
