@@ -9,6 +9,10 @@ class Seksi extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama'
+        'nama_seksi'
     ];
+
+    public function User(){
+        return $this->hasMany(User::class);
+    }
 }

@@ -41,7 +41,7 @@
 
                         <div class="mb-2">
                             <label for="judul_materi" class="block">Nama (Mininmal 3 Karakter)</label>
-                            <input wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <input wire:model="nama_seksi" type="text" placeholder="Masukan Nama" name="nama_seksi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             <small class="text-danger">{{ $errors->first('name') }}</small>
                         </div>
                     </div>

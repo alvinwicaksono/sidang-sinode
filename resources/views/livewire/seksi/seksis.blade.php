@@ -17,6 +17,7 @@
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="button-table">
                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
+                <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
             </div>
             
             @if($isOpen)
@@ -45,7 +46,7 @@
                         <div class="text-sm text-gray-900">{{ $i++ }}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$seksi->nama}}</div>
+                        <div class="text-sm font-medium text-gray-900">{{$seksi->nama_seksi}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="edit({{$seksi->id}})" class="margin-right-custom custom-blue"><i class="far fa-edit"></i></i></a>

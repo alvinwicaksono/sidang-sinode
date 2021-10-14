@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Seksi;
 use Alert;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
@@ -11,14 +12,21 @@ use Livewire\WithPagination;
 class Users extends Component
 {
     use WithPagination;
-    
+    public $search;
     public $isOpen=0;
     public $userId, $nama, $email, $password, $konfirmasi_password, $role, $seksi_id;
     public function render()
     {
+        $search = '%'.$this->search. '%';
         return view('livewire.user.users',[
             'i' => 1,
-            'users' => User::latest()->paginate(5)
+            'users' => User::join('seksis','users.seksi_id','=','seksis.id')
+                            ->where('users.nama','LIKE',$search)
+                            ->orWhere('users.email','LIKE',$search)
+                            ->orWhere('users.role','LIKE',$search)
+                            ->orWhere('seksis.nama_seksi','LIKE',$search)
+                            ->orderBy('users.id', 'desc')
+                            ->paginate(5)
         ]);
     }
 
