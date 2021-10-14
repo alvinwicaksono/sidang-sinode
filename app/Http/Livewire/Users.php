@@ -13,7 +13,7 @@ class Users extends Component
     public function render()
     {
         $this->users = User::all();
-        return view('livewire.users');
+        return view('livewire.user.users');
     }
 
     public function showModal() {
@@ -43,7 +43,7 @@ class Users extends Component
             'role' => 'required',
             'seksi_id' => 'required'
         ]);
-
+        
         User::updateOrCreate(['id'=>$this->userId],
         [
             'nama'=>$this->nama,
@@ -65,6 +65,7 @@ class Users extends Component
         $this->role='';
         $this->seksi_id='';
         Alert::success('Berhasil','User Berhasil ditambahkan');
+           
     }
 
     public function delete($id){
