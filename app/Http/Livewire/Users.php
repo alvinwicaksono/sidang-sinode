@@ -14,17 +14,21 @@ class Users extends Component
     use WithPagination;
     public $search;
     public $isOpen=0;
+    public $isOpenUpdate=0;
+    public $isOpenPass=0;
     public $userId, $nama, $email, $password, $konfirmasi_password, $role, $seksi_id;
     public function render()
     {
         $search = '%'.$this->search. '%';
         return view('livewire.user.users',[
             'i' => 1,
+            'seksis' => Seksi::orderBy('id','asc')->get(),
             'users' => User::join('seksis','users.seksi_id','=','seksis.id')
                             ->where('users.nama','LIKE',$search)
                             ->orWhere('users.email','LIKE',$search)
                             ->orWhere('users.role','LIKE',$search)
                             ->orWhere('seksis.nama_seksi','LIKE',$search)
+                            ->select('*','users.id as us_id')
                             ->orderBy('users.id', 'desc')
                             ->paginate(5)
         ]);
@@ -38,15 +42,84 @@ class Users extends Component
         $this->isOpen = false;
     }
 
+    public function showModalUpdate() {
+        $this->isOpenUpdate = true;
+    }
+
+    public function hideModalUpdate() {
+        $this->isOpenUpdate = false;
+    }
+
+    public function showModalPass() {
+        $this->isOpenPass = true;
+    }
+
+    public function hideModalPass() {
+        $this->isOpenPass = false;
+    }
+
     public function edit($id){
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
         $this->userId = $id;
         $this->nama = $user->nama;
         $this->email = $user->email;
-        $this->password = $user->password;
         $this->role = $user->role;
         $this->seksi_id = $user->seksi_id;
-        $this->showModal();
+        $this->showModalUpdate();
+    }
+
+    public function pass($id){
+        $user = User::find($id);
+        $this->userId = $id;
+        $this->nama = $user->nama;
+        $this->showModalPass();
+    }
+
+    public function update() {
+        $this->validate([
+            'nama' => 'required|min:3|max:50',
+            'email' => 'required',
+            'role' => 'required',
+            'seksi_id' => 'required'
+        ]);
+
+        User::updateOrCreate(['id' => $this->userId],
+        [
+            'nama'=>$this->nama,
+            'email'=>$this->email,
+            'role'=>$this->role,
+            'seksi_id'=>$this->seksi_id
+        ]);
+
+        $this->hideModalUpdate();
+        if ($this->userId)
+            $this->emit('alert',['type'=>'success','message'=>'User Berhasil Diupdate','title'=>'Berhasil']);
+        $this->userId='';
+        $this->nama='';
+        $this->email='';
+        $this->role='';
+        $this->seksi_id='';
+        Alert::success('Berhasil','User Berhasil diupdate');
+    }
+
+    public function password() {
+        $this->validate([
+            'password' => 'min:6|max:20|required|same:konfirmasi_password',
+            'konfirmasi_password' => 'min:6|max:20|required|same:password',
+        ]);
+        
+        User::updateOrCreate(['id' => $this->userId],
+        [
+            'password'=>Hash::make($this->password),
+        ]);
+
+        $this->hideModalPass();
+        if ($this->userId)
+            $this->emit('alert',['type'=>'success','message'=>'Password User Berhasil Diupdate','title'=>'Berhasil']);
+        $this->password='';
+        $this->konfirmasi_password='';
+        Alert::success('Berhasil','Password User Berhasil diupdate');
     }
 
     public function store() {

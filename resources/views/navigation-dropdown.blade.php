@@ -19,17 +19,11 @@
                     <x-jet-nav-link href="{{ route('prasidang') }}" :active="request()->routeIs('prasidang')">
                         {{ __('Pra Sidang') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('prasidang') }}" :active="request()->routeIs('prasidang')">
+                    <x-jet-nav-link href="{{ route('sidang') }}" :active="request()->routeIs('sidang')">
                         {{ __('Sidang') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
                         {{ __('Master Data') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('user') }}" :active="request()->routeIs('user')">
-                        {{ __('User') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('seksi') }}" :active="request()->routeIs('seksi')">
-                        {{ __('Seksi') }}
                     </x-jet-nav-link>
                     <!-- <x-jet-nav-link href="{{ route('document') }}" :active="request()->routeIs('document')">
                         {{ __('Dokumen Arsip') }}

@@ -42,7 +42,6 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    
                     User
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
@@ -52,7 +51,7 @@
         </div>
     </div>
     <div
-        wire:click=""
+        wire:click="seksi()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -67,10 +66,10 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    
+                    Seksi
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  
+                    {{$seksi}}
                 </p>
             </div>
         </div>

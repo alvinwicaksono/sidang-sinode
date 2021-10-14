@@ -34,6 +34,7 @@ Route::get('/document', \App\Http\Livewire\Documents::class)->name('document');
 Route::get('/master', \App\Http\Livewire\Masterdata::class)->name('master');
 
 Route::get('/prasidang', \App\Http\Livewire\Prasidangs::class)->name('prasidang');
+Route::get('/sidang', \App\Http\Livewire\Sidangs::class)->name('sidang');
 Route::get('/repoa', \App\Http\Livewire\RepoAs::class)->name('repoa');
 Route::get('/repob', \App\Http\Livewire\RepoBs::class)->name('repob');
 Route::get('/user', \App\Http\Livewire\Users::class)->name('user');

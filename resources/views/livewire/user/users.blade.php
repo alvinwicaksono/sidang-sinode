@@ -23,6 +23,12 @@
             @if($isOpen)
                 @include('livewire.user.create')
             @endif
+            @if($isOpenUpdate)
+                @include('livewire.user.update')
+            @endif
+            @if($isOpenPass)
+                @include('livewire.user.pass')
+            @endif
 
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -69,8 +75,9 @@
                         {{$user->role}}
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$user->id}})" class="margin-right-custom custom-blue"><i class="far fa-edit"></i></i></a>
-                        <a wire:click="delete({{$user->id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="pass({{$user->us_id}})" class="margin-right-custom custom-green"><i class="fas fa-unlock-alt"></i></a>
+                        <a wire:click="edit({{$user->us_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
+                        <a wire:click="delete({{$user->us_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach
