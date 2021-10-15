@@ -21,7 +21,6 @@ class Users extends Component
     {
         $search = '%'.$this->search. '%';
         return view('livewire.user.users',[
-            'i' => 1,
             'seksis' => Seksi::orderBy('id','asc')->get(),
             'users' => User::join('seksis','users.seksi_id','=','seksis.id')
                             ->where('users.nama','LIKE',$search)

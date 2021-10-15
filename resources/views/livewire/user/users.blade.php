@@ -52,10 +52,10 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($users as $user)
+                @foreach ($users as $key => $user)
                     <tr>
                     <td class="px-2 py-4 text-center whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $i++ }}</div>
+                        <div class="text-sm text-gray-900">{{ $users->firstItem() + $key }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
     

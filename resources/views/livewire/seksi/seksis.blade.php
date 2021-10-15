@@ -40,10 +40,10 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($seksis as $seksi)
+                @foreach ($seksis as $key => $seksi)
                     <tr>
                     <td class="px-1 py-4 text-center whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $i++ }}</div>
+                        <div class="text-sm text-gray-900">{{ $seksis->firstItem() + $key }}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$seksi->nama_seksi}}</div>

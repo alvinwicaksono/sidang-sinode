@@ -18,7 +18,6 @@ class Seksis extends Component
     {
         $search = '%'.$this->search. '%';
         return view('livewire.seksi.seksis',[
-            'i' => 1,
             'seksis' => Seksi::where('nama_seksi','LIKE',$search)
                                 ->orderBy('id', 'desc')
                                 ->paginate(5)
