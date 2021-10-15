@@ -35,12 +35,12 @@ Route::get('/master', \App\Http\Livewire\Masterdata::class)->name('master');
 
 Route::get('/prasidang', \App\Http\Livewire\Prasidangs::class)->name('prasidang');
 Route::get('/sidang', \App\Http\Livewire\Sidangs::class)->name('sidang');
-Route::get('/repob', \App\Http\Livewire\RepoBs::class)->name('repob');
 Route::get('/user', \App\Http\Livewire\Users::class)->name('user');
 Route::get('/daftarsidang', \App\Http\Livewire\Sidangs::class)->name('daftar-sidang');
 Route::get('/seksi', \App\Http\Livewire\Seksis::class)->name('seksi');
 Route::get('/peserta_sidang', \App\Http\Livewire\Peserta_sidangs::class)->name('peserta_sidang');
 Route::get('/repo_a', \App\Http\Livewire\Repo_as::class)->name('repo_a');
+Route::get('/repo_b', \App\Http\Livewire\Repo_bs::class)->name('repo_b');
 
 
 

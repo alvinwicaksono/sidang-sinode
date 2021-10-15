@@ -75,10 +75,12 @@ class Repo_as extends Component
         else
             $this->emit('alert',['type'=>'success','message'=>'Repo A Berhasil Ditambahkan','title'=>'Berhasil']);
         $this->repo_aId='';
-        $this->user_id='';
-        $this->nama_pengguna='';
         $this->sidang_id='';
-        $this->utusan='';
+        $this->judul_materi='';
+        $this->isi_materi='';
+        $this->sumber_materi='';
+        $this->attachment='';
+        $this->status='';
         Alert::success('Berhasil','Repo A Berhasil ditambahkan');
            
     }

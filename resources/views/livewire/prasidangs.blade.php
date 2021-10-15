@@ -25,7 +25,7 @@
         </div>
     </div>
     <div
-        wire:click="repob()"
+        wire:click="repo_b()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -45,7 +45,7 @@
                     Repo B
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    
+                    {{$repo_b}}
                 </p>
             </div>
         </div>

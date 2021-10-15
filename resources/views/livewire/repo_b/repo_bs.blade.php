@@ -1,7 +1,7 @@
 
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Repo A') }}
+        {{ __('Repo B') }}
     </h2>
 </x-slot>
 
@@ -21,7 +21,7 @@
             </div>
             
             @if($isOpen)
-                @include('livewire.repo_a.create')
+                @include('livewire.repo_b.create')
             @endif
 
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -40,42 +40,51 @@
                     <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Lampiran
                     </th>
+                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Judul Materi Repo A
+                    </th>
+                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Seksi
+                    </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($repo_as as $key => $repo_a)
+                @foreach ($repo_bs as $key => $repo_b)
                     <tr>
                     <td class="px-1 py-4 text-center whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $repo_as->firstItem() + $key }}</div>
+                        <div class="text-sm text-gray-900">{{ $repo_bs->firstItem() + $key }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">
-                                {{$repo_a->sidang->akta_sidang}}
+                                {{$repo_b->sidang->akta_sidang}}
                                 </div>
                                 <div class="lightblue-custom text-sm text-gray-500">
-                                {{$repo_a->status}}
+                                {{$repo_b->status}}
                                 </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">
-                                <b>{{$repo_a->judul_materi}}<b>
-                                </div>
-                                <div class="lightblue-custom text-sm text-gray-500">
-                                {{$repo_a->sumber_materi}}
+                                <b>{{$repo_b->judul_materi}}</b>
                                 </div>
                                 <div class="text-sm text-gray-500">
-                                {{$repo_a->isi_materi}}
+                                {{$repo_b->isi_materi}}
                                 </div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_a->attachment}}</div>
+                        <div class="text-sm font-medium text-gray-900">{{$repo_b->attachment}}</div>
+                    </td>
+                    <td class="px-15 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900"></div>
+                    </td>
+                    <td class="px-15 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">{{$repo_b->seksi->nama}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$repo_a->ra_id}})" class="margin-right-custom custom-blue"><i class="far fa-edit"></i></i></a>
-                        <a wire:click="delete({{$repo_a->ra_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="edit({{$repo_b->rb_id}})" class="margin-right-custom custom-blue"><i class="far fa-edit"></i></i></a>
+                        <a wire:click="delete({{$repo_b->rb_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach
@@ -83,7 +92,7 @@
                 </table>
 
                 <div class="pagination-custom">
-                    {{ $repo_as->links() }}
+                    {{ $repo_bs->links() }}
                 </div>
                 
             </div>
