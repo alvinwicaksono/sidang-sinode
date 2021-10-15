@@ -1,7 +1,7 @@
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
     <div
-        wire:click="repoa()"
+        wire:click="repo_a()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -19,7 +19,7 @@
                     Repo A
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                 
+                    {{$repo_a}}
                 </p>
             </div>
         </div>
