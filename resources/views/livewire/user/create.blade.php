@@ -40,11 +40,11 @@
                         <input wire:model="userId" type="hidden" name="kode_user" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="judul_materi" class="block">Nama (Mininmal 3 Karakter)</label>
+                            <label for="nama" class="block">Nama (Mininmal 3 Karakter)</label>
                             <input autocomplete="off" wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                           </div>
                         <div class="mb-2">
-                            <label for="isi_materi" class="block">Email</label>
+                            <label for="email" class="block">Email</label>
                             <input autocomplete="off" wire:model="email" type="text" placeholder="Masukan Email" name="email" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
@@ -76,11 +76,11 @@
                           </div>
                         </div>
                         <div class="mb-2">
-                            <label for="sumber_materi" class="block">Password (Mininmal 6 Karakter)</label>
+                            <label for="password" class="block">Password (Mininmal 6 Karakter)</label>
                             <input autocomplete="off" wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
-                            <label for="sumber_materi" class="block">Konfirmasi Password (Mininmal 6 Karakter)</label>
+                            <label for="konfirmasi_password" class="block">Konfirmasi Password (Mininmal 6 Karakter)</label>
                             <input autocomplete="off" wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                     </div>

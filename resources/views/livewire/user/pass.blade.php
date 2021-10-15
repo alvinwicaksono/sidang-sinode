@@ -39,11 +39,11 @@
                     <div>
                         <input wire:model="userId" type="hidden" name="kode_user" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         <div class="mb-2">
-                            <label for="sumber_materi" class="block">Password Baru (Mininmal 6 Karakter)</label>
+                            <label for="password" class="block">Password Baru (Mininmal 6 Karakter)</label>
                             <input autocomplete="off" wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
-                            <label for="sumber_materi" class="block">Konfirmasi Password Baru (Mininmal 6 Karakter)</label>
+                            <label for="konfirmasi_password" class="block">Konfirmasi Password Baru (Mininmal 6 Karakter)</label>
                             <input autocomplete="off" wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                     </div>

@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function Seksi(){
         return $this->belongsTo(Seksi::class);
     }
+
+    public function Peserta_sidang(){
+        return $this->hasMany(Peserta_sidang::class);
+    }
 }

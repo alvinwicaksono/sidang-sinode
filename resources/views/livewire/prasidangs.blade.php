@@ -51,7 +51,7 @@
         </div>
     </div>
     <div
-        wire:click=""
+        wire:click="peserta_sidang()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -69,7 +69,7 @@
                     Peserta Sidang
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    
+                    {{ $peserta_sidang }}
                 </p>
             </div>
         </div>

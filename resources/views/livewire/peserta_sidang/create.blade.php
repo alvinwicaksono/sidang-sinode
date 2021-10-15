@@ -31,18 +31,49 @@
             <form autocomplete="off">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Seksi</h3>
+                        <h3 class="text-center font-bold">Peserta Sidang</h3>
                         <hr>
                     </div>
 
 
                     <div>
-                        <input wire:model="seksiId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                        <input wire:model="peserta_sidangId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="nama_seksi" class="block">Nama (Mininmal 3 Karakter)</label>
-                            <input wire:model="nama_seksi" type="text" placeholder="Masukan Nama" name="nama_seksi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <label class="block">Seksi</label>
+                            <div class="select">
+                              <select wire:model="user_id" name="user_id">
+                                  <option value="" disabled selected>Pilih User</option>
+                                  @foreach ($users as $user)
+                                  <option value="{{ $user->id }}">{{ $user->nama }}</option>
+                                  @endforeach
+                              </select>
+                              <div class="select_arrow">
+                              </div>
+                          </div>
                         </div>
+                        <div class="mb-2">
+                            <label for="nama_pengguna" class="block">Nama Pengguna (Mininmal 3 Karakter)</label>
+                            <input wire:model="nama_pengguna" type="text" placeholder="Masukan Nama Pengguna" name="nama_pengguna" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                        </div>
+                        <div class="mb-2">
+                            <label class="block">Sidang</label>
+                            <div class="select">
+                              <select wire:model="sidang_id" name="sidang_id">
+                                  <option value="" disabled selected>Pilih Seksi</option>
+                                  @foreach ($sidangs as $sidang)
+                                  <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
+                                  @endforeach
+                              </select>
+                              <div class="select_arrow">
+                              </div>
+                          </div>
+                        </div>
+                        <div class="mb-2">
+                            <label for="utusan" class="block">Utusan (Mininmal 3 Karakter)</label>
+                            <input wire:model="utusan" type="text" placeholder="Masukan Utusan" name="utusan" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

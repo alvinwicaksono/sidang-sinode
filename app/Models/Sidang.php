@@ -19,5 +19,9 @@ class Sidang extends Model
     ];  
     use HasFactory;
 
+    public function Sidang(){
+        return $this->hasMany(Sidang::class);
+    }
+
 
 }
