@@ -14,6 +14,7 @@ class Repo_as extends Component
     use WithPagination;
     public $search;
     public $isOpen=0;
+    public $isOpenView=0;
     public $repo_aId, $sidang_id, $judul_materi, $isi_materi, $sumber_materi, $attachment, $status;
     public function render()
     {
@@ -39,6 +40,32 @@ class Repo_as extends Component
 
     public function hideModal() {
         $this->isOpen = false;
+    }
+
+    public function showModalView() {
+        $this->isOpenView = true;
+    }
+
+    public function hideModalView() {
+        $this->isOpenView = false;
+    }
+
+    public function view($id){
+        $repo_a = Repo_a::findOrFail($id);
+        $sidangs = Repo_a::join('sidangs', 'repo_as.sidang_id','=','sidangs.id')
+                        ->findOrFail($id);
+
+        $this->repo_aId = $id;
+        $this->judul_materi = $repo_a->judul_materi;
+        $this->isi_materi = $repo_a->isi_materi;
+        $this->sumber_materi = $repo_a->sumber_materi;
+        $this->attachment = $repo_a->attachment;
+        $this->status = $repo_a->status;
+
+        $this->sidang = $sidangs->akta_sidang;
+                            
+        
+        $this->showModalView();
     }
 
     public function edit($id){

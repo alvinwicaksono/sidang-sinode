@@ -16,6 +16,7 @@ class Repo_bs extends Component
     use WithPagination;
     public $search;
     public $isOpen=0;
+    public $isOpenView=0;
     public $repo_bId, $sidang_id, $repoa_id, $seksi_id, $judul_materi, $isi_materi, $attachment, $status;
     public function render()
     {
@@ -43,9 +44,39 @@ class Repo_bs extends Component
     public function showModal() {
         $this->isOpen = true;
     }
-
     public function hideModal() {
         $this->isOpen = false;
+    }
+
+    public function showModalView() {
+        $this->isOpenView = true;
+    }
+    public function hideModalView() {
+        $this->isOpenView = false;
+    }
+
+    public function view($id){
+        $repo_b = Repo_b::findOrFail($id);
+        $repo_as = Repo_b::join('repo_as', 'repo_bs.repoa_id','=','repo_as.id')
+                        ->findOrFail($id);
+        $sidangs = Repo_b::join('sidangs', 'repo_bs.sidang_id','=','sidangs.id')
+                        ->findOrFail($id);
+        $seksis = Repo_b::join('seksis', 'repo_bs.seksi_id','=','seksis.id')
+                        ->findOrFail($id);
+
+        $this->repo_bId = $id;
+        $this->judul_materi = $repo_b->judul_materi;
+        $this->isi_materi = $repo_b->isi_materi;
+        $this->sumber_materi = $repo_b->sumber_materi;
+        $this->attachment = $repo_b->attachment;
+        $this->status = $repo_b->status;
+
+        $this->repo_a = $repo_as->judul_materi;
+        $this->sidang = $sidangs->akta_sidang;
+        $this->seksi = $seksis->nama;
+                            
+        
+        $this->showModalView();
     }
 
     public function edit($id){
