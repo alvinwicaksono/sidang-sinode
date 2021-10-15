@@ -9,7 +9,7 @@ class Seksi extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama_seksi'
+        'nama'
     ];
 
     public function User(){

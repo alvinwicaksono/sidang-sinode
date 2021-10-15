@@ -60,7 +60,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">
     
                                 <div class="text-sm font-medium text-gray-900">
-                                {{$user->nama}}
+                                {{$user->nama_user}}
                                 </div>
                                 <div class="text-sm text-gray-500">
                                 {{$user->email}}
@@ -69,7 +69,7 @@
         
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{$user->seksi->nama_seksi}}</div>
+                        <div class="text-sm text-gray-900">{{$user->seksi->nama}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{$user->role}}

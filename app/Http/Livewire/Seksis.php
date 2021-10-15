@@ -13,12 +13,12 @@ class Seksis extends Component
     use WithPagination;
     public $search;
     public $isOpen=0;
-    public $seksiId, $nama_seksi;
+    public $seksiId, $nama;
     public function render()
     {
         $search = '%'.$this->search. '%';
         return view('livewire.seksi.seksis',[
-            'seksis' => Seksi::where('nama_seksi','LIKE',$search)
+            'seksis' => Seksi::where('nama','LIKE',$search)
                                 ->orderBy('id', 'desc')
                                 ->paginate(5)
         ]);
@@ -35,18 +35,18 @@ class Seksis extends Component
     public function edit($id){
         $seksi = Seksi::findOrFail($id);
         $this->seksiId = $id;
-        $this->nama_seksi = $seksi->nama_seksi;
+        $this->nama = $seksi->nama;
         $this->showModal();
     }
 
     public function store() {
         $this->validate([
-            'nama_seksi' => 'required|min:3|max:50',
+            'nama' => 'required|min:3|max:50',
         ]);
         
         Seksi::updateOrCreate(['id' => $this->seksiId],
         [
-            'nama_seksi'=>$this->nama_seksi,
+            'nama'=>$this->nama,
         ]);
 
         $this->hideModal();
@@ -55,7 +55,7 @@ class Seksis extends Component
         else
             $this->emit('alert',['type'=>'success','message'=>'Seksi Berhasil Ditambahkan','title'=>'Berhasil']);
         $this->seksiId='';
-        $this->nama_seksi='';
+        $this->nama='';
         Alert::success('Berhasil','Seksi Berhasil ditambahkan');
            
     }

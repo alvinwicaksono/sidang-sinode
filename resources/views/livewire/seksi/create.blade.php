@@ -40,8 +40,8 @@
                         <input wire:model="seksiId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="nama_seksi" class="block">Nama (Mininmal 3 Karakter)</label>
-                            <input wire:model="nama_seksi" type="text" placeholder="Masukan Nama" name="nama_seksi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <label for="nama" class="block">Nama (Mininmal 3 Karakter)</label>
+                            <input wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                     </div>
                 </div>

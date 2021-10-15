@@ -46,7 +46,7 @@
                         <div class="text-sm text-gray-900">{{ $seksis->firstItem() + $key }}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$seksi->nama_seksi}}</div>
+                        <div class="text-sm font-medium text-gray-900">{{$seksi->nama}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="edit({{$seksi->id}})" class="margin-right-custom custom-blue"><i class="far fa-edit"></i></i></a>

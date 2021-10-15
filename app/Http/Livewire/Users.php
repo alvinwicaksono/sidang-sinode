@@ -26,8 +26,8 @@ class Users extends Component
                             ->where('users.nama','LIKE',$search)
                             ->orWhere('users.email','LIKE',$search)
                             ->orWhere('users.role','LIKE',$search)
-                            ->orWhere('seksis.nama_seksi','LIKE',$search)
-                            ->select('*','users.id as us_id')
+                            ->orWhere('seksis.nama','LIKE',$search)
+                            ->select('*','users.id as us_id', 'users.nama as nama_user')
                             ->orderBy('users.id', 'desc')
                             ->paginate(5)
         ]);

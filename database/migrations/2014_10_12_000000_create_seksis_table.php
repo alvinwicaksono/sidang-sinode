@@ -15,7 +15,7 @@ class CreateSeksisTable extends Migration
     {
         Schema::create('seksis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_seksi');
+            $table->string('nama');
             $table->timestamps();
         });
     }

@@ -42,7 +42,6 @@
                         <div class="mb-2">
                             <label for="nama" class="block">Nama (Mininmal 3 Karakter)</label>
                             <input wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                            <small class="text-danger">{{ $errors->first('name') }}</small>
                           </div>
                         <div class="mb-2">
                             <label for="email" class="block">Email</label>
@@ -54,7 +53,7 @@
                               <select wire:model="seksi_id" name="seksi_id">
                                   <option value="" disabled selected>Pilih Seksi</option>
                                   @foreach ($seksis as $seksi)
-                                  <option value="{{ $seksi->id }}">{{ $seksi->nama_seksi }}</option>
+                                  <option value="{{ $seksi->id }}">{{ $seksi->nama }}</option>
                                   @endforeach
                               </select>
                               <div class="select_arrow">

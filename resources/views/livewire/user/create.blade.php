@@ -53,7 +53,7 @@
                               <select wire:model="seksi_id" name="seksi_id">
                                   <option value="" disabled selected>Pilih Seksi</option>
                                   @foreach ($seksis as $seksi)
-                                  <option value="{{ $seksi->id }}">{{ $seksi->nama_seksi }}</option>
+                                  <option value="{{ $seksi->id }}">{{ $seksi->nama }}</option>
                                   @endforeach
                               </select>
                               <div class="select_arrow">
