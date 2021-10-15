@@ -62,7 +62,7 @@
                                 {{$repo_b->sidang->akta_sidang}}
                                 </div>
                                 <div class="lightblue-custom text-sm text-gray-500">
-                                {{$repo_b->status}}
+                                {{$repo_b->stat}}
                                 </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
