@@ -28,7 +28,7 @@
         -->
 
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            <form autocomplete="off">
+            <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
                         <h3 class="text-center font-bold">Ganti Password {{$nama}}</h3>
@@ -40,11 +40,11 @@
                         <input wire:model="userId" type="hidden" name="kode_user" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         <div class="mb-2">
                             <label for="password" class="block">Password Baru (Mininmal 6 Karakter)</label>
-                            <input autocomplete="off" wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <input  wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
                             <label for="konfirmasi_password" class="block">Konfirmasi Password Baru (Mininmal 6 Karakter)</label>
-                            <input autocomplete="off" wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <input  wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                     </div>
 
