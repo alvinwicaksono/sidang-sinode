@@ -43,7 +43,7 @@
                             <label class="block">Sidang</label>
                             <div class="select">
                               <select wire:model="sidang_id" name="sidang_id">
-                                  <option value="" disabled selected>Pilih Seksi</option>
+                                  <option value="" disabled selected>Pilih Sidang</option>
                                   @foreach ($sidangs as $sidang)
                                   <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
                                   @endforeach

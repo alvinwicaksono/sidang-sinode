@@ -43,7 +43,7 @@
                             <label class="block">Sidang</label>
                             <div class="select">
                               <select wire:model="sidang_id" name="sidang_id">
-                                  <option value="" disabled selected>Pilih Seksi</option>
+                                  <option value="" disabled selected>Pilih Sidang</option>
                                   @foreach ($sidangs as $sidang)
                                   <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
                                   @endforeach
@@ -58,7 +58,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="isi_materi" class="block">Isi Materi</label>
-                            <input wire:model="isi_materi" type="text" placeholder="Masukan Isi Materi" name="isi_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                         </div>
                         <div class="mb-2">
                             <label for="attachment" class="block">Lampiran</label>
@@ -68,7 +68,7 @@
                             <label class="block">Repo A</label>
                             <div class="select">
                               <select wire:model="repoa_id" name="repoa_id">
-                                  <option value="" disabled selected>Pilih Seksi</option>
+                                  <option value="" disabled selected>Pilih Repo A</option>
                                   @foreach ($repo_as as $repo_a)
                                   <option value="{{ $repo_a->id }}">{{ $repo_a->judul_materi }}</option>
                                   @endforeach
