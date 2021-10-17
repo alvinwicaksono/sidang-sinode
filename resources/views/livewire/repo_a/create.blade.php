@@ -58,8 +58,8 @@
                         </div>
                         <div class="mb-2">
                             <label for="isi_materi" class="block">Isi Materi</label>
-                            <input wire:model="isi_materi" type="text" placeholder="Masukan Isi Materi" name="isi_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
+                          </div>
                         <div class="mb-2">
                             <label for="sumber_materi" class="block">Sumber Materi</label>
                             <input wire:model="sumber_materi" type="text" placeholder="Masukan Sumber Materi" name="sumber_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">

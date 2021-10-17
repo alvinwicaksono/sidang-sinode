@@ -15,7 +15,7 @@ class Repo_as extends Component
     public $search;
     public $isOpen=0;
     public $isOpenView=0;
-    public $repo_aId, $sidang_id, $judul_materi, $isi_materi, $sumber_materi, $attachment, $status;
+    public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment, $status;
     public function render()
     {
         $search = '%'.$this->search. '%';

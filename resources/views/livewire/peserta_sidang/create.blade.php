@@ -40,7 +40,7 @@
                         <input wire:model="peserta_sidangId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label class="block">Seksi</label>
+                            <label class="block">User</label>
                             <div class="select">
                               <select wire:model="user_id" name="user_id">
                                   <option value="" disabled selected>Pilih User</option>
@@ -60,7 +60,7 @@
                             <label class="block">Sidang</label>
                             <div class="select">
                               <select wire:model="sidang_id" name="sidang_id">
-                                  <option value="" disabled selected>Pilih Seksi</option>
+                                  <option value="" disabled selected>Pilih Sidang</option>
                                   @foreach ($sidangs as $sidang)
                                   <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
                                   @endforeach

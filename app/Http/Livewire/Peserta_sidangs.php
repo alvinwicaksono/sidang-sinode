@@ -15,7 +15,7 @@ class Peserta_sidangs extends Component
     use WithPagination;
     public $search;
     public $isOpen=0;
-    public $peserta_sidangId, $user_id, $nama_pengguna, $sidang_id, $utusan;
+    public $peserta_sidangId, $user_id='', $nama_pengguna, $sidang_id='', $utusan;
     public function render()
     {
         $search = '%'.$this->search. '%';

@@ -16,7 +16,7 @@ class Users extends Component
     public $isOpen=0;
     public $isOpenUpdate=0;
     public $isOpenPass=0;
-    public $userId, $nama, $email, $password, $konfirmasi_password, $role, $seksi_id;
+    public $userId, $nama, $email, $password, $konfirmasi_password, $role='', $seksi_id='';
     public function render()
     {
         $search = '%'.$this->search. '%';

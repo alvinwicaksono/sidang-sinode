@@ -17,7 +17,7 @@ class Repo_bs extends Component
     public $search;
     public $isOpen=0;
     public $isOpenView=0;
-    public $repo_bId, $sidang_id, $repoa_id, $seksi_id, $judul_materi, $isi_materi, $attachment, $status;
+    public $repo_bId, $sidang_id='', $repoa_id='', $seksi_id='', $judul_materi, $isi_materi, $attachment, $status;
     public function render()
     {
         $search = '%'.$this->search. '%';
