@@ -98,7 +98,7 @@ class Repo_as extends Component
         ]);
  
         foreach ($this->images as $key => $image) {
-            $this->images[$key] = $image->store('images');
+            $this->images[$key] = $image->store('public');
         }
     
         $this->images = json_encode($this->images);
