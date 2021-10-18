@@ -52,13 +52,8 @@
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Lampiran :</b>
-                              @foreach($attachment as $image)
-                                    <img
-                                      wire:key="{{ $image->id }} "
-                                        src="{{ asset($image->name) }}"
-                                        alt=""
-                                        class="h-full"
-                                    >
+                              @foreach (json_decode($attachment) as $picture)
+                                <img src="{{ asset('storage/app/'.$picture) }}" style="height:120px; width:200px"/>
                               @endforeach
                             </label>
                         </div>
