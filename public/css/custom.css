@@ -69,6 +69,11 @@
 	top:1px;
 }
 
+.remove-button{
+    color: red;
+    margin-bottom: 20px;
+}
+
 /* ############# DROPDOWN ################## */
 
 .select {

@@ -65,10 +65,24 @@
                             <input wire:model="sumber_materi" type="text" placeholder="Masukan Sumber Materi" name="sumber_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Lampiran</label>
-                            <input wire:model="attachment" type="file" placeholder="Masukan Lampiran" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
-                        
+                            <label for="images" class="block">Lampiran ( Bisa lebih dari 1 )</label>
+                            <input wire:model="images" type="file" placeholder="Masukan Lampiran" name="images" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <div wire:loading wire:target="images">Uploading...</div>
+                          </div>
+                          @if ($images)
+                              Lampiran Preview:
+                              <div class="row">
+                                  @foreach ($images as $images)
+                                  <div class="col-3 card me-1 mb-1">
+                                      <img src="{{ $images->temporaryUrl() }}">
+                                      <button class="remove-button" wire:click.prevent="removeImg({{$loop->index}})">
+                                        <i class="fas fa-trash-alt"></i> Remove
+                                      </button>
+                                  </div>
+                                  @endforeach
+                              </div>
+                          @endif
+                                      
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -81,6 +95,7 @@
           <button wire:click="hideModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
             Cancel
           </button>
+          <div wire:loading wire:target="store()">Process...</div>
 
         </span>
                 </div>

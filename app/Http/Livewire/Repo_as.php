@@ -8,14 +8,16 @@ use App\Models\Sidang;
 use Alert;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class Repo_as extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     public $search;
     public $isOpen=0;
     public $isOpenView=0;
-    public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment, $status;
+    public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment, $status, $images=[];
     public function render()
     {
         $search = '%'.$this->search. '%';
@@ -79,12 +81,27 @@ class Repo_as extends Component
         $this->showModal();
     }
 
+    public function removeImg($index)
+    {
+        array_splice($this->images, $index, 1);
+    }
+
     public function store() {
         $this->validate([
             'sidang_id' => 'required',
             'judul_materi' => 'required',
-            'isi_materi' => 'required'
+            'isi_materi' => 'required',
         ]);
+
+        $this->validate([
+            'images.*' => 'image|max:5024', // 5MB Max
+        ]);
+ 
+        foreach ($this->images as $key => $image) {
+            $this->images[$key] = $image->store('images');
+        }
+    
+        $this->images = json_encode($this->images);
         
         Repo_a::updateOrCreate(['id' => $this->repo_aId],
         [
@@ -92,7 +109,7 @@ class Repo_as extends Component
             'judul_materi' => $this->judul_materi,
             'isi_materi' => $this->isi_materi,
             'sumber_materi' => $this->sumber_materi,
-            'attachment' => $this->attachment,
+            'attachment' => $this->images,
             'status' => 'Pra Sidang'
         ]);
 

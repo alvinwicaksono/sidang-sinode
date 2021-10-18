@@ -51,7 +51,16 @@
                             <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>
                         </div>
                         <div class="mb-2">
-                            <label class="block"><b>Lampiran :</b> {{$attachment}}</label>
+                            <label class="block"><b>Lampiran :</b>
+                              @foreach($attachment as $image)
+                                    <img
+                                      wire:key="{{ $image->id }} "
+                                        src="{{ asset($image->name) }}"
+                                        alt=""
+                                        class="h-full"
+                                    >
+                              @endforeach
+                            </label>
                         </div>
                         
 
