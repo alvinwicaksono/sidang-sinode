@@ -33,27 +33,37 @@ class Users extends Component
         ]);
     }
 
+    private function clearCache(){
+        $this->userId='';
+        $this->nama='';
+        $this->email='';
+        $this->role='';
+        $this->seksi_id='';
+        $this->password='';
+        $this->konfirmasi_password='';
+    }
+
     public function showModal() {
         $this->isOpen = true;
     }
-
     public function hideModal() {
+        $this->clearCache();
         $this->isOpen = false;
     }
 
     public function showModalUpdate() {
         $this->isOpenUpdate = true;
     }
-
     public function hideModalUpdate() {
+        $this->clearCache();
         $this->isOpenUpdate = false;
     }
 
     public function showModalPass() {
         $this->isOpenPass = true;
     }
-
     public function hideModalPass() {
+        $this->clearCache();
         $this->isOpenPass = false;
     }
 
@@ -75,52 +85,6 @@ class Users extends Component
         $this->showModalPass();
     }
 
-    public function update() {
-        $this->validate([
-            'nama' => 'required|min:3|max:50',
-            'email' => 'required',
-            'role' => 'required',
-            'seksi_id' => 'required'
-        ]);
-
-        User::updateOrCreate(['id' => $this->userId],
-        [
-            'nama'=>$this->nama,
-            'email'=>$this->email,
-            'role'=>$this->role,
-            'seksi_id'=>$this->seksi_id
-        ]);
-
-        $this->hideModalUpdate();
-        if ($this->userId)
-            $this->emit('alert',['type'=>'success','message'=>'User Berhasil Diupdate','title'=>'Berhasil']);
-        $this->userId='';
-        $this->nama='';
-        $this->email='';
-        $this->role='';
-        $this->seksi_id='';
-        Alert::success('Berhasil','User Berhasil diupdate');
-    }
-
-    public function password() {
-        $this->validate([
-            'password' => 'min:6|max:20|required|same:konfirmasi_password',
-            'konfirmasi_password' => 'min:6|max:20|required|same:password',
-        ]);
-        
-        User::updateOrCreate(['id' => $this->userId],
-        [
-            'password'=>Hash::make($this->password),
-        ]);
-
-        $this->hideModalPass();
-        if ($this->userId)
-            $this->emit('alert',['type'=>'success','message'=>'Password User Berhasil Diupdate','title'=>'Berhasil']);
-        $this->password='';
-        $this->konfirmasi_password='';
-        Alert::success('Berhasil','Password User Berhasil diupdate');
-    }
-
     public function store() {
         $this->validate([
             'nama' => 'required|min:3|max:50',
@@ -131,7 +95,7 @@ class Users extends Component
             'seksi_id' => 'required'
         ]);
         
-        User::updateOrCreate(['id' => $this->userId],
+        User::create(
         [
             'nama'=>$this->nama,
             'email'=>$this->email,
@@ -141,23 +105,51 @@ class Users extends Component
         ]);
 
         $this->hideModal();
-        if ($this->userId)
-            $this->emit('alert',['type'=>'success','message'=>'User Berhasil Diupdate','title'=>'Berhasil']);
-        else
-            $this->emit('alert',['type'=>'success','message'=>'User Berhasil Ditambahkan','title'=>'Berhasil']);
-        $this->userId='';
-        $this->nama='';
-        $this->email='';
-        $this->password='';
-        $this->konfirmasi_password='';
-        $this->role='';
-        $this->seksi_id='';
-        Alert::success('Berhasil','User Berhasil ditambahkan');
-           
+        $this->emit('alert',['type'=>'success','message'=>'User Berhasil Ditambahkan','title'=>'Berhasil']);
+    }
+
+    public function update() {
+        $this->validate([
+            'nama' => 'required|min:3|max:50',
+            'email' => 'required',
+            'role' => 'required',
+            'seksi_id' => 'required'
+        ]);
+
+        $user = User::find($this->userId);
+
+        $user->update(
+        [
+            'nama'=>$this->nama,
+            'email'=>$this->email,
+            'role'=>$this->role,
+            'seksi_id'=>$this->seksi_id
+        ]);
+
+        $this->hideModalUpdate();
+        $this->emit('alert',['type'=>'success','message'=>'User Berhasil Diupdate','title'=>'Berhasil']);
+    }
+
+    public function password() {
+        $this->validate([
+            'password' => 'min:6|max:20|required|same:konfirmasi_password',
+            'konfirmasi_password' => 'min:6|max:20|required|same:password',
+        ]);
+        
+        $user = User::find($this->userId);
+        
+        $user->update(
+        [
+            'password'=>Hash::make($this->password),
+        ]);
+
+        $this->hideModalPass();
+        $this->emit('alert',['type'=>'success','message'=>'Password User Berhasil Diupdate','title'=>'Berhasil']);
     }
 
     public function delete($id){
         User::find($id)->delete();
+        $this->clearCache();
         $this->emit('alert',['type'=>'success','message'=>'User Berhasil Dihapus','title'=>'Berhasil']);
     }
    
