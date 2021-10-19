@@ -23,6 +23,9 @@
             @if($isOpen)
                 @include('livewire.repo_a.create')
             @endif
+            @if($isOpenEdit)
+                @include('livewire.repo_a.edit')
+            @endif
             @if($isOpenView)
                 @include('livewire.repo_a.view')
             @endif

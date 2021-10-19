@@ -53,7 +53,7 @@
                         <div class="mb-2">
                             <label class="block"><b>Lampiran :</b>
                               @foreach (json_decode($attachment) as $lampiran)
-                                <img src="<?php echo str_replace('public','storage',$lampiran); ?>" style="height:120px; width:200px"/><br>
+                                <img src="<?php echo str_replace('public','storage',$lampiran); ?>"/><br>
                               @endforeach
                             </label>
                         </div>

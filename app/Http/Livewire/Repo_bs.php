@@ -23,9 +23,9 @@ class Repo_bs extends Component
         $search = '%'.$this->search. '%';
         return view('livewire.repo_b.repo_bs',[
             'i' => 1,
-            'sidangs' => Sidang::orderBy('id','asc')->get(),
-            'seksis' => Seksi::orderBy('id','asc')->get(),
-            'repo_as' => Repo_a::orderBy('id','asc')->get(),
+            'sidangs' => Sidang::all(),
+            'seksis' => Seksi::all(),
+            'repo_as' => Repo_a::all(),
             'repo_bs' => Repo_b::join('sidangs', 'repo_bs.sidang_id','=','sidangs.id')
                                 ->join('seksis', 'repo_bs.seksi_id','=','seksis.id')
                                 ->join('repo_as', 'repo_bs.repoa_id','=','repo_as.id')
