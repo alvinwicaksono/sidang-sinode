@@ -14,7 +14,7 @@ class Peserta_sidangs extends Component
 {
     use WithPagination;
     public $search;
-    public $isOpen=0;
+    public $isOpen=0, $isOpenEdit=0;
     public $peserta_sidangId, $user_id='', $nama_pengguna, $sidang_id='', $utusan;
     public function render()
     {
@@ -35,12 +35,28 @@ class Peserta_sidangs extends Component
         ]);
     }
 
+    private function clearCache() {
+        $this->peserta_sidangId='';
+        $this->user_id='';
+        $this->nama_pengguna='';
+        $this->sidang_id='';
+        $this->utusan='';
+    }
+
     public function showModal() {
         $this->isOpen = true;
     }
-
     public function hideModal() {
+        $this->clearCache();   
         $this->isOpen = false;
+    }
+
+    public function showModalEdit() {
+        $this->isOpenEdit = true;
+    }
+    public function hideModalEdit() {
+        $this->clearCache();   
+        $this->isOpenEdit = false;
     }
 
     public function edit($id){
@@ -50,7 +66,7 @@ class Peserta_sidangs extends Component
         $this->nama_pengguna = $peserta_sidang->nama_pengguna;
         $this->sidang_id = $peserta_sidang->sidang_id;
         $this->utusan = $peserta_sidang->utusan;
-        $this->showModal();
+        $this->showModalEdit();
     }
 
     public function store() {
@@ -61,7 +77,7 @@ class Peserta_sidangs extends Component
             'utusan' => 'required|min:3|max:50'
         ]);
         
-        peserta_sidang::updateOrCreate(['id' => $this->peserta_sidangId],
+        peserta_sidang::create(
         [
             'user_id' => $this->user_id,
             'nama_pengguna' => $this->nama_pengguna,
@@ -70,21 +86,34 @@ class Peserta_sidangs extends Component
         ]);
 
         $this->hideModal();
-        if ($this->peserta_sidangId)
-            $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Diupdate','title'=>'Berhasil']);
-        else
-            $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Ditambahkan','title'=>'Berhasil']);
-        $this->peserta_sidangId='';
-        $this->user_id='';
-        $this->nama_pengguna='';
-        $this->sidang_id='';
-        $this->utusan='';
-        Alert::success('Berhasil','Peserta Sidang Berhasil ditambahkan');
-           
+        $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Ditambahkan','title'=>'Berhasil']);        
+    }
+
+    public function update() {
+        $this->validate([
+            'user_id' => 'required',
+            'nama_pengguna' => 'required|min:3|max:50',
+            'sidang_id' => 'required',
+            'utusan' => 'required|min:3|max:50'
+        ]);
+
+        $peserta_sidang = Peserta_sidang::find($this->peserta_sidangId);
+        
+        $peserta_sidang->update(
+        [
+            'user_id' => $this->user_id,
+            'nama_pengguna' => $this->nama_pengguna,
+            'sidang_id' => $this->sidang_id,
+            'utusan' => $this->utusan
+        ]);
+
+        $this->hideModalEdit();
+        $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Diupdate','title'=>'Berhasil']);        
     }
 
     public function delete($id){
         Peserta_sidang::find($id)->delete();
+        $this->clearCache();
         $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Dihapus','title'=>'Berhasil']);
     }
    

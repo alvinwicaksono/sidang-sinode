@@ -23,6 +23,9 @@
             @if($isOpen)
                 @include('livewire.peserta_sidang.create')
             @endif
+            @if($isOpenEdit)
+                @include('livewire.peserta_sidang.edit')
+            @endif
 
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
