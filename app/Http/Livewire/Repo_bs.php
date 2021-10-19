@@ -10,14 +10,15 @@ use App\Models\Seksi;
 use Alert;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class Repo_bs extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     public $search;
-    public $isOpen=0;
-    public $isOpenView=0;
-    public $repo_bId, $sidang_id='', $repoa_id='', $seksi_id='', $judul_materi, $isi_materi, $attachment, $status;
+    public $isOpen=0, $isOpenEdit=0, $isOpenView=0;
+    public $repo_bId, $sidang_id='', $repoa_id='', $seksi_id='', $judul_materi, $isi_materi, $attachment=[], $attachmentString, $status;
     public function render()
     {
         $search = '%'.$this->search. '%';
@@ -41,17 +42,39 @@ class Repo_bs extends Component
         ]);
     }
 
+    private function clearCache() {
+        $this->repo_aId='';
+        $this->sidang_id='';
+        $this->repoa_id='';
+        $this->seksi_id='';
+        $this->judul_materi='';
+        $this->isi_materi='';
+        $this->status=''; 
+        $this->attachment=[];
+        $this->attachment_final=[]; 
+    }
+
     public function showModal() {
         $this->isOpen = true;
     }
     public function hideModal() {
+        $this->clearCache();
         $this->isOpen = false;
+    }
+
+    public function showModalEdit() {
+        $this->isOpenEdit = true;
+    }
+    public function hideModalEdit() {
+        $this->clearCache();
+        $this->isOpenEdit = false;
     }
 
     public function showModalView() {
         $this->isOpenView = true;
     }
     public function hideModalView() {
+        $this->clearCache();
         $this->isOpenView = false;
     }
 
@@ -87,8 +110,15 @@ class Repo_bs extends Component
         $this->repoa_id = $repo_b->repoa_id;
         $this->judul_materi = $repo_b->judul_materi;
         $this->isi_materi = $repo_b->isi_materi;
-        $this->attachment = $repo_b->attachment;
-        $this->showModal();
+        
+        $this->attachment=[]; 
+        $this->attachmentString = $repo_b->attachment;
+        $this->showModalEdit();
+    }
+
+    public function removeImg($index)
+    {
+        array_splice($this->attachment, $index, 1);
     }
 
     public function store() {
@@ -97,10 +127,17 @@ class Repo_bs extends Component
             'judul_materi' => 'required',
             'isi_materi' => 'required',
             'repoa_id' => 'required',
-            'seksi_id' => 'required'
+            'seksi_id' => 'required',
+            'attachment.*' => 'image|max:10024' // 5MB Max
         ]);
+
+        foreach ($this->attachment as $key => $image) {
+            $this->attachment[$key] = $image->store('public');
+        }
+    
+        $this->attachment = json_encode($this->attachment);
         
-        Repo_b::updateOrCreate(['id' => $this->repo_bId],
+        Repo_b::create(
         [
             'sidang_id' => $this->sidang_id,
             'seksi_id' => $this->seksi_id,
@@ -112,25 +149,79 @@ class Repo_bs extends Component
         ]);
 
         $this->hideModal();
-        if ($this->repo_bId)
-            $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Diupdate','title'=>'Berhasil']);
-        else
-            $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Ditambahkan','title'=>'Berhasil']);
-        $this->repo_bId='';
-        $this->sidang_id='';
-        $this->seksi_id='';
-        $this->repoa_id='';
-        $this->judul_materi='';
-        $this->isi_materi='';
-        $this->attachment='';
-        $this->status='';
-        Alert::success('Berhasil','Repo B Berhasil ditambahkan');
-           
+        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Ditambahkan','title'=>'Berhasil']);     
+    }
+
+    public function update() {
+        $this->validate([
+            'sidang_id' => 'required',
+            'judul_materi' => 'required',
+            'isi_materi' => 'required',
+            'repoa_id' => 'required',
+            'seksi_id' => 'required',
+            'attachment.*' => 'image|max:10024' // 5MB Max
+        ]);
+
+        foreach ($this->attachment as $key => $image) {
+            $this->attachment[$key] = $image->store('public');
+        }
+            
+        $repo_b = Repo_b::find($this->repo_bId);
+
+        $attachment= json_decode($repo_b->attachment,true);
+
+        $attachments = array_merge($attachment, $this->attachment);
+
+        $attachment_final = json_encode($attachments);
+
+        $repo_b->update([
+            'sidang_id' => $this->sidang_id,
+            'judul_materi' => $this->judul_materi,
+            'isi_materi' => $this->isi_materi,
+            'repoa_id' => $this->repoa_id,
+            'seksi_id' => $this->seksi_id,
+            'attachment' => $attachment_final
+        ]);
+       
+        $this->hideModalEdit();
+        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Diupdate','title'=>'Berhasil']);
     }
 
     public function delete($id){
-        Repo_b::find($id)->delete();
+        $repo_b = Repo_b::find($id);
+
+        foreach (json_decode($repo_b->attachment) as $lampiran) {
+            if(\File::exists(str_replace('public','storage',$lampiran))) {
+                \File::delete(str_replace('public','storage',$lampiran));
+            }
+        }
+
+        $repo_b->delete();
+
+        $this->clearCache();
         $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Dihapus','title'=>'Berhasil']);
+    }
+
+    public function deleteStorage($id, $path, $index){
+        $repo_b = Repo_b::find($id);
+
+        $attachment= json_decode($repo_b->attachment,true);
+
+        if (($key = array_search($path, $attachment)) !== false) {
+            unset($attachment[$key]);
+            $attachment = array_values($attachment);
+        }
+        $attachment_final = json_encode($attachment);
+                
+        $repo_b->update([
+            'attachment' => $attachment_final
+        ]);
+
+        if(\File::exists(str_replace('public','storage',$path))) {
+            \File::delete(str_replace('public','storage',$path));
+        }
+
+        $this->clearCache();
     }
    
 }

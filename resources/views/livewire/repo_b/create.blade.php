@@ -31,7 +31,7 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Repo B</h3>
+                        <h3 class="text-center font-bold">Tambah Repo B</h3>
                         <hr>
                     </div>
 
@@ -61,10 +61,6 @@
                             <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                         </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Lampiran</label>
-                            <input wire:model="attachment" type="file" placeholder="Masukan Lampiran" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
-                        <div class="mb-2">
                             <label class="block">Repo A</label>
                             <div class="select">
                               <select wire:model="repoa_id" name="repoa_id">
@@ -90,6 +86,27 @@
                               </div>
                           </div>
                         </div>
+                        <div class="mb-2">
+                            <label for="attachment" class="block">Lampiran ( Bisa lebih dari 1 )</label>
+                            <input wire:model="attachment" type="file" placeholder="Tambah File" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <div wire:loading wire:target="attachment">Uploading...<div class="loader"></div></div>
+                          </div>
+                          @if ($attachment)
+                              Lampiran Preview:
+                              <div class="row">
+                                  @foreach ($attachment as $attachment)
+                                  <div class="col-3 card me-1 mb-1">
+                                      <img src="{{ $attachment->temporaryUrl() }}">
+                                      <button class="remove-button" wire:click.prevent="removeImg({{$loop->index}})">
+                                        <i class="fas fa-trash-alt"></i> Remove
+                                      </button>
+                                  </div>
+                                  @endforeach
+                              </div>
+                          @else
+                          <div class="lightblue-custom">Lampiran Kosong</div>
+                          @endif
+                        
                         
                     </div>
                 </div>
@@ -103,6 +120,7 @@
           <button wire:click="hideModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
             Cancel
           </button>
+          <div wire:loading wire:target="store()">Process...<div class="loader"></div></div>
 
         </span>
                 </div>

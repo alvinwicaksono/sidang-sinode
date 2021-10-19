@@ -16,7 +16,7 @@ class Repo_as extends Component
     use WithFileUploads;
     public $search;
     public $isOpen=0, $isOpenView=0, $isOpenEdit=0;
-    public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment=[], $attachmentString, $status, $address;
+    public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment=[], $attachmentString, $status;
     public function render()
     {
         $search = '%'.$this->search. '%';
@@ -43,13 +43,12 @@ class Repo_as extends Component
         $this->sumber_materi='';
         $this->status=''; 
         $this->attachment=[];
-        $this->attachment_final=[]; 
+        $this->attachment_final=[];
     }
 
     public function showModal() {
         $this->isOpen = true;
     }
-
     public function hideModal() {
         $this->clearCache();
         $this->isOpen = false;
@@ -58,7 +57,6 @@ class Repo_as extends Component
     public function showModalEdit() {
         $this->isOpenEdit = true;
     }
-
     public function hideModalEdit() {
         $this->clearCache();
         $this->isOpenEdit = false;
@@ -67,7 +65,6 @@ class Repo_as extends Component
     public function showModalView() {
         $this->isOpenView = true;
     }
-
     public function hideModalView() {
         $this->clearCache();
         $this->isOpenView = false;
@@ -114,10 +111,7 @@ class Repo_as extends Component
             'sidang_id' => 'required',
             'judul_materi' => 'required',
             'isi_materi' => 'required',
-        ]);
-
-        $this->validate([
-            'attachment.*' => 'image|max:5024', // 5MB Max
+            'attachment.*' => 'image|max:10024' // 5MB Max
         ]);
  
         foreach ($this->attachment as $key => $image) {
@@ -145,23 +139,17 @@ class Repo_as extends Component
             'sidang_id' => 'required',
             'judul_materi' => 'required',
             'isi_materi' => 'required',
-        ]);
-
-        $this->validate([
-            'attachment.*' => 'image|max:5024', // 5MB Max
+            'attachment.*' => 'image|max:5024' // 5MB Max
         ]);
  
         foreach ($this->attachment as $key => $image) {
             $this->attachment[$key] = $image->store('public');
         }
-    
-        //$this->attachment = json_encode($this->attachment);
-        
+            
         $repo_a = Repo_a::find($this->repo_aId);
 
         $attachment= json_decode($repo_a->attachment,true);
 
-        //$attachment = array_push($attachment, $this->attachment);
         $attachments = array_merge($attachment, $this->attachment);
 
         $attachment_final = json_encode($attachments);

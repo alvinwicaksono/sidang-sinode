@@ -20,8 +20,11 @@
                 <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
             </div>
             
-            @if($isOpen)
+            @if($isOpen) 
                 @include('livewire.repo_b.create')
+            @endif
+            @if($isOpenEdit) 
+                @include('livewire.repo_b.edit')
             @endif
             @if($isOpenView)
                 @include('livewire.repo_b.view')

@@ -31,7 +31,7 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Repo A {{$judul_materi}}</h3>
+                        <h3 class="text-center font-bold">Edit Repo A {{$judul_materi}}</h3>
                         <hr>
                     </div>
 
@@ -67,7 +67,7 @@
                         <div class="mb-2">
                             <label for="attachment" class="block">Lampiran ( Bisa lebih dari 1 )</label>
                             <input wire:model="attachment" type="file" placeholder="Masukan Lampiran" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                            <div wire:loading wire:target="attachment">Uploading...</div>
+                            <div wire:loading wire:target="attachment">Uploading...<div class="loader"></div></div>
                         </div>
                         @if ($attachment)
                         <label class="block lightblue-custom"><b>Lampiran Baru Preview :</b></label>
@@ -106,7 +106,7 @@
           <button wire:click="hideModalEdit()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
             Cancel
           </button>
-          <div wire:loading wire:target="update()">Process...</div>
+          <div wire:loading wire:target="update()">Process...<div class="loader"></div></div>
 
         </span>
                 </div>
