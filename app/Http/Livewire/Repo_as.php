@@ -161,9 +161,10 @@ class Repo_as extends Component
 
         $attachment= json_decode($repo_a->attachment,true);
 
-        $attachment = array_push($attachment, $this->attachment);
+        //$attachment = array_push($attachment, $this->attachment);
+        $attachments = array_merge($attachment, $this->attachment);
 
-        $attachment_final = json_encode($attachment);
+        $attachment_final = json_encode($attachments);
 
         $repo_a->update([
             'sidang_id' => $this->sidang_id,
