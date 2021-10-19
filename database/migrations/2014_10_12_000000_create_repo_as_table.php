@@ -19,7 +19,7 @@ class CreateRepoAsTable extends Migration
             $table->string('judul_materi');
             $table->string('isi_materi');
             $table->string('sumber_materi')->nullable();
-            $table->string('attachment')->nullable();
+            $table->longText('attachment')->nullable();
             $table->string('status');
             $table->timestamps();
         });

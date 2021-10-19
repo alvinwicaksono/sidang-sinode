@@ -20,7 +20,7 @@ class CreateRepoBsTable extends Migration
             $table->integer('seksi_id');
             $table->string('judul_materi');
             $table->string('isi_materi');
-            $table->string('attachment')->nullable();
+            $table->longText('attachment')->nullable();
             $table->string('status');
             $table->timestamps();
         });
