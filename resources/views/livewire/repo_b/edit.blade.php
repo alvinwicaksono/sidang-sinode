@@ -40,17 +40,7 @@
                         <input wire:model="repo_bId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label class="block">Sidang</label>
-                            <div class="select">
-                              <select wire:model="sidang_id" name="sidang_id">
-                                  <option value="" disabled selected>Pilih Sidang</option>
-                                  @foreach ($sidangs as $sidang)
-                                  <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
-                                  @endforeach
-                              </select>
-                              <div class="select_arrow">
-                              </div>
-                          </div>
+                            <label class="block"><b>Repo A :</b> {{$repo_a}}</label>
                         </div>
                         <div class="mb-2">
                             <label for="judul_materi" class="block">Judul Materi</label>
@@ -61,12 +51,12 @@
                             <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                         </div>
                         <div class="mb-2">
-                            <label class="block">Repo A</label>
+                            <label class="block">Sidang</label>
                             <div class="select">
-                              <select wire:model="repoa_id" name="repoa_id">
-                                  <option value="" disabled selected>Pilih Repo A</option>
-                                  @foreach ($repo_as as $repo_a)
-                                  <option value="{{ $repo_a->id }}">{{ $repo_a->judul_materi }}</option>
+                              <select wire:model="sidang_id" name="sidang_id">
+                                  <option value="" disabled selected>Pilih Sidang</option>
+                                  @foreach ($sidangs as $sidang)
+                                  <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
                                   @endforeach
                               </select>
                               <div class="select_arrow">
@@ -90,19 +80,19 @@
                             <label for="attachment" class="block">Lampiran ( Bisa lebih dari 1 )</label>
                             <input wire:model="attachment" type="file" placeholder="Tambah File" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             <div wire:loading wire:target="attachment">Uploading... <div class="loader"></div></div>
-                          </div>
-                          @if ($attachment)
+                        </div>
+                        @if ($attachment)
                         <label class="block lightblue-custom"><b>Lampiran Baru Preview :</b></label>
-                          <div class="row">
-                              @foreach ($attachment as $image)
-                              <div class="col-3 card me-1 mb-1">
-                                  <img src="{{ $image->temporaryUrl() }}">
-                                  <button class="remove-button" wire:click.prevent="removeImg({{$loop->index}})">
-                                    <i class="fas fa-trash-alt"></i> Remove
-                                  </button>
-                              </div>
-                              @endforeach
-                          </div>
+                        <div class="row">
+                            @foreach ($attachment as $image)
+                            <div class="col-3 card me-1 mb-1">
+                                <img src="{{ $image->temporaryUrl() }}">
+                                <button class="remove-button" wire:click.prevent="removeImg({{$loop->index}})">
+                                  <i class="fas fa-trash-alt"></i> Remove
+                                </button>
+                            </div>
+                            @endforeach
+                        </div>
                         @endif
                         <br>
                         <div class="mb-2">
@@ -115,8 +105,6 @@
                             @endforeach
                           </label>
                         </div>
-                        
-                        
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

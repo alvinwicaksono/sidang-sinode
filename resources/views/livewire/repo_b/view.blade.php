@@ -36,22 +36,22 @@
                     </div>
                     <div>
                         <div class="mb-2">
-                            <label class="block"><b>Akta Sidang :</b> {{$sidang}}</label>
+                            <label class="block"><b>Repo A :</b>{{$repo_a}}</label>
                         </div>
                         <div class="mb-2">
-                            <label class="block"><b>Repo A Judul Materi :</b>{{$repo_a}}</label>
+                            <label class="block"><b>Judul Materi :</b>{{$judul_materi}}</label>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block"><b>Akta Sidang :</b> {{$sidang}}</label>
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Seksi :</b> {{$seksi}}</label>
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Status :</b> {{$status}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Judul Materi :</b> {{$judul_materi}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Lampiran :</b>
