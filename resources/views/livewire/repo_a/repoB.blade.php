@@ -37,18 +37,9 @@
 
 
                     <div>
+                        <input wire:model="repoa_id" type="hidden" name="kode_user" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         <div class="mb-2">
-                            <label class="block">Repo A</label>
-                            <div class="select">
-                              <select wire:model="repoa_id" name="repoa_id" wire:click="chooseRepoA($event.target.value)">
-                                  <option value="" disabled>Pilih Repo A</option>
-                                  @foreach ($repo_as as $repo_a)
-                                  <option value="{{ $repo_a->id }}">{{ $repo_a->judul_materi }}</option>
-                                  @endforeach
-                              </select>
-                              <div class="select_arrow">
-                              </div>
-                          </div>
+                            <label class="block"><b>Repo A :</b> {{$judul_repo_a}}</label>                            
                         </div>
 
                         <div class="mb-2">

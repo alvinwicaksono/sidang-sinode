@@ -223,6 +223,7 @@ class Repo_as extends Component
         $repo_a = Repo_a::find($id);
 
         $this->repoa_id = $id;
+        $this->judul_repo_a = $repo_a->judul_materi;
         $this->sidang_id = $repo_a->sidang_id;
         $this->judul_materi = $repo_a->judul_materi;
         $this->isi_materi = $repo_a->isi_materi;
