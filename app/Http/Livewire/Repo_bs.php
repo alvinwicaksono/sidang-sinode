@@ -90,6 +90,8 @@ class Repo_bs extends Component
             $repo_a = Repo_a::find($id);
             $this->judul_materi = $repo_a->judul_materi;
             $this->isi_materi = $repo_a->isi_materi;
+            $this->sidang_id = $repo_a->sidang_id;
+            $this->seksi_id ='';
             $this->attachment=[]; 
             $this->attachmentString = $repo_a->attachment;
             $this->showRepoA();

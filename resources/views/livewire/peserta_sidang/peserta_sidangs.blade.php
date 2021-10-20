@@ -31,20 +31,23 @@
                 <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                    <th scope="col" class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         No.
                     </th>
-                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Nama User
                     </th>
-                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Nama Pengguna
                     </th>
-                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Akta Sidang
                     </th>
-                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Utusan
+                    </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
                     </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
@@ -54,24 +57,26 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($peserta_sidangs as $key => $peserta_sidang)
                     <tr>
-                    <td class="px-1 py-4 text-center whitespace-nowrap">
+                    <td class="px-3 py-4 text-center whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $peserta_sidangs->firstItem() + $key }}</div>
                     </td>
-                    <td class="px-15 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->user->nama}}</div>
                     </td>
-                    <td class="px-15 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->nama_pengguna}}</div>
                     </td>
-                    <td class="px-15 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->sidang->akta_sidang}}</div>
                     </td>
-                    <td class="px-15 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->utusan}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$peserta_sidang->ps_id}})" class="margin-right-custom custom-blue"><i class="far fa-edit"></i></i></a>
-                        <a wire:click="delete({{$peserta_sidang->ps_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="edit({{$peserta_sidang->ps_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="delete({{$peserta_sidang->ps_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach

@@ -34,17 +34,23 @@
                 <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                    <th scope="col" class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         No.
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Nama
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Seksi
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Role
+                    </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
                     </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
@@ -54,10 +60,10 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($users as $key => $user)
                     <tr>
-                    <td class="px-2 py-4 text-center whitespace-nowrap">
+                    <td class="px-3 py-4 text-center whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $users->firstItem() + $key }}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
     
                                 <div class="text-sm font-medium text-gray-900">
                                 {{$user->nama_user}}
@@ -68,16 +74,20 @@
                             
         
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{$user->seksi->nama}}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td class="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{$user->role}}
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="pass({{$user->us_id}})" class="margin-right-custom custom-green"><i class="fas fa-unlock-alt"></i></a>
-                        <a wire:click="edit({{$user->us_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
-                        <a wire:click="delete({{$user->us_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="pass({{$user->us_id}})" class="custom-green"><i class="fas fa-unlock-alt"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="edit({{$user->us_id}})" class="custom-blue"><i class="far fa-edit"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="delete({{$user->us_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach

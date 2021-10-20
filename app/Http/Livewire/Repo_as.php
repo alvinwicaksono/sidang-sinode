@@ -4,7 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Repo_a;
+use App\Models\Repo_b;
 use App\Models\Sidang;
+use App\Models\Seksi;
 use Alert;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
@@ -15,14 +17,15 @@ class Repo_as extends Component
     use WithPagination;
     use WithFileUploads;
     public $search;
-    public $isOpen=0, $isOpenView=0, $isOpenEdit=0;
+    public $isOpen=0, $isOpenView=0, $isOpenEdit=0, $isOpenRepoB;
     public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment=[], $attachmentString, $status;
     public function render()
     {
         $search = '%'.$this->search. '%';
         return view('livewire.repo_a.repo_as',[
             'i' => 1,
-            'sidangs' => Sidang::orderBy('id','asc')->get(),
+            'sidangs' => Sidang::all(),
+            'seksis' => Seksi::all(),
             'repo_as' => Repo_a::join('sidangs', 'repo_as.sidang_id','=','sidangs.id')
                                 ->where('repo_as.judul_materi','LIKE',$search)
                                 ->orWhere('repo_as.isi_materi','LIKE',$search)
@@ -38,6 +41,8 @@ class Repo_as extends Component
     private function clearCache() {
         $this->repo_aId='';
         $this->sidang_id='';
+        $this->repoa_id='';
+        $this->seksi_id='';
         $this->judul_materi='';
         $this->isi_materi='';
         $this->sumber_materi='';
@@ -60,6 +65,14 @@ class Repo_as extends Component
     public function hideModalEdit() {
         $this->clearCache();
         $this->isOpenEdit = false;
+    }
+
+    public function showModalRepoB() {
+        $this->isOpenRepoB = true;
+    }
+    public function hideModalRepoB() {
+        $this->clearCache();
+        $this->isOpenRepoB = false;
     }
 
     public function showModalView() {
@@ -106,7 +119,7 @@ class Repo_as extends Component
         array_splice($this->attachment, $index, 1);
     }
 
-    public function store() {
+    public function store() { 
         $this->validate([
             'sidang_id' => 'required',
             'judul_materi' => 'required',
@@ -201,6 +214,83 @@ class Repo_as extends Component
         }
 
         $this->clearCache();
+    }
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~ REPO B ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public function createRepoB($id){
+        $repo_a = Repo_a::find($id);
+
+        $this->repoa_id = $id;
+        $this->sidang_id = $repo_a->sidang_id;
+        $this->judul_materi = $repo_a->judul_materi;
+        $this->isi_materi = $repo_a->isi_materi;
+    
+        $this->seksi_id ='';
+        $this->attachment=[]; 
+        $this->attachmentString = $repo_a->attachment;
+
+        $this->showModalRepoB();
+    }
+
+    public function storeRepoB() {
+        $this->validate([
+            'sidang_id' => 'required',
+            'judul_materi' => 'required',
+            'isi_materi' => 'required',
+            'repoa_id' => 'required',
+            'seksi_id' => 'required',
+            'attachment.*' => 'image|max:10024' // 5MB Max
+        ]);
+
+        foreach ($this->attachment as $key => $image) {
+            $this->attachment[$key] = $image->store('public');
+        }
+
+        $repo_a = Repo_a::find($this->repoa_id);
+
+        $attachment= json_decode($repo_a->attachment,true);
+
+        foreach ($attachment as $lampiran) {
+            $oldPath = str_replace('public','storage',$lampiran);
+            $fileExtension = \File::extension($oldPath);
+
+            $oldName = str_replace(['public/','.'.$fileExtension],'',$lampiran);
+            $newName = $oldName.'-'.time().'-newAttachmentRepoB.'.$fileExtension;
+            $newPathWithName = 'storage/'.$newName;
+
+            if (\File::exists($oldPath)) {
+                \File::copy($oldPath , $newPathWithName);
+            }
+        }
+
+        $index = 0;
+        foreach ($attachment as $lampiran) {
+            $oldPath = str_replace('public','storage',$lampiran);
+            $fileExtension = \File::extension($oldPath);
+
+            $attachment[$index] = str_replace('.'.$fileExtension,'-'.time().'-newAttachmentRepoB.'.$fileExtension,$lampiran);
+            $index++;
+        }
+
+        $attachments = array_merge($attachment, $this->attachment);
+
+        $attachment_final = json_encode($attachments);
+        
+        Repo_b::create(
+        [
+            'sidang_id' => $this->sidang_id,
+            'seksi_id' => $this->seksi_id,
+            'repoa_id' => $this->repoa_id,
+            'judul_materi' => $this->judul_materi,
+            'isi_materi' => $this->isi_materi,
+            'attachment' => $attachment_final,
+            'status' => 'Belum Terbahas'
+        ]);
+
+        $this->hideModalRepoB();
+        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Ditambahkan','title'=>'Berhasil']);     
     }
    
 }

@@ -34,20 +34,26 @@
                 <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                    <th scope="col" class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-3 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         No.
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Judul Materi
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Akta Sidang
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Seksi
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
+                    </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
                     </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
@@ -57,25 +63,29 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($repo_bs as $key => $repo_b)
                     <tr>
-                    <td class="px-1 py-4 text-center whitespace-nowrap">
+                    <td class="px-3 py-4 text-center whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $repo_bs->firstItem() + $key }}</div> 
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->judulRepoB}}</div>      
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->sidang->akta_sidang}}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->seksi->nama}}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->stat}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="view({{$repo_b->rb_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
-                        <a wire:click="edit({{$repo_b->rb_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></i></a>
-                        <a wire:click="delete({{$repo_b->rb_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="view({{$repo_b->rb_id}})" class="custom-green"><i class="far fa-eye"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="edit({{$repo_b->rb_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="delete({{$repo_b->rb_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach
