@@ -21,3 +21,7 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+storage/app/livewire-tmp/ch5G5yLGvFOJJ8yk2u8uTrahHJoVfv-metaRWFydGggaW4gYSBGaXJlLmpwZw==-.jpg
+storage/app/livewire-tmp/vi4JMsk1zLp6PoHPiFgp7LsFl1OS4Z-metaRmlyZS1IRC1XYWxscGFwZXJzLTE2LmpwZw==-.jpg
+storage/app/public/t1Q3KcrU548cjA8CNdruba1Xw2HWdRN0GwIuNdii.jpg
+*.jpg

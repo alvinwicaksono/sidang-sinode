@@ -36,10 +36,10 @@
                     </div>
                     <div>
                         <div class="mb-2">
-                            <label class="block"><b>Repo A :</b>{{$repo_a}}</label>
+                            <label class="block"><b>Repo A :</b> {{$repo_a}}</label>
                         </div>
                         <div class="mb-2">
-                            <label class="block"><b>Judul Materi :</b>{{$judul_materi}}</label>
+                            <label class="block"><b>Judul Materi :</b> {{$judul_materi}}</label>
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>

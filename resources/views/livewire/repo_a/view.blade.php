@@ -36,12 +36,6 @@
                     </div>
                     <div>
                         <div class="mb-2">
-                            <label class="block"><b>Akta Sidang :</b> {{$sidang}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Status :</b> {{$status}}</label>
-                        </div>
-                        <div class="mb-2">
                             <label class="block"><b>Judul Materi :</b> {{$judul_materi}}</label>
                         </div>
                         <div class="mb-2">
@@ -49,6 +43,12 @@
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block"><b>Akta Sidang :</b> {{$sidang}}</label>
+                        </div>
+                        <div class="mb-2">
+                            <label class="block"><b>Status :</b> {{$status}}</label>
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Lampiran :</b>

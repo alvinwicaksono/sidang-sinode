@@ -35,7 +35,7 @@ class Repo_bs extends Component
                                 ->orWhere('repo_bs.status','LIKE',$search)
                                 ->orWhere('sidangs.akta_sidang','LIKE',$search)
                                 ->orWhere('seksis.nama','LIKE',$search)
-                                ->select('*','repo_bs.id as rb_id', 'repo_bs.status as stat')
+                                ->select('*','repo_bs.id as rb_id', 'repo_bs.status as stat', 'repo_bs.judul_materi as judulRepoB')
                                 ->orderBy('repo_bs.id', 'desc')
                                 ->paginate(5)
         ]);

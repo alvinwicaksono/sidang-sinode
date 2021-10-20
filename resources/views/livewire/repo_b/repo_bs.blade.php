@@ -38,10 +38,10 @@
                         No.
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Akta Sidang
+                        Judul Materi
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Judul Materi
+                        Akta Sidang
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Seksi
@@ -58,13 +58,13 @@
                 @foreach ($repo_bs as $key => $repo_b)
                     <tr>
                     <td class="px-1 py-4 text-center whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $repo_bs->firstItem() + $key }}</div>
+                        <div class="text-sm text-gray-900">{{ $repo_bs->firstItem() + $key }}</div> 
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">{{$repo_b->judulRepoB}}</div>      
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->sidang->akta_sidang}}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_b->judul_materi}}</div>      
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->seksi->nama}}</div>

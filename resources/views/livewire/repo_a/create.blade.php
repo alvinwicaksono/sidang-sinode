@@ -40,6 +40,18 @@
                         <input wire:model="repo_aId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
+                            <label for="judul_materi" class="block">Judul Materi</label>
+                            <input wire:model="judul_materi" type="text" placeholder="Masukan Judul Materi" name="judul_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                        </div>
+                        <div class="mb-2">
+                            <label for="sumber_materi" class="block">Sumber Materi</label>
+                            <input wire:model="sumber_materi" type="text" placeholder="Masukan Sumber Materi" name="sumber_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                        </div>
+                        <div class="mb-2">
+                            <label for="isi_materi" class="block">Isi Materi</label>
+                            <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
+                          </div>
+                        <div class="mb-2">
                             <label class="block">Sidang</label>
                             <div class="select">
                               <select wire:model="sidang_id" name="sidang_id">
@@ -51,18 +63,6 @@
                               <div class="select_arrow">
                               </div>
                           </div>
-                        </div>
-                        <div class="mb-2">
-                            <label for="judul_materi" class="block">Judul Materi</label>
-                            <input wire:model="judul_materi" type="text" placeholder="Masukan Judul Materi" name="judul_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
-                        <div class="mb-2">
-                            <label for="isi_materi" class="block">Isi Materi</label>
-                            <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
-                          </div>
-                        <div class="mb-2">
-                            <label for="sumber_materi" class="block">Sumber Materi</label>
-                            <input wire:model="sumber_materi" type="text" placeholder="Masukan Sumber Materi" name="sumber_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
                             <label for="attachment" class="block">Lampiran ( Bisa lebih dari 1 )</label>
