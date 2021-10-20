@@ -25,7 +25,7 @@
         </div>
     </div>
     <div
-        wire:click=""
+        wire:click="sidangseksi()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -174,6 +174,10 @@
                     </p>
                 </div>
             </div>
+        </div>
+
+        <div class="form-group">
+                            <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
         </div>
     </div>
 

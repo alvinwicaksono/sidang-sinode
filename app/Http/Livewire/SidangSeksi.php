@@ -16,4 +16,9 @@ class SidangSeksi extends Component
     public function repo_b(){
         $this->redirect('/repo_b');
     }
+
+    public function sidangseksi(){
+        $this->redirect('/artikel_seksi');
+    }
+
 }
