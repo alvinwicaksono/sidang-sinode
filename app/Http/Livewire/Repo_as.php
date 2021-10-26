@@ -32,7 +32,6 @@ class Repo_as extends Component
                                 ->orWhere('repo_as.sumber_materi','LIKE',$search)
                                 ->orWhere('repo_as.status','LIKE',$search)
                                 ->orWhere('sidangs.akta_sidang','LIKE',$search)
-                                ->select('*','repo_as.id as ra_id')
                                 ->orderBy('repo_as.id', 'desc')
                                 ->paginate(5)
         ]);
@@ -56,6 +55,7 @@ class Repo_as extends Component
     }
     public function hideModal() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpen = false;
     }
 
@@ -64,6 +64,7 @@ class Repo_as extends Component
     }
     public function hideModalEdit() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpenEdit = false;
     }
 
@@ -72,6 +73,7 @@ class Repo_as extends Component
     }
     public function hideModalRepoB() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpenRepoB = false;
     }
 
@@ -80,6 +82,7 @@ class Repo_as extends Component
     }
     public function hideModalView() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpenView = false;
     }
 
@@ -120,12 +123,24 @@ class Repo_as extends Component
     }
 
     public function store() { 
-        $this->validate([
-            'sidang_id' => 'required',
-            'judul_materi' => 'required',
-            'isi_materi' => 'required',
-            'attachment.*' => 'image|max:10024' // 5MB Max
-        ]);
+
+        $validatedData = $this->validate(
+            [
+                'sidang_id' => 'required',
+                'judul_materi' => 'required',
+                'attachment' => 'max:10024'
+            ],
+            [
+                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
+                'judul_materi.required' => 'Form :attribute tidak boleh kosong',
+                'attachment.max' => 'Form :attribute minimal ukuran total semua gambar 10Mb'
+            ],
+            [
+                'sidang_id' => 'Sidang',
+                'judul_materi' => 'Judul Materi',
+                'attachment' => 'Lampiran',
+            ]
+        ); 
  
         foreach ($this->attachment as $key => $image) {
             $this->attachment[$key] = $image->store('public');
@@ -148,12 +163,23 @@ class Repo_as extends Component
     }
 
     public function update() {
-        $this->validate([
-            'sidang_id' => 'required',
-            'judul_materi' => 'required',
-            'isi_materi' => 'required',
-            'attachment.*' => 'image|max:5024' // 5MB Max
-        ]);
+        $validatedData = $this->validate(
+            [
+                'sidang_id' => 'required',
+                'judul_materi' => 'required',
+                'attachment' => 'max:10024'
+            ],
+            [
+                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
+                'judul_materi.required' => 'Form :attribute tidak boleh kosong',
+                'attachment.max' => 'Form :attribute minimal ukuran total semua gambar 10Mb'
+            ],
+            [
+                'sidang_id' => 'Sidang',
+                'judul_materi' => 'Judul Materi',
+                'attachment' => 'Lampiran',
+            ]
+        );
  
         foreach ($this->attachment as $key => $image) {
             $this->attachment[$key] = $image->store('public');
@@ -236,14 +262,32 @@ class Repo_as extends Component
     }
 
     public function storeRepoB() {
-        $this->validate([
-            'sidang_id' => 'required',
-            'judul_materi' => 'required',
-            'isi_materi' => 'required',
-            'repoa_id' => 'required',
-            'seksi_id' => 'required',
-            'attachment.*' => 'image|max:10024' // 5MB Max
-        ]);
+        $validatedData = $this->validate(
+            [
+                'sidang_id' => 'required',
+                'judul_materi' => 'required',
+                'isi_materi' => 'required',
+                'repoa_id' => 'required',
+                'seksi_id' => 'required',
+                'attachment' => 'max:10024'
+            ],
+            [
+                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
+                'judul_materi.required' => 'Form :attribute tidak boleh kosong',
+                'isi_materi.required' => 'Form :attribute tidak boleh kosong',
+                'repoa_id.required' => 'Form :attribute tidak boleh kosong',
+                'seksi_id.required' => 'Form :attribute tidak boleh kosong',
+                'attachment.max' => 'Form :attribute maksimal total semua gambar 10Mb'
+            ],
+            [
+                'sidang_id' => 'Sidang',
+                'judul_materi' => 'Judul Materi',
+                'isi_materi' => 'Isi Materi',
+                'repoa_id' => 'Repo A',
+                'seksi_id' => 'Seksi',
+                'attachment' => 'Lampiran'
+            ]
+        ); 
 
         foreach ($this->attachment as $key => $image) {
             $this->attachment[$key] = $image->store('public');

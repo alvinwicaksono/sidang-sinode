@@ -40,7 +40,7 @@
                         <input wire:model="repo_bId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label class="block">Repo A</label>
+                            <label class="block">Repo A<label class="custom-red">*</label></label>
                             <div class="select">
                               <select wire:model="repoa_id" name="repoa_id" wire:click="chooseRepoA($event.target.value)">
                                   <option value="" disabled>Pilih Repo A</option>
@@ -50,20 +50,23 @@
                               </select>
                               <div class="select_arrow">
                               </div>
-                          </div>
+                            </div>
+                            @error('repoa_id') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
 
                       @if($isOpenRepoA) 
                         <div class="mb-2">
-                            <label for="judul_materi" class="block">Judul Materi</label>
+                            <label for="judul_materi" class="block">Judul Materi<label class="custom-red">*</label></label>
                             <input wire:model="judul_materi" type="text" placeholder="Masukan Judul Materi" name="judul_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('judul_materi') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                         <div class="mb-2">
-                            <label for="isi_materi" class="block">Isi Materi</label>
+                            <label for="isi_materi" class="block">Isi Materi<label class="custom-red">*</label></label>
                             <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
-                        </div>
+                            @error('isi_materi') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                         <div class="mb-2">
-                            <label class="block">Sidang</label>
+                            <label class="block">Sidang<label class="custom-red">*</label></label>
                             <div class="select">
                               <select wire:model="sidang_id" name="sidang_id">
                                   <option value="" disabled selected>Pilih Sidang</option>
@@ -73,10 +76,11 @@
                               </select>
                               <div class="select_arrow">
                               </div>
-                          </div>
+                            </div>
+                            @error('sidang_id') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label class="block">Seksi</label>
+                            <label class="block">Seksi<label class="custom-red">*</label></label>
                             <div class="select">
                               <select wire:model="seksi_id" name="seksi_id">
                                   <option value="" disabled selected>Pilih Seksi</option>
@@ -86,11 +90,13 @@
                               </select>
                               <div class="select_arrow">
                               </div>
-                          </div>
+                           </div>
+                           @error('seksi_id') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
                             <label for="attachment" class="block">Lampiran ( Bisa lebih dari 1 )</label>
                             <input wire:model="attachment" type="file" placeholder="Tambah File" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('attachment') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                             <div wire:loading wire:target="attachment">Uploading...<div class="loader"></div></div>
                         </div>
                         @if ($attachment)

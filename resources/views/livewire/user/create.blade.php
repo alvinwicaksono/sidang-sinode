@@ -40,15 +40,17 @@
                         <input wire:model="userId" type="hidden" name="kode_user" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="nama" class="block">Nama (Mininmal 3 Karakter)</label>
+                            <label for="nama" class="block">Nama<label class="custom-red">*</label> (Mininmal 3 Karakter)</label>
                             <input  wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('nama') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                           </div>
                         <div class="mb-2">
-                            <label for="email" class="block">Email</label>
+                            <label for="email" class="block">Email<label class="custom-red">*</label></label>
                             <input  wire:model="email" type="text" placeholder="Masukan Email" name="email" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('email') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                         <div class="mb-2">
-                            <label class="block">Seksi</label>
+                            <label class="block">Seksi<label class="custom-red">*</label></label>
                             <div class="select">
                               <select wire:model="seksi_id" name="seksi_id">
                                   <option value="" disabled selected>Pilih Seksi</option>
@@ -58,10 +60,11 @@
                               </select>
                               <div class="select_arrow">
                               </div>
-                          </div>
+                            </div>
+                            @error('seksi_id') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label class="block">Role</label>
+                            <label class="block">Role<label class="custom-red">*</label></label>
                             <div class="select">
                               <select wire:model="role" name="role">
                                   <option value="" disabled selected>Pilih Role</option>
@@ -73,16 +76,19 @@
                               </select>
                               <div class="select_arrow">
                               </div>
-                          </div>
+                            </div>
+                            @error('role') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label for="password" class="block">Password (Mininmal 6 Karakter)</label>
+                            <label for="password" class="block">Password<label class="custom-red">*</label> (Mininmal 6 Karakter)</label>
                             <input  wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('password') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                         <div class="mb-2">
-                            <label for="konfirmasi_password" class="block">Konfirmasi Password (Mininmal 6 Karakter)</label>
+                            <label for="konfirmasi_password" class="block">Konfirmasi Password<label class="custom-red">*</label> (Mininmal 6 Karakter)</label>
                             <input  wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('konfirmasi_password') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                     </div>
 
 

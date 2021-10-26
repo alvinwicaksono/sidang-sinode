@@ -79,17 +79,17 @@
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">
-                            <a wire:click="createRepoB({{$repo_a->ra_id}})" class="myButton-addRepoB">RepoB</a> 
+                            <a wire:click="createRepoB({{$repo_a->id}})" class="myButton-addRepoB">RepoB</a> 
                         </div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="view({{$repo_a->ra_id}})" class="custom-green"><i class="far fa-eye"></i></a>
+                        <a wire:click="view({{$repo_a->id}})" class="custom-green"><i class="far fa-eye"></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$repo_a->ra_id}})" class="custom-blue"><i class="far fa-edit"></i></a>
+                        <a wire:click="edit({{$repo_a->id}})" class="custom-blue"><i class="far fa-edit"></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="delete({{$repo_a->id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach

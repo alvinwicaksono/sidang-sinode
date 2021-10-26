@@ -66,7 +66,7 @@
                     <td class="px-8 py-4 whitespace-nowrap">
     
                                 <div class="text-sm font-medium text-gray-900">
-                                {{$user->nama_user}}
+                                {{$user->nama}}
                                 </div>
                                 <div class="text-sm text-gray-500">
                                 {{$user->email}}
@@ -81,13 +81,13 @@
                         {{$user->role}}
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="pass({{$user->us_id}})" class="custom-green"><i class="fas fa-unlock-alt"></i></a>
+                        <a wire:click="pass({{$user->id}})" class="custom-green"><i class="fas fa-unlock-alt"></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$user->us_id}})" class="custom-blue"><i class="far fa-edit"></i></a>
+                        <a wire:click="edit({{$user->id}})" class="custom-blue"><i class="far fa-edit"></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$user->us_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="delete({{$user->id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach

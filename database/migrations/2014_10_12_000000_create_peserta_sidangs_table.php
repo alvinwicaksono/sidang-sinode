@@ -15,9 +15,11 @@ class CreatePesertaSidangsTable extends Migration
     {
         Schema::create('peserta_sidangs', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
             $table->string('nama_pengguna');
-            $table->string('sidang_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id_id')->references('id')->on('users');
+            $table->bigInteger('sidang_id')->unsigned();
+            $table->foreign('sidang_id')->references('id')->on('sidangs');
             $table->string('utusan');
             $table->timestamps();
         });

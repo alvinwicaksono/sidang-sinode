@@ -15,9 +15,10 @@ class CreateRepoAsTable extends Migration
     {
         Schema::create('repo_as', function (Blueprint $table) {
             $table->id();
-            $table->integer('sidang_id');
+            $table->bigInteger('sidang_id')->unsigned();
+            $table->foreign('sidang_id')->references('id')->on('sidangs');
             $table->string('judul_materi');
-            $table->string('isi_materi');
+            $table->string('isi_materi')->nullable();
             $table->string('sumber_materi')->nullable();
             $table->longText('attachment')->nullable();
             $table->string('status');

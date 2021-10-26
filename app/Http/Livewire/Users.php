@@ -27,7 +27,6 @@ class Users extends Component
                             ->orWhere('users.email','LIKE',$search)
                             ->orWhere('users.role','LIKE',$search)
                             ->orWhere('seksis.nama','LIKE',$search)
-                            ->select('*','users.id as us_id', 'users.nama as nama_user')
                             ->orderBy('users.id', 'desc')
                             ->paginate(5)
         ]);
@@ -48,6 +47,7 @@ class Users extends Component
     }
     public function hideModal() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpen = false;
     }
 
@@ -56,6 +56,7 @@ class Users extends Component
     }
     public function hideModalUpdate() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpenUpdate = false;
     }
 
@@ -64,6 +65,7 @@ class Users extends Component
     }
     public function hideModalPass() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpenPass = false;
     }
 
@@ -86,14 +88,37 @@ class Users extends Component
     }
 
     public function store() {
-        $this->validate([
-            'nama' => 'required|min:3|max:50',
-            'email' => 'required',
-            'password' => 'min:6|max:20|required|same:konfirmasi_password',
-            'konfirmasi_password' => 'min:6|max:20|required|same:password',
-            'role' => 'required',
-            'seksi_id' => 'required'
-        ]);
+
+        $validatedData = $this->validate(
+            [
+                'nama' => 'required',
+                'email' => 'required',
+                'password' => 'min:6|required|same:konfirmasi_password',
+                'konfirmasi_password' => 'min:6|required|same:password',
+                'role' => 'required',
+                'seksi_id' => 'required'
+            ],
+            [
+                'nama.required' => 'Form :attribute tidak boleh kosong',
+                'email.required' => 'Form :attribute tidak boleh kosong',
+                'password.required' => 'Form :attribute tidak boleh kosong',
+                'konfirmasi_password.required' => 'Form :attribute tidak boleh kosong',
+                'role.required' => 'Form :attribute tidak boleh kosong',
+                'seksi_id.required' => 'Form :attribute tidak boleh kosong',
+                'password.min' => 'Form :attribute minimal 6 karakter',
+                'konfirmasi_password.min' => 'Form :attribute minimal 6 karakter',
+                'password.same' => 'Form :attribute harus sama dengan Konfirmasi Password',
+                'konfirmasi_password.same' => 'Form :attribute sama dengan Passowrd',
+            ],
+            [
+                'nama' => 'Nama',
+                'email' => 'Email',
+                'password' => 'Password',
+                'konfirmasi_password' => 'Konfirmasi Password',
+                'role' => 'Role',
+                'seksi_id' => 'Seksi',
+            ]
+        );
         
         User::create(
         [
@@ -109,12 +134,27 @@ class Users extends Component
     }
 
     public function update() {
-        $this->validate([
-            'nama' => 'required|min:3|max:50',
-            'email' => 'required',
-            'role' => 'required',
-            'seksi_id' => 'required'
-        ]);
+
+        $validatedData = $this->validate(
+            [
+                'nama' => 'required',
+                'email' => 'required',
+                'role' => 'required',
+                'seksi_id' => 'required'
+            ],
+            [
+                'nama.required' => 'Form :attribute tidak boleh kosong',
+                'email.required' => 'Form :attribute tidak boleh kosong',
+                'role.required' => 'Form :attribute tidak boleh kosong',
+                'seksi_id.required' => 'Form :attribute tidak boleh kosong',
+            ],
+            [
+                'nama' => 'Nama',
+                'email' => 'Email',
+                'role' => 'Role',
+                'seksi_id' => 'Seksi',
+            ]
+        ); 
 
         $user = User::find($this->userId);
 
@@ -131,10 +171,25 @@ class Users extends Component
     }
 
     public function password() {
-        $this->validate([
-            'password' => 'min:6|max:20|required|same:konfirmasi_password',
-            'konfirmasi_password' => 'min:6|max:20|required|same:password',
-        ]);
+
+        $validatedData = $this->validate(
+            [
+                'password' => 'min:6|required|same:konfirmasi_password',
+                'konfirmasi_password' => 'min:6|required|same:password'
+            ],
+            [
+                'password.required' => 'Form :attribute tidak boleh kosong',
+                'konfirmasi_password.required' => 'Form :attribute tidak boleh kosong',
+                'password.min' => 'Form :attribute minimal 6 karakter',
+                'konfirmasi_password.min' => 'Form :attribute minimal 6 karakter',
+                'password.same' => 'Form :attribute harus sama dengan Konfirmasi Password',
+                'konfirmasi_password.same' => 'Form :attribute sama dengan Passowrd'
+            ],
+            [
+                'password' => 'Password',
+                'konfirmasi_password' => 'Konfirmasi Password'
+            ]
+        );
         
         $user = User::find($this->userId);
         
