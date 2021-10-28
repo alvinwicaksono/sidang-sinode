@@ -40,9 +40,10 @@
                         <input wire:model="seksiId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="nama" class="block">Nama (Mininmal 3 Karakter)</label>
+                            <label for="nama" class="block">Nama<label class="custom-red">*</label> (Mininmal 3 Karakter)</label>
                             <input wire:model="nama" type="text" placeholder="Masukan Nama" name="nama" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('nama') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

@@ -15,9 +15,12 @@ class CreateRepoBsTable extends Migration
     {
         Schema::create('repo_bs', function (Blueprint $table) {
             $table->id();
-            $table->integer('sidang_id');
-            $table->integer('repoa_id');
-            $table->integer('seksi_id');
+            $table->bigInteger('sidang_id')->unsigned();
+            $table->foreign('sidang_id')->references('id')->on('sidangs');
+            $table->bigInteger('repoa_id')->unsigned();
+            $table->foreign('repoa_id')->references('id')->on('repo_as');
+            $table->bigInteger('seksi_id')->unsigned();
+            $table->foreign('seksi_id')->references('id')->on('seksis');
             $table->string('judul_materi');
             $table->string('isi_materi');
             $table->longText('attachment')->nullable();

@@ -29,7 +29,6 @@ class Peserta_sidangs extends Component
                                 ->orWhere('peserta_sidangs.utusan','LIKE',$search)
                                 ->orWhere('users.nama','LIKE',$search)
                                 ->orWhere('sidangs.akta_sidang','LIKE',$search)
-                                ->select('*','peserta_sidangs.id as ps_id')
                                 ->orderBy('peserta_sidangs.id', 'desc')
                                 ->paginate(5)
         ]);
@@ -48,6 +47,7 @@ class Peserta_sidangs extends Component
     }
     public function hideModal() {
         $this->clearCache();   
+        $this->resetValidation();
         $this->isOpen = false;
     }
 
@@ -55,7 +55,8 @@ class Peserta_sidangs extends Component
         $this->isOpenEdit = true;
     }
     public function hideModalEdit() {
-        $this->clearCache();   
+        $this->clearCache();
+        $this->resetValidation();   
         $this->isOpenEdit = false;
     }
 
@@ -70,14 +71,29 @@ class Peserta_sidangs extends Component
     }
 
     public function store() {
-        $this->validate([
-            'user_id' => 'required',
-            'nama_pengguna' => 'required|min:3|max:50',
-            'sidang_id' => 'required',
-            'utusan' => 'required|min:3|max:50'
-        ]);
+
+        $validatedData = $this->validate(
+            [
+                'user_id' => 'required',
+                'nama_pengguna' => 'required',
+                'sidang_id' => 'required',
+                'utusan' => 'required'
+            ],
+            [
+                'user_id.required' => 'Form :attribute tidak boleh kosong',
+                'nama_pengguna.required' => 'Form :attribute tidak boleh kosong',
+                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
+                'utusan.required' => 'Form :attribute tidak boleh kosong',
+            ],
+            [
+                'user_id' => 'User',
+                'nama_pengguna' => 'Nama Pengguna',
+                'sidang_id' => 'Sidang',
+                'utusan' => 'Utusan',
+            ]
+        );
         
-        peserta_sidang::create(
+        Peserta_sidang::create(
         [
             'user_id' => $this->user_id,
             'nama_pengguna' => $this->nama_pengguna,
@@ -90,12 +106,26 @@ class Peserta_sidangs extends Component
     }
 
     public function update() {
-        $this->validate([
-            'user_id' => 'required',
-            'nama_pengguna' => 'required|min:3|max:50',
-            'sidang_id' => 'required',
-            'utusan' => 'required|min:3|max:50'
-        ]);
+        $validatedData = $this->validate(
+            [
+                'user_id' => 'required',
+                'nama_pengguna' => 'required',
+                'sidang_id' => 'required',
+                'utusan' => 'required'
+            ],
+            [
+                'user_id.required' => 'Form :attribute tidak boleh kosong',
+                'nama_pengguna.required' => 'Form :attribute tidak boleh kosong',
+                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
+                'utusan.required' => 'Form :attribute tidak boleh kosong',
+            ],
+            [
+                'user_id' => 'User',
+                'nama_pengguna' => 'Nama Pengguna',
+                'sidang_id' => 'Sidang',
+                'utusan' => 'Utusan',
+            ]
+        );
 
         $peserta_sidang = Peserta_sidang::find($this->peserta_sidangId);
         

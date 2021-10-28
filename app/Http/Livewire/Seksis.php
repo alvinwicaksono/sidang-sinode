@@ -34,6 +34,7 @@ class Seksis extends Component
     }
     public function hideModal() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpen = false;
     }
 
@@ -42,6 +43,7 @@ class Seksis extends Component
     }
     public function hideModalEdit() {
         $this->clearCache();
+        $this->resetValidation();
         $this->isOpenEdit = false;
     }
 
@@ -53,9 +55,13 @@ class Seksis extends Component
     }
 
     public function store() {
-        $this->validate([
-            'nama' => 'required|min:3|max:50',
-        ]);
+        $validatedData = $this->validate(
+            ['nama' => 'required'],
+            [
+                'nama.required' => 'Form :attribute tidak boleh kosong'
+            ],
+            ['nama' => 'Nama']
+        );
         
         Seksi::create(
         [
@@ -67,9 +73,13 @@ class Seksis extends Component
     }
 
     public function update() {
-        $this->validate([
-            'nama' => 'required|min:3|max:50',
-        ]);
+        $validatedData = $this->validate(
+            ['nama' => 'required'],
+            [
+                'nama.required' => 'Form :attribute tidak boleh kosong'
+            ],
+            ['nama' => 'Nama']
+        );
 
         $seksi = Seksi::find($this->seksiId);
         

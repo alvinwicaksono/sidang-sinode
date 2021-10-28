@@ -39,13 +39,15 @@
                     <div>
                         <input wire:model="userId" type="hidden" name="kode_user" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         <div class="mb-2">
-                            <label for="password" class="block">Password Baru (Mininmal 6 Karakter)</label>
+                            <label for="password" class="block">Password Baru<label class="custom-red">*</label> (Mininmal 6 Karakter)</label>
                             <input  wire:model="password" type="password" placeholder="Masukan Password" name="password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('password') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                         <div class="mb-2">
-                            <label for="konfirmasi_password" class="block">Konfirmasi Password Baru (Mininmal 6 Karakter)</label>
+                            <label for="konfirmasi_password" class="block">Konfirmasi Password Baru<label class="custom-red">*</label> (Mininmal 6 Karakter)</label>
                             <input  wire:model="konfirmasi_password" type="password" placeholder="Masukan Konfirmasi Password" name="konfirmasi_password" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                        </div>
+                            @error('konfirmasi_password') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
+                          </div>
                     </div>
 
 
