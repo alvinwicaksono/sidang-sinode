@@ -29,6 +29,7 @@ class Peserta_sidangs extends Component
                                 ->orWhere('peserta_sidangs.utusan','LIKE',$search)
                                 ->orWhere('users.nama','LIKE',$search)
                                 ->orWhere('sidangs.akta_sidang','LIKE',$search)
+                                ->select('*','peserta_sidangs.id as ps_id')
                                 ->orderBy('peserta_sidangs.id', 'desc')
                                 ->paginate(5)
         ]);

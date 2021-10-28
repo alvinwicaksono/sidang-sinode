@@ -73,10 +73,10 @@
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->utusan}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$peserta_sidang->id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
+                        <a wire:click="edit({{$peserta_sidang->ps_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$peserta_sidang->id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="delete({{$peserta_sidang->ps_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach
