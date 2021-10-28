@@ -38,6 +38,14 @@
     margin-left: 10px;
 }
 
+/* ############# GIF LOADER ################## */
+
+.gif-loader {
+    max-width: 5%;
+    max-height: 5%;
+    display: inline-block;
+}
+
 /* ############# LOADER ################## */
 
 .loader {

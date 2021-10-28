@@ -40,7 +40,7 @@
                         <input wire:model="repo_aId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="judul_materi" class="block">Judul Materi<label class="custom-red">*</label></label>
+                          <label for="judul_materi" class="block">Judul Materi<label class="custom-red">*</label></label>
                             <input wire:model="judul_materi" type="text" placeholder="Masukan Judul Materi" name="judul_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             @error('judul_materi') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>

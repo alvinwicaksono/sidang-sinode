@@ -67,7 +67,7 @@
                         <div class="text-sm text-gray-900">{{ $repo_bs->firstItem() + $key }}</div> 
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_b->judul_materi}}</div>      
+                        <div class="text-sm font-medium text-gray-900">{{$repo_b->judul}}</div>      
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->sidang->akta_sidang}}</div>
@@ -76,16 +76,16 @@
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->seksi->nama}}</div>
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_b->status}}</div>
+                        <div class="text-sm font-medium text-gray-900">{{$repo_b->stat}}</div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="view({{$repo_b->id}})" class="custom-green"><i class="far fa-eye"></i></a>
+                        <a wire:click="view({{$repo_b->rb_id}})" class="custom-green"><i class="far fa-eye"></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$repo_b->id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
+                        <a wire:click="edit({{$repo_b->rb_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$repo_b->id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="delete({{$repo_b->rb_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     </tr>
                 @endforeach

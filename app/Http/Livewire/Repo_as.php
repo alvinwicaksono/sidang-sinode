@@ -32,6 +32,7 @@ class Repo_as extends Component
                                 ->orWhere('repo_as.sumber_materi','LIKE',$search)
                                 ->orWhere('repo_as.status','LIKE',$search)
                                 ->orWhere('sidangs.akta_sidang','LIKE',$search)
+                                ->select('*','repo_as.id as ra_id', 'repo_as.judul_materi as judul', 'repo_as.status as stat')
                                 ->orderBy('repo_as.id', 'desc')
                                 ->paginate(5)
         ]);
