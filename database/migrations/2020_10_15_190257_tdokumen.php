@@ -43,6 +43,6 @@ class Tdokumen extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tdokumen');
     }
 }

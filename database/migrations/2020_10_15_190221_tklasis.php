@@ -30,6 +30,6 @@ class Tklasis extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tklasis');
     }
 }

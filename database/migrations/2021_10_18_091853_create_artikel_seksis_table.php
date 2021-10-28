@@ -17,6 +17,8 @@ class CreateArtikelSeksisTable extends Migration
             $table->id();
             $table->bigInteger('sidang_id')->unsigned();
             $table->foreign('sidang_id')->references('id')->on('sidangs')->onDelete('cascade');
+            $table->bigInteger('repob_id')->unsigned();
+            $table->foreign('repob_id')->references('id')->on('repo_bs')->onDelete('cascade'); 
             $table->bigInteger('nomor_artikel')->unsigned()->nullable();
             $table->bigInteger('nomor_artikel_seksi')->unsigned()->nullable();
             $table->Integer('seksi_id')->unsigned();

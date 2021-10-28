@@ -30,6 +30,6 @@ class Tsubbidang extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tsubbidang');
     }
 }

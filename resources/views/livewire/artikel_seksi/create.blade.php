@@ -45,7 +45,7 @@
                               <select wire:model="sidang_id" name="sidang_id">
                                   <option value="" disabled selected>Pilih Sidang</option>
                                 
-                                  <option value=""></option>
+                                  <option value="{{$sidangs->id}}">{{$sidangs->akta_sidang}}</option>
                               
                               </select>
                               <div class="select_arrow">
@@ -53,8 +53,24 @@
                           </div>
                         </div>
                         <div class="mb-2">
-                            <label for="judul_materi" class="block">Judul</label>
-                            <input wire:model="judul_materi" type="text" placeholder="Masukan Judul Materi" name="judul_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <label class="block">Repo B</label>
+                            <div class="select">
+                              <select wire:model="repo_bId" name="repo_bId" wire:click="chooseRepoB($event.target.value)">
+                                  <option value=""  selected>Pilih Repo B</option>
+                                @foreach ($repobs as $repo_b)
+                                  <option value="{{$repo_b->id}}">{{$repo_b->judul_materi}}</option>
+                              @endforeach
+                              </select>
+                              <div class="select_arrow">
+                              </div>
+                          </div>
+                        </div>
+
+                        @if($isOpenRepoB)
+                        <input wire:model="repo_bId" type="hidden">
+                        <div class="mb-2">
+                            <label for="judul" class="block">Judul</label>
+                            <input wire:model="judul" type="text" placeholder="Masukan Judul Materi" name="judul" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                         </div>
                         <div class="mb-2">
                             <label for="setelah_sidang_bahas" class="block">Setelah Sidang Membahas</label>
@@ -73,16 +89,16 @@
                             <textarea wire:model="Memutuskan" name="Memutuskan" id="Memutuskan" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                           </div>
                         <div class="mb-2">
-                            <label for="attachment" class="block">Lampiran ( Bisa lebih dari 1 )</label>
-                            <input wire:model="attachment" type="file" placeholder="Tambah File" name="attachment" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-                            <div wire:loading wire:target="attachment">Uploading...</div>
+                            <label for="lampiran" class="block">Lampiran ( Bisa lebih dari 1 )</label>
+                            <input wire:model="lampiran" type="file" placeholder="Tambah File" name="lampiran" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            <div wire:loading wire:target="lampiran">Uploading...</div>
                           </div>
-                          @if ($attachment)
+                          <!-- @if ($lampiran)
                               Lampiran Preview:
                               <div class="row">
-                                  @foreach ($attachment as $attachment)
+                                  @foreach ($lampiran as $lampiran)
                                   <div class="col-3 card me-1 mb-1">
-                                      <img src="{{ $attachment->temporaryUrl() }}">
+                                      <img src="{{ $lampiran->temporaryUrl() }}">
                                       <button class="remove-button" wire:click.prevent="removeImg({{$loop->index}})">
                                         <i class="fas fa-trash-alt"></i> Remove
                                       </button>
@@ -91,8 +107,9 @@
                               </div>
                           @else
                           <div class="lightblue-custom">Lampiran Kosong</div>
+                          @endif --> 
+                        
                           @endif
-                                      
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

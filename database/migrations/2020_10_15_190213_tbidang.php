@@ -28,6 +28,6 @@ class Tbidang extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tbidang');
     }
 }

@@ -137,7 +137,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Format
+                        
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                        
@@ -163,7 +163,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Rak
+                        
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                       
@@ -187,7 +187,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Box
+                        
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                       

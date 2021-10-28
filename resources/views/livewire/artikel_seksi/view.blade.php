@@ -29,32 +29,36 @@
 
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
            
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="bg-white px-9 pt-9 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Repo A {{$judul_materi}}</h3>
+                        <h3 class="text-center font-bold">Artikel {{$nomor_artikel_seksi}}</h3>
                         <hr>
                     </div>
                     <div>
+                        
                         <div class="mb-2">
-                            <label class="block"><b>Akta Sidang :</b> {{$sidang}}</label>
+                            <label class="block"><b>Judul :</b> {{$judul}}</label>
+                            
                         </div>
                         <div class="mb-2">
-                            <label class="block"><b>Status :</b> {{$status}}</label>
+                            <label class="block"><b>Setelah Sidang Membahas :</b> {{$setelah_sidang_bahas}}</label>
+                            <h2>Judul :</h2>
+                            <h3>{{$setelah_sidang_bahas}}</h3>
+                          </div>
+                        <div class="mb-2">
+                            <label class="block"><b>Mengingat :</b> {{$Mengingat}}</label>
                         </div>
                         <div class="mb-2">
-                            <label class="block"><b>Judul Materi :</b> {{$judul_materi}}</label>
+                            <label class="block"><b>Mempertimbangkan :</b> {{$Mempertimbangkan}}</label>
                         </div>
                         <div class="mb-2">
-                            <label class="block"><b>Sumber Materi :</b> {{$sumber_materi}}</label>
+                            <label class="block"><b>Memutuskan :</b> {{$Memutuskan}}</label>
                         </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>
+                        
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Lampiran :</b>
-                              @foreach (json_decode($attachment) as $lampiran)
-                                <img src="<?php echo str_replace('public','storage',$lampiran); ?>" style="height:120px; width:200px"/><br>
-                              @endforeach
+                             
                             </label>
                         </div>
                         
@@ -63,9 +67,14 @@
                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                       
                       <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                        <button wire:click="hideModalView()" type="button" class=" btn btn-success inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 mr-5">
+                          Verifikasi
+                        </button>
+
                         <button wire:click="hideModalView()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                           Close
                         </button>
+                        
                       </span>
                 </div>
            

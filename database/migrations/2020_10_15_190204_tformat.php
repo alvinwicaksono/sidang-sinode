@@ -28,6 +28,6 @@ class Tformat extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tformat');
     }
 }

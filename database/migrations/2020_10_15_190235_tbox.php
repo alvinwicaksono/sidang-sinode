@@ -30,6 +30,6 @@ class Tbox extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tbox');
     }
 }
