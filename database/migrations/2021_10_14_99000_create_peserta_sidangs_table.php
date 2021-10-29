@@ -17,7 +17,7 @@ class CreatePesertaSidangsTable extends Migration
             $table->id();
             $table->string('nama_pengguna');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('sidang_id')->unsigned();
             $table->foreign('sidang_id')->references('id')->on('sidangs');
             $table->string('utusan');

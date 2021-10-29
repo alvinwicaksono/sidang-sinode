@@ -8,9 +8,13 @@ use App\Models\Repo_a;
 use App\Models\Repo_b;
 use App\Models\Sidang;
 
+use Alert;
+
+
 class Prasidangs extends Component
 {
     public $isOpen=0;
+    public $tutup;
     public function render()
     {
         $peserta_sidang = Peserta_sidang::count();
@@ -39,6 +43,34 @@ class Prasidangs extends Component
     public function hideModal() {
      
         $this->isOpen = false;
+    }
+
+    public function clear()
+    {
+       $this->tutup = '';
+    }
+
+    public function tutup()
+    {
+      
+        $sidang_current = Sidang::latest()->first();
+        if($this->tutup == 'tutup pra sidang')
+        {
+            Sidang::where('id',$sidang_current->id)
+                ->update([
+                    'status'=>'Sidang'
+                ]);
+                $this->hideModal();
+                $this->clear();
+                $this->emit('alert',['type'=>'success','message'=>'Penutupan Pra sidang Berhasil','title'=>'Berhasil']);
+        }else{
+            $this->hideModal();
+            $this->clear();
+            $this->emit('alert',['type'=>'error','message'=>'Penutupan Pra sidang gagal','title'=>'Gagal']);
+    
+    }
+    
+        
     }
 
    

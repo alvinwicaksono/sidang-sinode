@@ -30,4 +30,9 @@ class ArtikelSeksi extends Model
     {
         return $this->hasMany(Sidang::class);
     }
+
+    public function Seksi()
+    {
+        return $this->belongsTo(Seksi::class);
+    }
 }

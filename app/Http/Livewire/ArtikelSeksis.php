@@ -29,7 +29,7 @@ class ArtikelSeksis extends Component
         return view('livewire.artikel_seksi.artikel-seksi',[
             'i' => 1,
             'sidangs'=> Sidang::latest()->first(),
-            'seksis'=>Seksi::all(),
+            'seksis'=>Auth::User()->seksi_id,
             'repobs'=>Repo_b::where('status','Belum Terbahas')->where('seksi_id',Auth::user()->seksi_id)->get(),
             'pesertas'=>Peserta_sidang::all(),
             'artikel_seksis' => ArtikelSeksi::join('sidangs','artikel_seksis.sidang_id','=','sidangs.id')
@@ -37,7 +37,7 @@ class ArtikelSeksis extends Component
                                             ->join('repo_bs','artikel_seksis.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_seksis.peserta_id','=','peserta_sidangs.id')
                                             ->where('artikel_seksis.judul','LIKE',$search)
-                                            ->select('*','artikel_seksis.id as as_id', 'artikel_seksis.verified as verif', 'artikel_seksis.judul as judulartikel')
+                                            ->select('*','artikel_seksis.id as as_id', 'artikel_seksis.verified as verif', 'artikel_seksis.judul as judulartikel', 'artikel_seksis.seksi_id as s_id')
                                             ->orderBy('artikel_seksis.id','asc')
                                             ->paginate(5)
 
@@ -60,6 +60,8 @@ class ArtikelSeksis extends Component
 
     public function showModal() {
         $this->isOpen = true;
+        
+
     }
     public function hideModal() {
         $this->clearCache();
@@ -208,6 +210,9 @@ class ArtikelSeksis extends Component
      
         $artikel_seksi = ArtikelSeksi::findOrFail($id);
        
+        $this->artikelseksi_id = $artikel_seksi->id;
+        $this->sidang_id = $artikel_seksi->sidang_id;
+        $this->seksi_id = $artikel_seksi->seksi_id;
         $this->nomor_artikel_seksi = $artikel_seksi->nomor_artikel_seksi;
         $this->repo_bId = $artikel_seksi->repob_id;
         $this->judul = $artikel_seksi->judul;
@@ -217,6 +222,29 @@ class ArtikelSeksis extends Component
         $this->Memutuskan = $artikel_seksi->Memutuskan;
         $this->lampiran = $artikel_seksi->lampiran; 
         $this->showModalView();
+    }
+
+    public function verified($id)
+    {
+        $as = ArtikelSeksi::find($id);
+        $sidang_current = Sidang::latest()->first();
+        $user = Auth::User();
+
+        
+        $max= ArtikelSeksi::where('sidang_id', $sidang_current->id)
+                ->where('seksi_id', $user->seksi_id)
+                ->max('nomor_artikel_seksi')+1;
+               
+
+        ArtikelSeksi::where('id',$id)
+        ->update([
+            'nomor_artikel_seksi'=>$max++,
+            'verified'=>'1'
+        ]);
+        $this->emit('alert',['type'=>'success','message'=>'Artikel Berhasil di Verifikasi','title'=>'Berhasil']);
+        $this->hideModalView();
+
+
     }
 
 }

@@ -28,6 +28,11 @@
             @if($isOpen)
                 @include('livewire.artikel_seksi.create')
             @endif
+
+            @if($isOpenView)
+                @include('livewire.artikel_seksi.view')
+            @endif
+
            
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -36,11 +41,14 @@
                     <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         No.
                     </th>
-                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Nomor Artikel
                     </th>
                     <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Judul
+                    </th>
+                    <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Seksi 
                     </th>
                     <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
@@ -51,36 +59,46 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-              
+              @foreach ($artikel_seksis as $key => $artikel_seksi)
                     <tr>
                     <td class="px-6 py-4 text-center whitespace-nowrap">
-                        <div class="text-sm text-gray-900"></div>
+                        <div class="text-sm text-gray-900">{{ $artikel_seksis->firstItem() + $key }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">{{$artikel_seksi->nomor_artikel_seksi}}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900"></div>
+                        <div class="text-sm font-medium text-gray-900">{{$artikel_seksi->judul}}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900"></div>
+                        <div class="text-sm font-medium text-gray-900">{{$artikel_seksi->seksi->nama}}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900"></div>
+                        @if($artikel_seksi->verified)
+                        <div class="text-sm font-medium text-gray-900">Terverifikasi</div>
+                        @else
+                        <div class="text-sm font-medium text-gray-900">Belum Terverifikasi</div>
+                        @endif
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900"></div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
+                        <a wire:click="view({{$artikel_seksi->as_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
+                        @if(!$artikel_seksi->nomor_artikel_seksi)
                         <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
                         <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        @endif
                     </td>
                     </tr>
-   
+                     @endforeach  
                 </tbody>
                 </table>
 
                 <div class="pagination-custom">
-                   
+                   {{$artikel_seksis->links()}}
                 </div>
+                
                 
             </div>
             </div>

@@ -10,18 +10,19 @@ use App\Models\Sidang;
 use Illuminate\Support\Facades\Auth;
 
 
-class SidangSeksi extends Component
+class SidangPlenos extends Component
 {
+    public $isOpen;
     public function render()
     {
         $user_seksi = Auth::User()->seksi_id;
-        $artikel_seksi = ArtikelSeksi::where('seksi_id',$user_seksi)
+        $sidang_current = Sidang::latest()->first();
+        $artikel_seksi = ArtikelSeksi::where('sidang_id',$sidang_current->id)
+                            ->where('verified',1)
                             ->count();
         $repo_b = Repo_b::count();
-        $sidang_current = Sidang::latest()->first();
-
         
-        return view('livewire.sidang-seksi',compact('repo_b','artikel_seksi','sidang_current'));
+        return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current'));
     }
 
     public function repo_b(){
@@ -30,6 +31,14 @@ class SidangSeksi extends Component
 
     public function sidangseksi(){
         $this->redirect('/artikel_seksi');
+    }
+
+    public function showModal() {
+        $this->isOpen = true;
+    }
+    public function hideModal() {
+     
+        $this->isOpen = false;
     }
 
 }
