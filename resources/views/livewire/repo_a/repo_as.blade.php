@@ -3,6 +3,9 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('Repo A') }}
     </h2>
+    <h4>
+        Sidang : {{$sidangs->akta_sidang}} ({{$sidangs->status}})
+    </h4>
 </x-slot>
 
 
@@ -16,7 +19,11 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="button-table">
+                @if ($sidangs->status == 'Pra Sidang')
                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i> Tambah</a>
+                @else
+                <a class="myButtonGrey"><i class="fas fa-plus"></i> Tambah</a>
+                @endif
                 <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
             </div>
             
@@ -77,6 +84,7 @@
                     <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_a->stat}}</div>
                     </td>
+                    @if ($sidangs->status == 'Pra Sidang')
                     <td class="px-2 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">
                             <a wire:click="createRepoB({{$repo_a->ra_id}})" class="myButton-addRepoB">RepoB</a> 
@@ -91,6 +99,22 @@
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="delete({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
+                    @else
+                    <td class="px-2 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">
+                            <a class="myButton-addRepoB-grey">RepoB</a> 
+                        </div>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a class="custom-grey"><i class="far fa-eye"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a class="custom-grey"><i class="far fa-edit"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    @endif
                     </tr>
                 @endforeach
                 </tbody>

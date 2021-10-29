@@ -22,16 +22,20 @@ class Repo_as extends Component
     public function render()
     {
         $search = '%'.$this->search. '%';
+        $sidang =  Sidang::latest()->first();
         return view('livewire.repo_a.repo_as',[
             'i' => 1,
-            'sidangs' => Sidang::all(),
+            'sidangs' => $sidang,
             'seksis' => Seksi::all(),
             'repo_as' => Repo_a::join('sidangs', 'repo_as.sidang_id','=','sidangs.id')
-                                ->where('repo_as.judul_materi','LIKE',$search)
-                                ->orWhere('repo_as.isi_materi','LIKE',$search)
-                                ->orWhere('repo_as.sumber_materi','LIKE',$search)
-                                ->orWhere('repo_as.status','LIKE',$search)
-                                ->orWhere('sidangs.akta_sidang','LIKE',$search)
+                                ->where('repo_as.sidang_id', $sidang->id)
+                                ->where(function($query) use ($search){
+                                    $query->where('repo_as.judul_materi','LIKE',$search)
+                                    ->orWhere('repo_as.isi_materi','LIKE',$search)
+                                    ->orWhere('repo_as.sumber_materi','LIKE',$search)
+                                    ->orWhere('repo_as.status','LIKE',$search)
+                                    ->orWhere('sidangs.akta_sidang','LIKE',$search);
+                                })
                                 ->select('*','repo_as.id as ra_id', 'repo_as.judul_materi as judul', 'repo_as.status as stat')
                                 ->orderBy('repo_as.id', 'desc')
                                 ->paginate(5)
@@ -89,8 +93,11 @@ class Repo_as extends Component
 
     public function view($id){
         $repo_a = Repo_a::findOrFail($id);
-        $sidangs = Repo_a::join('sidangs', 'repo_as.sidang_id','=','sidangs.id')
-                        ->findOrFail($id);
+
+        $sidangs = Sidang::find($repo_a->sidang_id);
+
+        $this->akta_sidang = $sidangs->akta_sidang;
+        $this->status_sidang = $sidangs->status;
 
         $this->repo_aId = $id;
         $this->judul_materi = $repo_a->judul_materi;
@@ -98,16 +105,18 @@ class Repo_as extends Component
         $this->sumber_materi = $repo_a->sumber_materi;
         $this->attachment = $repo_a->attachment;
         $this->status = $repo_a->status;
-
-        $this->sidang = $sidangs->akta_sidang;
                             
         $this->showModalView();
     }
 
     public function edit($id){
         $repo_a = Repo_a::findOrFail($id);
+        $sidangs = Sidang::find($repo_a->sidang_id);
+
+        $this->akta_sidang = $sidangs->akta_sidang;
+        $this->status = $sidangs->status;
+
         $this->repo_aId = $id;
-        $this->sidang_id = $repo_a->sidang_id;
         $this->judul_materi = $repo_a->judul_materi;
         $this->isi_materi = $repo_a->isi_materi;
         $this->sumber_materi = $repo_a->sumber_materi;
@@ -127,17 +136,14 @@ class Repo_as extends Component
 
         $validatedData = $this->validate(
             [
-                'sidang_id' => 'required',
                 'judul_materi' => 'required',
                 'attachment' => 'max:10024'
             ],
             [
-                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
                 'judul_materi.required' => 'Form :attribute tidak boleh kosong',
                 'attachment.max' => 'Form :attribute minimal ukuran total semua gambar 10Mb'
             ],
             [
-                'sidang_id' => 'Sidang',
                 'judul_materi' => 'Judul Materi',
                 'attachment' => 'Lampiran',
             ]
@@ -148,10 +154,12 @@ class Repo_as extends Component
         }
     
         $this->attachment = json_encode($this->attachment);
+
+        $sidangs =  Sidang::latest()->first();
         
         Repo_a::create(
         [
-            'sidang_id' => $this->sidang_id,
+            'sidang_id' => $sidangs->id,
             'judul_materi' => $this->judul_materi,
             'isi_materi' => $this->isi_materi,
             'sumber_materi' => $this->sumber_materi,
@@ -166,17 +174,14 @@ class Repo_as extends Component
     public function update() {
         $validatedData = $this->validate(
             [
-                'sidang_id' => 'required',
                 'judul_materi' => 'required',
                 'attachment' => 'max:10024'
             ],
             [
-                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
                 'judul_materi.required' => 'Form :attribute tidak boleh kosong',
                 'attachment.max' => 'Form :attribute minimal ukuran total semua gambar 10Mb'
             ],
             [
-                'sidang_id' => 'Sidang',
                 'judul_materi' => 'Judul Materi',
                 'attachment' => 'Lampiran',
             ]
@@ -195,7 +200,6 @@ class Repo_as extends Component
         $attachment_final = json_encode($attachments);
 
         $repo_a->update([
-            'sidang_id' => $this->sidang_id,
             'judul_materi' => $this->judul_materi,
             'isi_materi' => $this->isi_materi,
             'sumber_materi' => $this->sumber_materi,
@@ -248,12 +252,17 @@ class Repo_as extends Component
 
     public function createRepoB($id){
         $repo_a = Repo_a::find($id);
+        $sidangs = Sidang::find($repo_a->sidang_id);
+
+        $this->akta_sidang = $sidangs->akta_sidang;
+        $this->status = $sidangs->status;
 
         $this->repoa_id = $id;
         $this->judul_repo_a = $repo_a->judul_materi;
         $this->sidang_id = $repo_a->sidang_id;
         $this->judul_materi = $repo_a->judul_materi;
         $this->isi_materi = $repo_a->isi_materi;
+        $this->sidang_id = $repo_a->sidang_id;
     
         $this->seksi_id ='';
         $this->attachment=[]; 
@@ -265,7 +274,6 @@ class Repo_as extends Component
     public function storeRepoB() {
         $validatedData = $this->validate(
             [
-                'sidang_id' => 'required',
                 'judul_materi' => 'required',
                 'isi_materi' => 'required',
                 'repoa_id' => 'required',
@@ -273,7 +281,6 @@ class Repo_as extends Component
                 'attachment' => 'max:10024'
             ],
             [
-                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
                 'judul_materi.required' => 'Form :attribute tidak boleh kosong',
                 'isi_materi.required' => 'Form :attribute tidak boleh kosong',
                 'repoa_id.required' => 'Form :attribute tidak boleh kosong',
@@ -281,7 +288,6 @@ class Repo_as extends Component
                 'attachment.max' => 'Form :attribute maksimal total semua gambar 10Mb'
             ],
             [
-                'sidang_id' => 'Sidang',
                 'judul_materi' => 'Judul Materi',
                 'isi_materi' => 'Isi Materi',
                 'repoa_id' => 'Repo A',
