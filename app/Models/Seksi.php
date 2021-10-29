@@ -15,4 +15,8 @@ class Seksi extends Model
     public function User(){
         return $this->hasMany(User::class);
     }
+
+    public function ArtikelSeksi(){
+        return $this->hasMany(ArtikelSeksi::class);
+    }
 }

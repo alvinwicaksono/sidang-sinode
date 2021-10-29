@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/ckeditor.css') }}">
+
         @livewireStyles
         
 
@@ -25,10 +27,11 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
 
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/trix.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" defer></script>
         <script src="https://kit.fontawesome.com/ef295cf806.js" crossorigin="anonymous"></script>
-
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         
 
         @if (config('sweetalert.alwaysLoadJS') === true && config('sweetalert.neverLoadJS') === false )
@@ -77,7 +80,12 @@
             });
         </script>
 
-</script>
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('.ckeditor').ckeditor();
+                    });
+        </script>
 
     </body>
 

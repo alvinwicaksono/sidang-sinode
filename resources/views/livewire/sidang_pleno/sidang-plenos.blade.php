@@ -11,8 +11,13 @@
         <h2>Pelaksanaan Sidang : {{ date('d F Y', strtotime($sidang_current->periode_awal))}} - {{ date('d F Y', strtotime($sidang_current->periode_akhir))}}</h2>
         <h2>Tempat Sidang :  {{$sidang_current->penghimpun}}</h2>
     </div>
-    
+    @if($sidang_current->status!="Selesai")
+    <a wire:click="showModal()" class="myButton float-right mr-10"><i class="fas fa-deny"></i></i> Tutup Sidang</a>
+@endif
 </div>
+@if($isOpen)
+                    @include('livewire.sidang_pleno.close')
+       @endif
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
     <div
         wire:click="repo_b()"

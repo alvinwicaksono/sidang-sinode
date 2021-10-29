@@ -22,7 +22,7 @@
                     <x-jet-nav-link href="{{ route('sidangseksi') }}" :active="request()->routeIs('sidangseksi')">
                         {{ __('Sidang Seksi') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('sidang') }}" :active="request()->routeIs('sidang')">
+                    <x-jet-nav-link href="{{ route('sidangpleno') }}" :active="request()->routeIs('sidangpleno')">
                         {{ __('Sidang Pleno') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">

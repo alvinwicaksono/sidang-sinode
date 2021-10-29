@@ -5,6 +5,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Sidang;
 
+use Alert;
+
+
 class Sidangs extends Component
 {
     public $sidangs;

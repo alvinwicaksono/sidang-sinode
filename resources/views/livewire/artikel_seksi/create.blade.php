@@ -37,7 +37,10 @@
 
 
                     <div>
-                        <input wire:model="repo_aId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                    <div class="form-group">
+                            <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+        </div>    
+                    <input wire:model="repo_aId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
                             <label class="block">Sidang</label>
@@ -88,6 +91,10 @@
                             <label for="Memutuskan" class="block">Memutuskan</label>
                             <textarea wire:model="Memutuskan" name="Memutuskan" id="Memutuskan" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                           </div>
+                          <div class="mb-2">
+                          <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+  
+                        </div>  
                         <div class="mb-2">
                             <label for="lampiran" class="block">Lampiran ( Bisa lebih dari 1 )</label>
                             <input wire:model="lampiran" type="file" placeholder="Tambah File" name="lampiran" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
@@ -100,7 +107,7 @@
                                   <div class="col-3 card me-1 mb-1">
                                       <img src="{{ $lampiran->temporaryUrl() }}">
                                       <button class="remove-button" wire:click.prevent="removeImg({{$loop->index}})">
-                                        <i class="fas fa-trash-alt"></i> Remove
+                                          <i class="fas fa-trash-alt"></i> Remove
                                       </button>
                                   </div>
                                   @endforeach
@@ -128,6 +135,7 @@
                 </div>
             </form>
         </div>
-
+ 
     </div>
 </div>
+
