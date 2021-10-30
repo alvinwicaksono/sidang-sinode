@@ -22,19 +22,23 @@ class Repo_bs extends Component
     public function render()
     {
         $search = '%'.$this->search. '%';
+        $sidang =  Sidang::latest()->first();
         return view('livewire.repo_b.repo_bs',[
             'i' => 1,
-            'sidangs' => Sidang::all(),
+            'sidangs' => $sidang,
             'seksis' => Seksi::all(),
             'repo_as' => Repo_a::all(),
             'repo_bs' => Repo_b::join('sidangs', 'repo_bs.sidang_id','=','sidangs.id')
                                 ->join('seksis', 'repo_bs.seksi_id','=','seksis.id')
                                 ->join('repo_as', 'repo_bs.repoa_id','=','repo_as.id')
-                                ->where('repo_bs.judul_materi','LIKE',$search)
-                                ->orWhere('repo_bs.isi_materi','LIKE',$search)
-                                ->orWhere('repo_bs.status','LIKE',$search)
-                                ->orWhere('sidangs.akta_sidang','LIKE',$search)
-                                ->orWhere('seksis.nama','LIKE',$search)
+                                ->where('repo_as.sidang_id', $sidang->id)
+                                ->where(function($query) use ($search){
+                                    $query->where('repo_bs.judul_materi','LIKE',$search)
+                                            ->orWhere('repo_bs.isi_materi','LIKE',$search)
+                                            ->orWhere('repo_bs.status','LIKE',$search)
+                                            ->orWhere('sidangs.akta_sidang','LIKE',$search)
+                                            ->orWhere('seksis.nama','LIKE',$search);
+                                })
                                 ->select('*','repo_bs.id as rb_id', 'repo_bs.judul_materi as judul', 'repo_bs.status as stat')
                                 ->orderBy('repo_bs.id', 'desc')
                                 ->paginate(5)
@@ -94,6 +98,11 @@ class Repo_bs extends Component
     public function chooseRepoA($id){
         if($id != null) {
             $repo_a = Repo_a::find($id);
+            $sidangs = Sidang::find($repo_a->sidang_id);
+
+            $this->akta_sidang = $sidangs->akta_sidang;
+            $this->status_sidang = $sidangs->status;
+
             $this->judul_materi = $repo_a->judul_materi;
             $this->isi_materi = $repo_a->isi_materi;
             $this->sidang_id = $repo_a->sidang_id;
@@ -139,6 +148,12 @@ class Repo_bs extends Component
         $repo_b = Repo_b::findOrFail($id);
         $repo_as = Repo_b::join('repo_as', 'repo_bs.repoa_id','=','repo_as.id')
                         ->findOrFail($id);
+
+        $sidangs = Sidang::find($repo_b->sidang_id);
+
+        $this->akta_sidang = $sidangs->akta_sidang;
+        $this->status_sidang = $sidangs->status;
+
         $this->repo_bId = $id;
         $this->sidang_id = $repo_b->sidang_id;
         $this->seksi_id = $repo_b->seksi_id;
@@ -163,7 +178,6 @@ class Repo_bs extends Component
 
         $validatedData = $this->validate(
             [
-                'sidang_id' => 'required',
                 'judul_materi' => 'required',
                 'isi_materi' => 'required',
                 'repoa_id' => 'required',
@@ -171,7 +185,6 @@ class Repo_bs extends Component
                 'attachment' => 'max:10024'
             ],
             [
-                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
                 'judul_materi.required' => 'Form :attribute tidak boleh kosong',
                 'isi_materi.required' => 'Form :attribute tidak boleh kosong',
                 'repoa_id.required' => 'Form :attribute tidak boleh kosong',
@@ -179,7 +192,6 @@ class Repo_bs extends Component
                 'attachment.max' => 'Form :attribute maksimal total semua gambar 10Mb'
             ],
             [
-                'sidang_id' => 'Sidang',
                 'judul_materi' => 'Judul Materi',
                 'isi_materi' => 'Isi Materi',
                 'repoa_id' => 'Repo A',
@@ -233,6 +245,10 @@ class Repo_bs extends Component
             'status' => 'Belum Terbahas'
         ]);
 
+        $repo_a->update([
+            'status' => 'Terbahas'
+        ]);
+
         $this->hideModal();
         $this->hideRepoA();
         $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Ditambahkan','title'=>'Berhasil']);     
@@ -241,7 +257,6 @@ class Repo_bs extends Component
     public function update() {
         $validatedData = $this->validate(
             [
-                'sidang_id' => 'required',
                 'judul_materi' => 'required',
                 'isi_materi' => 'required',
                 'repoa_id' => 'required',
@@ -249,7 +264,6 @@ class Repo_bs extends Component
                 'attachment' => 'max:10024'
             ],
             [
-                'sidang_id.required' => 'Form :attribute tidak boleh kosong',
                 'judul_materi.required' => 'Form :attribute tidak boleh kosong',
                 'isi_materi.required' => 'Form :attribute tidak boleh kosong',
                 'repoa_id.required' => 'Form :attribute tidak boleh kosong',
@@ -257,7 +271,6 @@ class Repo_bs extends Component
                 'attachment.max' => 'Form :attribute maksimal total semua gambar 10Mb'
             ],
             [
-                'sidang_id' => 'Sidang',
                 'judul_materi' => 'Judul Materi',
                 'isi_materi' => 'Isi Materi',
                 'repoa_id' => 'Repo A',
@@ -279,7 +292,6 @@ class Repo_bs extends Component
         $attachment_final = json_encode($attachments);
 
         $repo_b->update([
-            'sidang_id' => $this->sidang_id,
             'judul_materi' => $this->judul_materi,
             'isi_materi' => $this->isi_materi,
             'repoa_id' => $this->repoa_id,
@@ -291,8 +303,10 @@ class Repo_bs extends Component
         $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Diupdate','title'=>'Berhasil']);
     }
 
-    public function delete($id){
+    public function delete($id, $repoa_id){
         $repo_b = Repo_b::find($id);
+
+        $repo_a = Repo_a::find($repoa_id);
 
         foreach (json_decode($repo_b->attachment) as $lampiran) {
             if(\File::exists(str_replace('public','storage',$lampiran))) {
@@ -301,6 +315,19 @@ class Repo_bs extends Component
         }
 
         $repo_b->delete();
+
+        $count = $repo_a->count - 1;
+
+        if($count == 0){
+            $status = 'Belum Terbahas';
+        } else {
+            $status = 'Terbahas';
+        }
+
+        $repo_a->update([
+            'status' => $status,
+            'count' => $count
+        ]);
 
         $this->clearCache();
         $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Dihapus','title'=>'Berhasil']);

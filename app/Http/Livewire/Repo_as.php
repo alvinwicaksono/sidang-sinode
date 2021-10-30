@@ -31,10 +31,10 @@ class Repo_as extends Component
                                 ->where('repo_as.sidang_id', $sidang->id)
                                 ->where(function($query) use ($search){
                                     $query->where('repo_as.judul_materi','LIKE',$search)
-                                    ->orWhere('repo_as.isi_materi','LIKE',$search)
-                                    ->orWhere('repo_as.sumber_materi','LIKE',$search)
-                                    ->orWhere('repo_as.status','LIKE',$search)
-                                    ->orWhere('sidangs.akta_sidang','LIKE',$search);
+                                            ->orWhere('repo_as.isi_materi','LIKE',$search)
+                                            ->orWhere('repo_as.sumber_materi','LIKE',$search)
+                                            ->orWhere('repo_as.status','LIKE',$search)
+                                            ->orWhere('sidangs.akta_sidang','LIKE',$search);
                                 })
                                 ->select('*','repo_as.id as ra_id', 'repo_as.judul_materi as judul', 'repo_as.status as stat')
                                 ->orderBy('repo_as.id', 'desc')
@@ -164,7 +164,8 @@ class Repo_as extends Component
             'isi_materi' => $this->isi_materi,
             'sumber_materi' => $this->sumber_materi,
             'attachment' => $this->attachment,
-            'status' => 'Pra Sidang'
+            'status' => 'Belum Terbahas',
+            'count' => 0
         ]);
 
         $this->hideModal();
@@ -339,6 +340,13 @@ class Repo_as extends Component
             'isi_materi' => $this->isi_materi,
             'attachment' => $attachment_final,
             'status' => 'Belum Terbahas'
+        ]);
+
+        $count = $repo_a->count + 1;
+
+        $repo_a->update([
+            'status' => 'Terbahas',
+            'count' => $count
         ]);
 
         $this->hideModalRepoB();

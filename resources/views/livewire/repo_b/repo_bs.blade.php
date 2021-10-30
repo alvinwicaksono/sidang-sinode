@@ -16,7 +16,11 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="button-table">
+                @if ($sidangs->status == 'Pra Sidang')
                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
+                @else
+                <a class="myButtonGrey"><i class="fas fa-plus"></i></i> Tambah</a>
+                @endif
                 <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
             </div>
             
@@ -76,17 +80,30 @@
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->seksi->nama}}</div>
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_b->stat}}</div>
+                        @if ($repo_b->stat == 'Belum Terbahas')
+                        <div class="text-sm font-medium text-gray-900 custom-red">{{$repo_b->stat}}</div>
+                        @else
+                        <div class="text-sm font-medium text-gray-900 custom-green">{{$repo_b->stat}}</div>
+                        @endif
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$repo_b->rb_id}})" class="custom-green"><i class="far fa-eye"></i></a>
                     </td>
+                    @if ($sidangs->status == 'Pra Sidang')
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="edit({{$repo_b->rb_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$repo_b->rb_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="delete({{$repo_b->rb_id}}, {{$repo_b->repoa_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
+                    @else
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a class="custom-grey"><i class="far fa-edit"></i></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    @endif
                     </tr>
                 @endforeach
                 </tbody>

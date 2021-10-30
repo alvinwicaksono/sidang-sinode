@@ -9,7 +9,7 @@ class Repo_a extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'sidang_id', 'judul_materi', 'isi_materi', 'sumber_materi', 'attachment', 'status'
+        'sidang_id', 'judul_materi', 'isi_materi', 'sumber_materi', 'attachment', 'status', 'count'
     ];
 
     public function Sidang(){

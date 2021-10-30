@@ -43,6 +43,9 @@
                             <label class="block"><b>Repo A :</b> {{$repo_a}}</label>
                         </div>
                         <div class="mb-2">
+                            <label class="block"><b>Sidang :</b> {{$akta_sidang}} ({{$status_sidang}})</label>
+                        </div>
+                        <div class="mb-2">
                             <label for="judul_materi" class="block">Judul Materi<label class="custom-red">*</label></label>
                             <input wire:model="judul_materi" type="text" placeholder="Masukan Judul Materi" name="judul_materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             @error('judul_materi') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
@@ -52,20 +55,6 @@
                             <textarea wire:model="isi_materi" name="isi_materi" id="isi_materi" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                             @error('isi_materi') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                           </div>
-                        <div class="mb-2">
-                            <label class="block">Sidang<label class="custom-red">*</label></label>
-                            <div class="select">
-                              <select wire:model="sidang_id" name="sidang_id">
-                                  <option value="" disabled selected>Pilih Sidang</option>
-                                  @foreach ($sidangs as $sidang)
-                                  <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
-                                  @endforeach
-                              </select>
-                              <div class="select_arrow">
-                              </div>
-                          </div>
-                          @error('sidang_id') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
-                        </div>
                         <div class="mb-2">
                             <label class="block">Seksi<label class="custom-red">*</label></label>
                             <div class="select">

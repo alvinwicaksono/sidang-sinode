@@ -4,7 +4,7 @@
         {{ __('Repo A') }}
     </h2>
     <h4>
-        Sidang : {{$sidangs->akta_sidang}} ({{$sidangs->status}})
+        <b>Sidang :</b> {{$sidangs->akta_sidang}} ({{$sidangs->status}})
     </h4>
 </x-slot>
 
@@ -81,23 +81,20 @@
                     <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_a->sumber_materi}}</div>
                     </td>
-                    <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_a->stat}}</div>
+                    @if ($repo_a->count == '0')
+                    <td class="px-8 py-4 whitespace-nowrap"> 
+                        <div class="text-sm font-medium text-gray-900 custom-red">{{$repo_a->stat}}</div>
                     </td>
+                    @else
+                    <td class="px-8 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900 custom-green">{{$repo_a->stat}}</div>
+                    </td>
+                    @endif
                     @if ($sidangs->status == 'Pra Sidang')
                     <td class="px-2 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">
                             <a wire:click="createRepoB({{$repo_a->ra_id}})" class="myButton-addRepoB">RepoB</a> 
                         </div>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="view({{$repo_a->ra_id}})" class="custom-green"><i class="far fa-eye"></i></a>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$repo_a->ra_id}})" class="custom-blue"><i class="far fa-edit"></i></a>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     @else
                     <td class="px-2 py-4 whitespace-nowrap">
@@ -105,9 +102,18 @@
                             <a class="myButton-addRepoB-grey">RepoB</a> 
                         </div>
                     </td>
+                    @endif
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a class="custom-grey"><i class="far fa-eye"></i></a>
+                        <a wire:click="view({{$repo_a->ra_id}})" class="custom-green"><i class="far fa-eye"></i></a>
                     </td>
+                    @if ($sidangs->status == 'Pra Sidang')
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="edit({{$repo_a->ra_id}})" class="custom-blue"><i class="far fa-edit"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="delete({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    @else
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a class="custom-grey"><i class="far fa-edit"></i></a>
                     </td>

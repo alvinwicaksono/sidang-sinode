@@ -22,6 +22,7 @@ class CreateRepoAsTable extends Migration
             $table->string('sumber_materi')->nullable();
             $table->longText('attachment')->nullable();
             $table->string('status');
+            $table->bigInteger('count')->nullable();
             $table->timestamps();
         });
     }
