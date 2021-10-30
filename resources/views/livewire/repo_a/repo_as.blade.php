@@ -111,7 +111,11 @@
                         <a wire:click="edit({{$repo_a->ra_id}})" class="custom-blue"><i class="far fa-edit"></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        @if ($repo_a->count == '0')
                         <a wire:click="delete({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        @else
+                        <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
+                        @endif
                     </td>
                     @else
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">

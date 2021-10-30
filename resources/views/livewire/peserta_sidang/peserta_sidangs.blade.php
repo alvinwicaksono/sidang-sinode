@@ -3,6 +3,9 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('Peserta Sidang') }}
     </h2>
+    <h4>
+        <b>Sidang :</b> {{$sidangs->akta_sidang}} ({{$sidangs->status}})
+    </h4>
 </x-slot>
 
 
@@ -41,9 +44,6 @@
                         Nama Pengguna
                     </th>
                     <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Akta Sidang
-                    </th>
-                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Utusan
                     </th>
                     <th scope="col" class="relative px-2 py-3">
@@ -65,9 +65,6 @@
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->nama_pengguna}}</div>
-                    </td>
-                    <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->sidang->akta_sidang}}</div>
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->utusan}}</div>

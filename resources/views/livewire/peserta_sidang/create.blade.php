@@ -38,7 +38,10 @@
 
                     <div>
                         <input wire:model="peserta_sidangId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
-
+                        
+                        <div class="mb-2">
+                          <h1>Sidang : <b>{{$sidangs->akta_sidang}}</b> ({{$sidangs->status}})</h1>
+                        </div>
                         <div class="mb-2">
                             <label class="block">User<label class="custom-red">*</label></label>
                             <div class="select">
@@ -58,20 +61,6 @@
                             <input wire:model="nama_pengguna" type="text" placeholder="Masukan Nama Pengguna" name="nama_pengguna" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             @error('nama_pengguna') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                           </div>
-                        <div class="mb-2">
-                            <label class="block">Sidang<label class="custom-red">*</label></label>
-                            <div class="select">
-                              <select wire:model="sidang_id" name="sidang_id">
-                                  <option value="" disabled selected>Pilih Sidang</option>
-                                  @foreach ($sidangs as $sidang)
-                                  <option value="{{ $sidang->id }}">{{ $sidang->akta_sidang }}</option>
-                                  @endforeach
-                              </select>
-                              <div class="select_arrow">
-                              </div>
-                            </div>
-                            @error('sidang_id') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
-                        </div>
                         <div class="mb-2">
                             <label for="utusan" class="block">Utusan<label class="custom-red">*</label> (Mininmal 3 Karakter)</label>
                             <input wire:model="utusan" type="text" placeholder="Masukan Utusan" name="utusan" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">

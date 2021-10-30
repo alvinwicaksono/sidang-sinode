@@ -40,8 +40,8 @@ class Repo_bs extends Component
                                             ->orWhere('seksis.nama','LIKE',$search);
                                 })
                                 ->select('*','repo_bs.id as rb_id', 'repo_bs.judul_materi as judul', 'repo_bs.status as stat')
-                                ->orderBy('repo_bs.id', 'desc')
-                                ->paginate(5)
+                                ->orderBy('repo_bs.id', 'asc')
+                                ->paginate(10)
         ]);
     }
 
@@ -245,8 +245,11 @@ class Repo_bs extends Component
             'status' => 'Belum Terbahas'
         ]);
 
+        $count = $repo_a->count + 1;
+
         $repo_a->update([
-            'status' => 'Terbahas'
+            'status' => 'Terbahas',
+            'count' => $count
         ]);
 
         $this->hideModal();

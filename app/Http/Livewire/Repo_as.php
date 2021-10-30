@@ -37,8 +37,8 @@ class Repo_as extends Component
                                             ->orWhere('sidangs.akta_sidang','LIKE',$search);
                                 })
                                 ->select('*','repo_as.id as ra_id', 'repo_as.judul_materi as judul', 'repo_as.status as stat')
-                                ->orderBy('repo_as.id', 'desc')
-                                ->paginate(5)
+                                ->orderBy('repo_as.id', 'asc')
+                                ->paginate(10)
         ]);
     }
 

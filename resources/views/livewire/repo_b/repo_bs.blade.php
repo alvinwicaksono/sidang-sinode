@@ -3,6 +3,9 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('Repo B') }}
     </h2>
+    <h4>
+        <b>Sidang :</b> {{$sidangs->akta_sidang}} ({{$sidangs->status}})
+    </h4>
 </x-slot>
 
 
@@ -45,9 +48,6 @@
                         Judul Materi
                     </th>
                     <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Akta Sidang
-                    </th>
-                    <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Seksi
                     </th>
                     <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -74,9 +74,6 @@
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->judul}}</div>      
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$repo_b->sidang->akta_sidang}}</div>
-                    </td>
-                    <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$repo_b->seksi->nama}}</div>
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
@@ -94,7 +91,11 @@
                         <a wire:click="edit({{$repo_b->rb_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        @if ($repo_b->stat == 'Belum Terbahas')
                         <a wire:click="delete({{$repo_b->rb_id}}, {{$repo_b->repoa_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        @else
+                        <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
+                        @endif
                     </td>
                     @else
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
