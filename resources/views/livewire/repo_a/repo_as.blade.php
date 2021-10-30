@@ -19,12 +19,16 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="button-table">
-                @if ($sidangs->status == 'Pra Sidang')
-                <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i> Tambah</a>
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Gereja Penghimpun')
+                    @if ($sidangs->status == 'Pra Sidang')
+                    <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i> Tambah</a>
+                    @else
+                    <a class="myButtonGrey"><i class="fas fa-plus"></i> Tambah</a>
+                    @endif
+                    <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
                 @else
-                <a class="myButtonGrey"><i class="fas fa-plus"></i> Tambah</a>
+                    <input type="text" class="form-control mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
                 @endif
-                <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
             </div>
             
             @if($isOpen)
@@ -56,17 +60,19 @@
                     <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
                     </th>
-                    <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')   
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
                     </th>
+                    @endif
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Gereja Penghimpun')
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
-                    <th scope="col" class="relative px-2 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -90,18 +96,22 @@
                         <div class="text-sm font-medium text-gray-900 custom-green">{{$repo_a->stat}}</div>
                     </td>
                     @endif
-                    @if ($sidangs->status == 'Pra Sidang')
-                    <td class="px-2 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">
-                            <a wire:click="createRepoB({{$repo_a->ra_id}})" class="myButton-addRepoB">RepoB</a> 
-                        </div>
-                    </td>
-                    @else
-                    <td class="px-2 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">
-                            <a class="myButton-addRepoB-grey">RepoB</a> 
-                        </div>
-                    </td>
+
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Gereja Penghimpun')
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')    
+                        @if ($sidangs->status == 'Pra Sidang')
+                        <td class="px-2 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">
+                                <a wire:click="createRepoB({{$repo_a->ra_id}})" class="myButton-addRepoB">RepoB</a> 
+                            </div>
+                        </td>
+                        @else
+                        <td class="px-2 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">
+                                <a class="myButton-addRepoB-grey">RepoB</a> 
+                            </div>
+                        </td>
+                        @endif
                     @endif
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$repo_a->ra_id}})" class="custom-green"><i class="far fa-eye"></i></a>
@@ -125,6 +135,11 @@
                         <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     @endif
+                @else
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="view({{$repo_a->ra_id}})" style="margin-right: 20px;" class="custom-green"><i class="far fa-eye"></i></a>
+                    </td>
+                @endif
                     </tr>
                 @endforeach
                 </tbody>

@@ -18,10 +18,16 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+
             <div class="button-table">
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
                 <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+                @else
+                <input type="text" class="form-control mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+                @endif
             </div>
+           
             
             @if($isOpen)
                 @include('livewire.peserta_sidang.create')
@@ -46,12 +52,14 @@
                     <th scope="col" class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Utusan
                     </th>
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -69,12 +77,14 @@
                     <td class="px-8 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$peserta_sidang->utusan}}</div>
                     </td>
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="edit({{$peserta_sidang->ps_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="delete({{$peserta_sidang->ps_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
+                    @endif
                     </tr>
                 @endforeach
                 </tbody>
