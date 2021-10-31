@@ -28,11 +28,13 @@ class ArtikelPlenos extends Component
     public function render()
     {
         $search = '%'.$this->search.'%';
+        $sidang_current= Sidang::latest()->first();
         return view('livewire.sidang_pleno.artikel_pleno.artikel-plenos',[
             'i' => 1,
             'sidangs'=> Sidang::latest()->first(),
             'seksis'=>Auth::User()->seksi_id,
             'repobs'=>Repo_b::where('status','Belum Terbahas')->where('seksi_id',Auth::user()->seksi_id)->get(),
+            'ar_seksis'=>ArtikelSeksi::where('sidang_id',$sidang_current->id)->where('verified','1')->get(),
             'pesertas'=>Peserta_sidang::all(),
             'artikel_seksis' => ArtikelPleno::join('sidangs','artikel_plenos.sidang_id','=','sidangs.id')
                                             ->join('seksis','artikel_plenos.seksi_id','=','seksis.id')
@@ -40,7 +42,7 @@ class ArtikelPlenos extends Component
                                             ->join('peserta_sidangs','artikel_plenos.peserta_id','=','peserta_sidangs.id')
                                             ->where('artikel_plenos.seksi_id',Auth::User()->seksi_id)
                                             ->where('artikel_plenos.judul','LIKE',$search)
-                                            ->select('*','artikel_plenos.id as as_id', 'artikel_plenos.verified as verif', 'artikel_plenos.judul as judulartikel', 'artikel_plenos.seksi_id as s_id')
+                                            ->select('*','artikel_plenos.id as ap_id', 'artikel_plenos.verified as verif', 'artikel_plenos.judul as judulartikel', 'artikel_plenos.seksi_id as s_id')
                                             ->orderBy('artikel_plenos.id','asc')
                                             ->paginate(5)
         ]);
@@ -93,16 +95,19 @@ class ArtikelPlenos extends Component
         $this->isOpenView = false;
     }
 
-    public function chooseRepoB($id){
+    public function chooseArtikelSeksi($id){
         if($id != null) {
-            $repo_b = Repo_b::find($id);
-            $this->repo_bId = $repo_b->id;
-            $this->judul = $repo_b->judul_materi;
-            $this->setelah_sidang_bahas = $repo_b->isi_materi;
-            $this->sidang_id = $repo_b->sidang_id;
-            $this->seksi_id ='';
-            $this->attachment=[]; 
-            $this->lampiranString = $repo_b->attachment;
+            $as = ArtikelSeksi::find($id);
+            $this->repo_bId= $as->repob_id;
+            $this->sidang_id= $as->sidang_id;
+            $this->seksi_id = $as->seksi_id;
+            $this->judul= $as->judul;
+            $this->setelah_sidang_bahas= $as->setelah_sidang_bahas;
+            $this->Mengingat= $as->Mengingat;
+            $this->Mempertimbangkan= $as->Mempertimbangkan;
+            $this->Memutuskan= $as->Memutuskan;
+            $this->lampiran=[];
+            $this->lampiran_final=[]; 
             $this->showRepoB();
         }
     }
@@ -130,6 +135,49 @@ class ArtikelPlenos extends Component
         $this->hideModalView();
 
 
+    }
+
+    public function store() {
+       
+        
+        $peserta = Peserta_sidang::where('sidang_id',$this->sidang_id)
+                ->where('user_id',Auth::user()->id)->first();
+        ArtikelPleno::create(
+        [
+            'sidang_id' => $this->sidang_id,
+            'seksi_id' => $this->seksi_id,
+            'repob_id' => $this->repo_bId,
+            'peserta_id' => $peserta->id,
+            'judul' => $this->judul,
+            'setelah_sidang_bahas' => $this->setelah_sidang_bahas,
+            'Mengingat' => $this->Mengingat,
+            'Mempertimbangkan' => $this->Mempertimbangkan,
+            'Memutuskan' => $this->Memutuskan,
+            // 'attachment' => $attachment_final,
+        ]);
+        
+
+        $this->hideModal();
+        $this->emit('alert',['type'=>'success','message'=>'Artikel Seksi Berhasil Ditambahkan','title'=>'Berhasil']);     
+    }
+
+    public function view($id){
+     
+        $artikel_pleno = ArtikelPleno::findOrFail($id);
+      
+        $this->artikelpleno_id = $artikel_pleno->id;
+        $this->sidang_id = $artikel_pleno->sidang_id;
+        $this->seksi_id = $artikel_pleno->seksi_id;
+        $this->nomor_artikel_seksi = $artikel_pleno->nomor_artikel_seksi;
+        $this->nomor_artikel = $artikel_pleno->nomor_artikel;
+        $this->repo_bId = $artikel_pleno->repob_id;
+        $this->judul = $artikel_pleno->judul;
+        $this->setelah_sidang_bahas = $artikel_pleno->setelah_sidang_bahas;
+        $this->Mengingat = $artikel_pleno->Mengingat;
+        $this->Mempertimbangkan = $artikel_pleno->Mempertimbangkan;
+        $this->Memutuskan = $artikel_pleno->Memutuskan;
+        $this->lampiran = $artikel_pleno->lampiran; 
+        $this->showModalView();
     }
 
 

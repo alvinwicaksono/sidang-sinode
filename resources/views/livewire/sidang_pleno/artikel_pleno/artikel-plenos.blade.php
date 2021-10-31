@@ -26,11 +26,11 @@
             </div>
             
             @if($isOpen)
-                @include('livewire.artikel_seksi.create')
+                @include('livewire.sidang_pleno.artikel_pleno.create')
             @endif
 
             @if($isOpenView)
-                @include('livewire.artikel_seksi.view')
+                @include('livewire.sidang_pleno.artikel_pleno.view')
             @endif
 
            
@@ -84,7 +84,7 @@
                         <div class="text-sm font-medium text-gray-900"></div>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="view({{$artikel_seksi->as_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
+                        <a wire:click="view({{$artikel_seksi->ap_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
                         @if(!$artikel_seksi->nomor_artikel_seksi)
                         <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
                         <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
