@@ -47,6 +47,11 @@
               <div class="mb-2 mt-4 form-sm">
                               <input wire:model="tutup" type="text"  name="tutup" placeholder="tutup sidang" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                 </div>
+                <div class="form-group">
+            <div wire:ignore>
+                <textarea wire:model.lazy="isOpen" class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+            </div>
+        </div>
 
             </div>
           </div>

@@ -92,7 +92,7 @@
                             <textarea wire:model="Memutuskan" name="Memutuskan" id="Memutuskan" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                           </div>
                           <div class="mb-2">
-                          <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+                          <textarea class="ckeditor form-control" name="wysiwyg"></textarea>
   
                         </div>  
                         <div class="mb-2">

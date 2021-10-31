@@ -36,6 +36,7 @@ class ArtikelSeksis extends Component
                                             ->join('seksis','artikel_seksis.seksi_id','=','seksis.id')
                                             ->join('repo_bs','artikel_seksis.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_seksis.peserta_id','=','peserta_sidangs.id')
+                                            ->where('artikel_seksis.seksi_id',Auth::User()->seksi_id)
                                             ->where('artikel_seksis.judul','LIKE',$search)
                                             ->select('*','artikel_seksis.id as as_id', 'artikel_seksis.verified as verif', 'artikel_seksis.judul as judulartikel', 'artikel_seksis.seksi_id as s_id')
                                             ->orderBy('artikel_seksis.id','asc')
@@ -149,12 +150,14 @@ class ArtikelSeksis extends Component
         // $attachment_final = json_encode($attachments);
         
 
+        $peserta = Peserta_sidang::where('sidang_id',$this->sidang_id)
+                ->where('user_id',Auth::user()->id)->first();
         ArtikelSeksi::create(
         [
             'sidang_id' => $this->sidang_id,
             'seksi_id' => Auth::user()->seksi_id,
             'repob_id' => $this->repo_bId,
-            'peserta_id' => '1',
+            'peserta_id' => $peserta->id,
             'judul' => $this->judul,
             'setelah_sidang_bahas' => $this->setelah_sidang_bahas,
             'Mengingat' => $this->Mengingat,

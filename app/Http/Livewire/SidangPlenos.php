@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class SidangPlenos extends Component
 {
     public $isOpen;
+    public $tutup;
     public function render()
     {
         $user_seksi = Auth::User()->seksi_id;
@@ -33,6 +34,11 @@ class SidangPlenos extends Component
         $this->redirect('/artikel_seksi');
     }
 
+    public function artikelpleno()
+    {
+        $this->redirect('/artikel_pleno');
+    }
+
     public function showModal() {
         $this->isOpen = true;
     }
@@ -40,5 +46,31 @@ class SidangPlenos extends Component
      
         $this->isOpen = false;
     }
+
+    public function clear()
+    {
+       $this->tutup = '';
+    }
+
+    public function tutup()
+    {
+      
+        $sidang_current = Sidang::latest()->first();
+        if($this->tutup == 'tutup sidang')
+        {
+            // Sidang::where('id',$sidang_current->id)
+            //     ->update([
+            //         'status'=>'Selesai'
+            //     ]);
+                $this->hideModal();
+                $this->clear();
+                $this->emit('alert',['type'=>'success','message'=>'Penutupan Sidang Berhasil','title'=>'Berhasil']);
+        }else{
+            $this->hideModal();
+            $this->clear();
+            $this->emit('alert',['type'=>'error','message'=>'Penutupan Sidang gagal','title'=>'Gagal']);
+    
+    }
+}
 
 }

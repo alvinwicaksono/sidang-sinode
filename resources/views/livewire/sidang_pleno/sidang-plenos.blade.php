@@ -70,7 +70,7 @@
         </div>
     </div>
     <div
-        wire:click=""
+        wire:click="artikelpleno()"
         class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
     >
         <div class="p-4 flex items-center">
@@ -85,7 +85,7 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Peserta Sidang
+                    Artikel Pleno
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     
@@ -196,8 +196,15 @@
         </div>
 
         <div class="form-group">
-                            <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+            <div wire:ignore>
+                <textarea wire:model.debounce.999999ms="isOpen" class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+            </div>
         </div>
+
+        
+
+        
+        
     </div>
 
 

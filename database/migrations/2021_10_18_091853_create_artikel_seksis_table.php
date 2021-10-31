@@ -21,10 +21,10 @@ class CreateArtikelSeksisTable extends Migration
             $table->foreign('repob_id')->references('id')->on('repo_bs')->onDelete('cascade'); 
             $table->bigInteger('nomor_artikel')->unsigned()->nullable();
             $table->bigInteger('nomor_artikel_seksi')->unsigned()->nullable();
-            $table->Integer('seksi_id')->unsigned();
-            // $table->foreign('seksi_id')->references('seksi_id')->on('users');
+            $table->bigInteger('seksi_id')->unsigned();
+            $table->foreign('seksi_id')->references('id')->on('seksis');
             $table->bigInteger('peserta_id')->unsigned();
-            // $table->foreign('peserta_id')->references('user_id')->on('peserta_sidangs');
+            $table->foreign('peserta_id')->references('id')->on('peserta_sidangs');
             $table->TEXT('judul');
             $table->TEXT('setelah_sidang_bahas')->nullable();
             $table->TEXT('Mengingat')->nullable();
