@@ -4,28 +4,61 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Sidang;
+use Livewire\WithPagination;
 
 use Alert;
 
 
 class Sidangs extends Component
 {
-    public $sidangs;
-    public $isOpen=0;
+    use WithPagination;
+    public $search;
+    public $isOpen=0, $isOpenDelete=0;
     public $sidangId, $akta_sidang, $penghimpun, $tema, $periode_awal, $periode_akhir, $tempat, $keterangan, $status;
     public function render()
     {
-        $this->sidangs=Sidang::all();
-        return view('livewire.sidang.sidangs');
+
+        $search = '%'.$this->search. '%';
+        return view('livewire.sidang.sidangs',[
+            'sidangs' => Sidang::where('akta_sidang','LIKE',$search)
+                                ->orWhere('penghimpun','LIKE',$search)
+                                ->orWhere('tema','LIKE',$search)
+                                ->orWhere('tempat','LIKE',$search)
+                                ->orWhere('status','LIKE',$search)
+                                ->orderBy('id', 'desc')
+                                ->paginate(5)
+        ]);
+    }
+
+    private function clearCache() {
+        $this->akta_sidang='';
+        $this->penghimpun='';
+        $this->tema='';
+        $this->periode_awal='';
+        $this->periode_akhir='';
+        $this->tempat='';
+        $this->keterangan='';
+        $this->status='';
     }
 
     public function showModal() {
         $this->isOpen = true;
     }
-
     public function hideModal() {
+        $this->clearCache();
+        $this->resetValidation();
         $this->isOpen = false;
     }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->resetValidation();
+        $this->isOpenDelete = false;
+    }
+    
 
     public function store() {
         $this->status="Pra Sidang";
@@ -83,8 +116,25 @@ class Sidangs extends Component
         $this->showModal();
     }
 
-    public function delete($id){
-        Sidang::find($id)->delete();
+    public function remove($id){
+        $sidang = Sidang::find($id);
+
+        $this->sidangId = $id;
+        $this->akta_sidang = $sidang->akta_sidang;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        try{
+            Sidang::find($this->sidangId)->delete();
+            $this->clearCache();
+            $this->hideModalDelete();
+            $this->emit('alert',['type'=>'success','message'=>'Sidang Berhasil Dihapus','title'=>'Berhasil']);
+        } catch ( \Exception $e) {
+            $this->hideModalDelete();
+            $this->emit('alert',['type'=>'error','message'=>'Sidang sudah dibahas','title'=>'Gagal']);
+        }
     }
 
 }
