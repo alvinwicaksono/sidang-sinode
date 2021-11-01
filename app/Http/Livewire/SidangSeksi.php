@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Repo_b;
-use App\Models\ArtikelSeksi;
+use App\Models\artikelSeksi;
 use App\Models\Sidang;
 
 use Illuminate\Support\Facades\Auth;

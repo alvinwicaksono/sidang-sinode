@@ -10,7 +10,7 @@ use App\Models\Sidang;
 use App\Models\Seksi;
 use App\Models\Repo_b;
 use App\Models\Peserta_sidang;
-use App\Models\ArtikelSeksi;
+use App\Models\artikelSeksi;
 
 use Illuminate\Support\Facades\Auth;
 
