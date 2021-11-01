@@ -2,9 +2,12 @@
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
     <div class="py-12 bg-white mb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+@if($sidang_current != null)
             <div class="lg:text-center">
                 <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Detail Sidang</h1>
             </div>
+        
             <h1>Status Sidang: {{$sidang_current->status}} </h1>
             <h2>Akta Sidang : {{$sidang_current->akta_sidang}}</h2>
             <h2>Tema Sidang: {{$sidang_current->tema}}</h2>
@@ -13,13 +16,14 @@
             <h2>Tempat Sidang :  {{$sidang_current->penghimpun}}</h2>
 
         </div>
+
         @if($sidang_current->status=="Pra Sidang")
         <a wire:click="showModal()" class="myButton float-right mr-10"><i class="fas fa-deny"></i></i> Tutup Pra Sidang</a>
         @endif
     </div>
     @if($isOpen)
-                    @include('livewire.pra_sidang.close')
-       @endif
+        @include('livewire.pra_sidang.close')
+    @endif
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
         <div
             wire:click="repo_a()"
@@ -97,6 +101,16 @@
                     </p>
                 </div>
             </div>
+            
+            
+@else
+    <div class="lg:text-center">
+        <h1><i class="fas fa-exclamation-circle custom-red"></i> <b>Belum Ada Sidang</b></h1>
+        <h1>Hubungi Admin untuk menambahkan Sidang</h1>
+    </div>
+@endif
+
+
         </div>
     </div>            
 </div>

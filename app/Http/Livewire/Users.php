@@ -219,10 +219,15 @@ class Users extends Component
     }
 
     public function delete(){
-        User::find($this->userId)->delete();
-        $this->clearCache();
-        $this->hideModalDelete();
-        $this->emit('alert',['type'=>'success','message'=>'User Berhasil Dihapus','title'=>'Berhasil']);
+        try {
+            User::find($this->userId)->delete();
+            $this->clearCache();
+            $this->hideModalDelete();
+            $this->emit('alert',['type'=>'success','message'=>'User Berhasil Dihapus','title'=>'Berhasil']);
+        } catch ( \Exception $e) {
+            $this->hideModalDelete();
+            $this->emit('alert',['type'=>'error','message'=>'User digunakan di halaman Peserta Sidang','title'=>'Gagal']);
+        }
     }
    
 }

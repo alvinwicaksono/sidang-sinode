@@ -1,6 +1,9 @@
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
 <div class="py-12 bg-white mb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+@if($sidang_current != null)
+
         <div class="lg:text-center">
             <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Detail Sidang</h1>
         </div>
@@ -91,6 +94,14 @@
                     {{ $peserta_sidang }}
                 </p>
             </div>
+
+@else
+    <div class="lg:text-center">
+        <h1><i class="fas fa-exclamation-circle custom-red"></i> <b>Belum Ada Sidang</b></h1>
+        <h1>Hubungi Admin untuk menambahkan Sidang</h1>
+    </div>
+@endif
+
         </div>
     </div>
 </div>

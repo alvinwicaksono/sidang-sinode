@@ -110,10 +110,15 @@ class Seksis extends Component
     }
 
     public function delete(){
-        Seksi::find($this->seksiId)->delete();
-        $this->clearCache();
-        $this->hideModalDelete();
-        $this->emit('alert',['type'=>'success','message'=>'Seksi Berhasil Dihapus','title'=>'Berhasil']);
+        try {
+            Seksi::find($this->seksiId)->delete();
+            $this->clearCache();
+            $this->hideModalDelete();
+            $this->emit('alert',['type'=>'success','message'=>'Seksi Berhasil Dihapus','title'=>'Berhasil']);
+         } catch ( \Exception $e) {
+            $this->hideModalDelete();
+            $this->emit('alert',['type'=>'error','message'=>'Seksi digunakan di halaman User','title'=>'Gagal']);
+         }
     }
    
 }

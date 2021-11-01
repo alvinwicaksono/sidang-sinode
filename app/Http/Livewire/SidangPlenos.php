@@ -18,16 +18,25 @@ class SidangPlenos extends Component
     public $tutup;
     public function render()
     {
-        $user_seksi = Auth::User()->seksi_id;
-        $sidang_current = Sidang::latest()->first();
-        $artikel_seksi = ArtikelSeksi::where('sidang_id',$sidang_current->id)
-                            ->where('verified',1)
-                            ->count();
-        $repo_b = Repo_b::count();
-        $artikel_pleno = ArtikelPleno::count();
-        $peserta_sidang = Peserta_sidang::count();
-        
-        return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'artikel_pleno'));
+        try{
+            $user_seksi = Auth::User()->seksi_id;
+            $sidang_current = Sidang::latest()->first();
+            $artikel_seksi = ArtikelSeksi::where('sidang_id',$sidang_current->id)
+                                ->where('verified',1)
+                                ->count();
+            $repo_b = Repo_b::count();
+            $artikel_pleno = ArtikelPleno::count();
+            $peserta_sidang = Peserta_sidang::count();
+            return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'artikel_pleno'));
+
+        } catch (\Exception $e) {
+            $user_seksi = Auth::User()->seksi_id;
+            $sidang_current = Sidang::latest()->first();
+            $repo_b = Repo_b::count();
+            $artikel_pleno = ArtikelPleno::count();
+            $peserta_sidang = Peserta_sidang::count();
+            return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','sidang_current','peserta_sidang', 'artikel_pleno'));
+        }
     }
 
     public function repo_b(){
