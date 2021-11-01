@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Repo_b;
 use App\Models\artikelSeksi;
+use App\Models\artikelPleno;
 use App\Models\Sidang;
 use App\Models\Peserta_sidang;
 
@@ -23,9 +24,10 @@ class SidangPlenos extends Component
                             ->where('verified',1)
                             ->count();
         $repo_b = Repo_b::count();
+        $artikel_pleno = ArtikelPleno::count();
         $peserta_sidang = Peserta_sidang::count();
         
-        return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang'));
+        return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'artikel_pleno'));
     }
 
     public function repo_b(){
