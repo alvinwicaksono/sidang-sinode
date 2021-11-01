@@ -17,7 +17,7 @@ class Repo_bs extends Component
     use WithPagination;
     use WithFileUploads;
     public $search;
-    public $isOpen=0, $isOpenRepoA=0, $isOpenEdit=0, $isOpenView=0;
+    public $isOpen=0, $isOpenRepoA=0, $isOpenEdit=0, $isOpenView=0, $isOpenDelete=0;
     public $repo_bId, $sidang_id='', $repoa_id='', $seksi_id='', $judul_materi, $isi_materi, $attachment=[], $attachmentString, $status;
     public function render()
     {
@@ -93,6 +93,14 @@ class Repo_bs extends Component
         $this->clearCache();
         $this->resetValidation();
         $this->isOpenView = false;
+    }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->isOpenDelete = false;
     }
 
     public function chooseRepoA($id){
@@ -306,10 +314,20 @@ class Repo_bs extends Component
         $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Diupdate','title'=>'Berhasil']);
     }
 
-    public function delete($id, $repoa_id){
+    public function remove($id, $repo_aId){
         $repo_b = Repo_b::find($id);
 
-        $repo_a = Repo_a::find($repoa_id);
+        $this->repo_bId = $id;
+        $this->repo_aId = $repo_aId;
+        $this->judul_materi = $repo_b->judul_materi;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        $repo_b = Repo_b::find($this->repo_bId);
+
+        $repo_a = Repo_a::find($this->repo_aId);
 
         foreach (json_decode($repo_b->attachment) as $lampiran) {
             if(\File::exists(str_replace('public','storage',$lampiran))) {
@@ -333,6 +351,7 @@ class Repo_bs extends Component
         ]);
 
         $this->clearCache();
+        $this->hideModalDelete();
         $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Dihapus','title'=>'Berhasil']);
     }
 

@@ -229,8 +229,7 @@ class Repo_as extends Component
     }
 
     public function delete(){
-        $id = $this->repo_aId;
-        $repo_a = Repo_a::find($id);
+        $repo_a = Repo_a::find($this->repo_aId);
 
         foreach (json_decode($repo_a->attachment) as $lampiran) {
             if(\File::exists(str_replace('public','storage',$lampiran))) {

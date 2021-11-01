@@ -40,6 +40,9 @@
             @if($isOpenView)
                 @include('livewire.repo_b.view')
             @endif
+            @if($isOpenDelete)
+                @include('livewire.repo_b.delete')
+            @endif
 
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -99,7 +102,7 @@
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         @if ($repo_b->stat == 'Belum Terbahas')
-                        <a wire:click="delete({{$repo_b->rb_id}}, {{$repo_b->repoa_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="remove({{$repo_b->rb_id}}, {{$repo_b->repoa_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                         @else
                         <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
                         @endif
