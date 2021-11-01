@@ -17,7 +17,7 @@ class Repo_as extends Component
     use WithPagination;
     use WithFileUploads;
     public $search;
-    public $isOpen=0, $isOpenView=0, $isOpenEdit=0, $isOpenRepoB;
+    public $isOpen=0, $isOpenView=0, $isOpenEdit=0, $isOpenRepoB, $isOpenDelete=0;
     public $repo_aId, $sidang_id='', $judul_materi, $isi_materi, $sumber_materi, $attachment=[], $attachmentString, $status;
     public function render()
     {
@@ -89,6 +89,14 @@ class Repo_as extends Component
         $this->clearCache();
         $this->resetValidation();
         $this->isOpenView = false;
+    }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->isOpenDelete = false;
     }
 
     public function view($id){
@@ -211,7 +219,17 @@ class Repo_as extends Component
         $this->emit('alert',['type'=>'success','message'=>'Repo A Berhasil Diupdate','title'=>'Berhasil']);
     }
 
-    public function delete($id){
+    public function remove($id){
+        $repo_a = Repo_a::find($id);
+
+        $this->repo_aId = $id;
+        $this->judul_materi = $repo_a->judul_materi;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        $id = $this->repo_aId;
         $repo_a = Repo_a::find($id);
 
         foreach (json_decode($repo_a->attachment) as $lampiran) {
@@ -223,6 +241,7 @@ class Repo_as extends Component
         $repo_a->delete();
 
         $this->clearCache();
+        $this->hideModalDelete();
         $this->emit('alert',['type'=>'success','message'=>'Repo A Berhasil Dihapus','title'=>'Berhasil']);
     }
 

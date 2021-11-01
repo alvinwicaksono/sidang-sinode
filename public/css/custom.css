@@ -45,6 +45,17 @@
     margin-left: 10px;
 }
 
+/* ############# DANGER ################## */
+
+.custom-danger {
+    color: red;
+    font-size: 50px;
+}
+
+.custom-danger:hover {
+    color: #FF5959;
+}
+
 /* ############# GIF LOADER ################## */
 
 .gif-loader {

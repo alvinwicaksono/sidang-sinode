@@ -35,13 +35,16 @@
                 @include('livewire.repo_a.create')
             @endif
             @if($isOpenEdit)
-                @include('livewire.repo_a.edit')
+                @include('livewire.repo_a.edit') 
             @endif
             @if($isOpenRepoB)
                 @include('livewire.repo_a.repoB')
             @endif
             @if($isOpenView)
                 @include('livewire.repo_a.view')
+            @endif
+            @if($isOpenDelete)
+                @include('livewire.repo_a.delete')
             @endif
 
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -122,7 +125,7 @@
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         @if ($repo_a->count == '0')
-                        <a wire:click="delete({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="remove({{$repo_a->ra_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                         @else
                         <a class="custom-grey"><i class="fas fa-trash-alt"></i></a>
                         @endif
