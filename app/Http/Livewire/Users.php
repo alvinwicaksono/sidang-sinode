@@ -13,9 +13,7 @@ class Users extends Component
 {
     use WithPagination;
     public $search;
-    public $isOpen=0;
-    public $isOpenUpdate=0;
-    public $isOpenPass=0;
+    public $isOpen=0, $isOpenUpdate=0, $isOpenPass=0, $isOpenDelete=0;
     public $userId, $nama, $email, $password, $konfirmasi_password, $role='', $seksi_id='';
     public function render()
     {
@@ -68,6 +66,14 @@ class Users extends Component
         $this->clearCache();
         $this->resetValidation();
         $this->isOpenPass = false;
+    }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->isOpenDelete = false;
     }
 
     public function edit($id){
@@ -203,9 +209,19 @@ class Users extends Component
         $this->emit('alert',['type'=>'success','message'=>'Password User Berhasil Diupdate','title'=>'Berhasil']);
     }
 
-    public function delete($id){
-        User::find($id)->delete();
+    public function remove($id){
+        $user = User::find($id);
+
+        $this->userId = $id;
+        $this->nama = $user->nama;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        User::find($this->userId)->delete();
         $this->clearCache();
+        $this->hideModalDelete();
         $this->emit('alert',['type'=>'success','message'=>'User Berhasil Dihapus','title'=>'Berhasil']);
     }
    
