@@ -35,6 +35,9 @@
             @if($isOpenEdit)
                 @include('livewire.peserta_sidang.edit')
             @endif
+            @if($isOpenDelete)
+                @include('livewire.peserta_sidang.delete')
+            @endif
 
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -82,7 +85,7 @@
                         <a wire:click="edit({{$peserta_sidang->ps_id}})" class="custom-blue"><i class="far fa-edit"></i></i></a>
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="delete({{$peserta_sidang->ps_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="remove({{$peserta_sidang->ps_id}})" class="custom-red"><i class="fas fa-trash-alt"></i></a>
                     </td>
                     @endif
                     </tr>

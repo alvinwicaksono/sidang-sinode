@@ -14,7 +14,7 @@ class Peserta_sidangs extends Component
 {
     use WithPagination;
     public $search;
-    public $isOpen=0, $isOpenEdit=0;
+    public $isOpen=0, $isOpenEdit=0, $isOpenDelete=0;
     public $peserta_sidangId, $user_id='', $nama_pengguna, $sidang_id='', $utusan;
     public function render()
     {
@@ -63,6 +63,14 @@ class Peserta_sidangs extends Component
         $this->clearCache();
         $this->resetValidation();   
         $this->isOpenEdit = false;
+    }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->isOpenDelete = false;
     }
 
     public function edit($id){
@@ -147,9 +155,19 @@ class Peserta_sidangs extends Component
         $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Diupdate','title'=>'Berhasil']);        
     }
 
-    public function delete($id){
-        Peserta_sidang::find($id)->delete();
+    public function remove($id){
+        $peserta_sidang = Peserta_sidang::find($id);
+
+        $this->peserta_sidangId = $id;
+        $this->nama_pengguna = $peserta_sidang->nama_pengguna;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        Peserta_sidang::find($this->peserta_sidangId)->delete();
         $this->clearCache();
+        $this->hideModalDelete();
         $this->emit('alert',['type'=>'success','message'=>'Peserta Sidang Berhasil Dihapus','title'=>'Berhasil']);
     }
    
