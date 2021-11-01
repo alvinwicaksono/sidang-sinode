@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Repo_b;
 use App\Models\artikelSeksi;
 use App\Models\Sidang;
+use App\Models\Peserta_sidang;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -22,8 +23,9 @@ class SidangPlenos extends Component
                             ->where('verified',1)
                             ->count();
         $repo_b = Repo_b::count();
+        $peserta_sidang = Peserta_sidang::count();
         
-        return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current'));
+        return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang'));
     }
 
     public function repo_b(){
@@ -37,6 +39,10 @@ class SidangPlenos extends Component
     public function artikelpleno()
     {
         $this->redirect('/artikel_pleno');
+    }
+
+    public function peserta_sidang(){
+        $this->redirect('/peserta_sidang');
     }
 
     public function showModal() {
