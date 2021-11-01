@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class ArtikelSeksi extends Model
 {
+    use HasFactory;
     protected $table = 'artikel_seksis';
     protected  $fillable = ['sidang_id',
     'nomor_artikel',
@@ -24,7 +24,6 @@ class ArtikelSeksi extends Model
     'verified',
     ];
 
-    use HasFactory;
 
     public function Sidang()
     {
@@ -36,3 +35,4 @@ class ArtikelSeksi extends Model
         return $this->belongsTo(Seksi::class);
     }
 }
+
