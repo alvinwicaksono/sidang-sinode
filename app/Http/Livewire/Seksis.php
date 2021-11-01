@@ -12,7 +12,7 @@ class Seksis extends Component
 {
     use WithPagination;
     public $search;
-    public $isOpen=0, $isOpenEdit=0;
+    public $isOpen=0, $isOpenEdit=0, $isOpenDelete=0;
     public $seksiId, $nama;
     public function render()
     {
@@ -45,6 +45,14 @@ class Seksis extends Component
         $this->clearCache();
         $this->resetValidation();
         $this->isOpenEdit = false;
+    }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->isOpenDelete = false;
     }
 
     public function edit($id){
@@ -92,9 +100,19 @@ class Seksis extends Component
         $this->emit('alert',['type'=>'success','message'=>'Seksi Berhasil Diupdate','title'=>'Berhasil']);
     }
 
-    public function delete($id){
-        Seksi::find($id)->delete();
+    public function remove($id){
+        $seksi = Seksi::find($id);
+
+        $this->seksiId = $id;
+        $this->nama = $seksi->nama;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        Seksi::find($this->seksiId)->delete();
         $this->clearCache();
+        $this->hideModalDelete();
         $this->emit('alert',['type'=>'success','message'=>'Seksi Berhasil Dihapus','title'=>'Berhasil']);
     }
    
