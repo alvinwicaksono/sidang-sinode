@@ -45,7 +45,7 @@ Route::get('/seksi', \App\Http\Livewire\Seksis::class)->name('seksi');
 Route::get('/peserta_sidang', \App\Http\Livewire\Peserta_sidangs::class)->name('peserta_sidang');
 Route::get('/repo_a', \App\Http\Livewire\Repo_as::class)->name('repo_a');
 Route::get('/repo_b', \App\Http\Livewire\Repo_bs::class)->name('repo_b');
-Route::get('/artikel_seksi', \App\Http\Livewire\Artikelseksis::class)->name('artikel_seksi');
+Route::get('/artikel_seksi', \App\Http\Livewire\ArtikelSeksis::class)->name('artikel_seksi');
 Route::get('/artikel_seksi_pleno', \App\Http\Livewire\ArtikelSeksisPleno::class)->name('artikel_seksi_pleno');
 Route::get('/artikel_pleno', \App\Http\Livewire\ArtikelPlenos::class)->name('artikel_pleno');
 
