@@ -31,7 +31,7 @@ class SidangPlenos extends Component
     }
 
     public function sidangseksi(){
-        $this->redirect('/artikel_seksi');
+        $this->redirect('/artikel_seksi_pleno');
     }
 
     public function artikelpleno()

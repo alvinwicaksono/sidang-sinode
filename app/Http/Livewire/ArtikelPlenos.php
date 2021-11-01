@@ -40,11 +40,10 @@ class ArtikelPlenos extends Component
                                             ->join('seksis','artikel_plenos.seksi_id','=','seksis.id')
                                             ->join('repo_bs','artikel_plenos.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_plenos.peserta_id','=','peserta_sidangs.id')
-                                            ->where('artikel_plenos.seksi_id',Auth::User()->seksi_id)
                                             ->where('artikel_plenos.judul','LIKE',$search)
                                             ->select('*','artikel_plenos.id as ap_id', 'artikel_plenos.verified as verif', 'artikel_plenos.judul as judulartikel', 'artikel_plenos.seksi_id as s_id')
                                             ->orderBy('artikel_plenos.id','asc')
-                                            ->paginate(5)
+                                            ->paginate(10)
         ]);
     }
 
@@ -122,13 +121,12 @@ class ArtikelPlenos extends Component
 
         
         $max= ArtikelPleno::where('sidang_id', $sidang_current->id)
-                ->where('seksi_id', $user->seksi_id)
-                ->max('nomor_artikel_seksi')+1;
+                ->max('nomor_artikel')+1;
                
 
         ArtikelPleno::where('id',$id)
         ->update([
-            'nomor_artikel_seksi'=>$max++,
+            'nomor_artikel'=>$max++,
             'verified'=>'1'
         ]);
         $this->emit('alert',['type'=>'success','message'=>'Artikel Berhasil di Verifikasi','title'=>'Berhasil']);

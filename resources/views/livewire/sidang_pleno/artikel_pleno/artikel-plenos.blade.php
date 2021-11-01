@@ -65,7 +65,7 @@
                         <div class="text-sm text-gray-900">{{ $artikel_seksis->firstItem() + $key }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{$artikel_seksi->nomor_artikel_seksi}}</div>
+                        <div class="text-sm font-medium text-gray-900">{{$artikel_seksi->nomor_artikel}}</div>
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">{{$artikel_seksi->judul}}</div>
@@ -75,9 +75,9 @@
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
                         @if($artikel_seksi->verified)
-                        <div class="text-sm font-medium text-gray-900">Terverifikasi</div>
+                        <div class="text-sm font-medium text-gray-900 custom-green ">Terverifikasi</div>
                         @else
-                        <div class="text-sm font-medium text-gray-900">Belum Terverifikasi</div>
+                        <div class="text-sm font-medium text-gray-900 custom-red">Belum Terverifikasi</div>
                         @endif
                     </td>
                     <td class="px-15 py-4 whitespace-nowrap">
@@ -85,9 +85,12 @@
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$artikel_seksi->ap_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
-                        @if(!$artikel_seksi->nomor_artikel_seksi)
+                        @if(!$artikel_seksi->nomor_artikel)
                         <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
                         <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        @else
+                        <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
+                        <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
                         @endif
                     </td>
                     </tr>

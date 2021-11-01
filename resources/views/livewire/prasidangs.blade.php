@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Repo A
+                        Repositori A
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{$repo_a}}
@@ -63,7 +63,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Repo B
+                        Repositori B
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{$repo_b}}
