@@ -1,8 +1,11 @@
 
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('ARTIKEL SEKSI') }}
+        {{ __('Artikel Seksi') }}
     </h2>
+    <h4>
+        <b>Sidang :</b> {{$sidangs->akta_sidang}} ({{$sidangs->status}})
+    </h4>
 </x-slot>
 
 
