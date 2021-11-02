@@ -78,6 +78,9 @@
                         <br>
                         <div class="mb-2">
                           <label class="block"><b>Lampiran Yang Sudah Ada :</b>
+                            @if($attachmentString == '[]')
+                            -
+                            @endif
                             @foreach (json_decode($attachmentString) as $lampiran)
                               <img src="<?php echo str_replace('public','storage',$lampiran); ?>"/>
                               <button class="remove-button" wire:click="deleteStorage({{$repo_aId}}, '{{$lampiran}}', '{{$loop->index}}')">

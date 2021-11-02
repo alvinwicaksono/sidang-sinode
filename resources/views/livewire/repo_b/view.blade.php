@@ -62,7 +62,11 @@
                         </tr>
                         <tr>
                             <td><b>Lampiran</b></td>
+                            @if($attachment == '[]')
+                            <td>: -</td>
+                            @else
                             <td>:</td>
+                            @endif
                         </tr>
                       </table>
                         <div class="mb-2">
