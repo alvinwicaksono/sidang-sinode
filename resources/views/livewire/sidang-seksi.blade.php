@@ -15,7 +15,7 @@
         <h2>Tempat Sidang :  {{$sidang_current->penghimpun}}</h2>
     </div>
     
-</div>
+</div> 
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
     <div
         wire:click="repo_b()"

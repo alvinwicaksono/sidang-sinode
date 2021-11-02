@@ -17,8 +17,8 @@ use App\Http\Livewire\Bidangs;
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return redirect('dashboard');
+});
 
 Route::get('/bidang', Bidangs::class);
 Route::get('/rak', \App\Http\Livewire\Raks::class);
@@ -33,6 +33,7 @@ Route::get('/subBidang', \App\Http\Livewire\SubBidangs::class);
 Route::get('/document', \App\Http\Livewire\Documents::class)->name('document');
 Route::get('/master', \App\Http\Livewire\Masterdata::class)->name('master');
 
+Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');
 Route::get('/prasidang', \App\Http\Livewire\Prasidangs::class)->name('prasidang');
 Route::get('/sidangseksi', \App\Http\Livewire\SidangSeksi::class)->name('sidangseksi');
 Route::get('/sidangpleno', \App\Http\Livewire\SidangPlenos::class)->name('sidangpleno');
