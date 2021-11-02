@@ -40,28 +40,34 @@
                         <input wire:model="sidangId" type="hidden"  name="sidangId" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label for="akta_sidang" class="block">Akta Sidang</label>
+                            <label for="akta_sidang" class="block">Akta Sidang<label class="custom-red">*</label></label>
                             <input wire:model="akta_sidang" type="text" placeholder="Masukan Akta Sidang" name="akta_sidang" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('akta_sidang') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label for="penghimpun" class="block">Gereja Penghimpun</label>
+                            <label for="penghimpun" class="block">Gereja Penghimpun<label class="custom-red">*</label></label>
                             <input wire:model="penghimpun" type="text" placeholder="Masukan Gereja Penghimpun" name="penghimpun" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('penghimpun') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label for="tema" class="block">Tema</label>
+                            <label for="tema" class="block">Tema<label class="custom-red">*</label></label>
                             <input wire:model="tema" type="text" placeholder="Masukan Tema" name="tema" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('tema') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label for="periode_awal" class="block">periode_awal</label>
+                            <label for="periode_awal" class="block">periode_awal<label class="custom-red">*</label></label>
                             <input wire:model="periode_awal" type="date" placeholder="Masukan periode_awal" name="periode_awal" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('periode_awal') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label for="periode_akhir" class="block">periode_akhir</label>
+                            <label for="periode_akhir" class="block">periode_akhir<label class="custom-red">*</label></label>
                             <input wire:model="periode_akhir" type="date" placeholder="Masukan periode_akhir" name="periode_akhir" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('periode_akhir') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         <div class="mb-2">
-                            <label for="tempat" class="block">Tempat</label>
+                            <label for="tempat" class="block">Tempat<label class="custom-red">*</label></label>
                             <input wire:model="tempat" type="text" placeholder="Masukan Tempat" name="tempat" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
+                            @error('tempat') <span class="error custom-red"><i class="fas fa-exclamation-circle"></i> {{ $message }}</span> @enderror
                         </div>
                         
                   

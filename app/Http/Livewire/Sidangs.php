@@ -31,6 +31,7 @@ class Sidangs extends Component
     }
 
     private function clearCache() {
+        $this->sidangId='';
         $this->akta_sidang='';
         $this->penghimpun='';
         $this->tema='';
@@ -62,15 +63,33 @@ class Sidangs extends Component
 
     public function store() {
         $this->status="Pra Sidang";
-        $this->validate([
-            'akta_sidang'=>'required',
-            'penghimpun'=>'required',
-            'tema'=>'required',
-            'periode_awal'=>'required',
-            'periode_akhir'=>'required',
-            'tempat'=>'required',
 
-        ]);
+        $validatedData = $this->validate(
+            [
+                'akta_sidang'=>'required',
+                'penghimpun'=>'required',
+                'tema'=>'required',
+                'periode_awal'=>'required',
+                'periode_akhir'=>'required',
+                'tempat'=>'required'
+            ],
+            [
+                'akta_sidang.required'=>'Form :attribute tidak boleh kosong',
+                'penghimpun.required'=>'Form :attribute tidak boleh kosong',
+                'tema.required'=>'Form :attribute tidak boleh kosong',
+                'periode_awal.required'=>'Form :attribute tidak boleh kosong',
+                'periode_akhir.required'=>'Form :attribute tidak boleh kosong',
+                'tempat.required'=>'Form :attribute tidak boleh kosong'
+            ],
+            [
+                'akta_sidang'=>'Akta Sidang',
+                'penghimpun'=>'Gereja Penghimpun',
+                'tema'=>'Tema',
+                'periode_awal'=>'Periode Awal',
+                'periode_akhir'=>'Periode Akhir',
+                'tempat'=>'Tempat'
+            ]
+        );
 
         Sidang::updateOrCreate(['id'=>$this->sidangId],
             [
@@ -89,16 +108,7 @@ class Sidangs extends Component
             $this->emit('alert',['type'=>'success','message'=>'Data Berhasil Diupdate','title'=>'Berhasil']);
         else
             $this->emit('alert',['type'=>'success','message'=>'Data Berhasil Ditambahkan','title'=>'Berhasil']);
-        $this->sidangId='';
-        $this->akta_sidang='';
-        $this->penghimpun='';
-        $this->tema='';
-        $this->periode_awal='';
-        $this->periode_akhir='';
-        $this->tempat='';
-        $this->keterangan='';
-        $this->status='';
-
+        $this->clearCache();
     }
 
     public function edit($id){
@@ -133,7 +143,7 @@ class Sidangs extends Component
             $this->emit('alert',['type'=>'success','message'=>'Sidang Berhasil Dihapus','title'=>'Berhasil']);
         } catch ( \Exception $e) {
             $this->hideModalDelete();
-            $this->emit('alert',['type'=>'error','message'=>'Sidang sudah dibahas','title'=>'Gagal']);
+            $this->emit('alert',['type'=>'error','message'=>'Sidang sedang dibahas di Repositori A','title'=>'Gagal']);
         }
     }
 
