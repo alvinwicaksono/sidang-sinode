@@ -31,7 +31,7 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Edit Repo B {{$judul_materi}}</h3>
+                        <h3 class="text-center font-bold">Edit Repositori B {{$judul_materi}}</h3>
                         <hr>
                     </div>
 
@@ -40,7 +40,7 @@
                         <input wire:model="repo_bId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label class="block"><b>Repo A :</b> {{$repo_a}}</label>
+                            <label class="block"><b>Repositori A :</b> {{$repo_a}}</label>
                         </div>
                         <div class="mb-2">
                             <label class="block"><b>Sidang :</b> {{$akta_sidang}} ({{$status_sidang}})</label>

@@ -56,10 +56,10 @@
                           </div>
                         </div>
                         <div class="mb-2">
-                            <label class="block">Repo B</label>
+                            <label class="block">Repositori B</label>
                             <div class="select">
                               <select wire:model="repo_bId" name="repo_bId" wire:click="chooseRepoB($event.target.value)">
-                                  <option value=""  selected>Pilih Repo B</option>
+                                  <option value=""  selected>Pilih Repositori B</option>
                                 @foreach ($repobs as $repo_b)
                                   <option value="{{$repo_b->id}}">{{$repo_b->judul_materi}}</option>
                               @endforeach

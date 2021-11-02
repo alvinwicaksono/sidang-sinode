@@ -33,7 +33,7 @@
                     <div class="mb-4 ">
                         <p class="text-center custom-danger"><i class="fas fa-exclamation-triangle"></i></p>
                         <h3 class="text-center">Apakah anda yakin untuk menghapus</h3>
-                        <h3 class="text-center">Repo B : <b>{{$judul_materi}}</b></h3>
+                        <h3 class="text-center">Repositori B : <b>{{$judul_materi}}</b></h3>
                     </div>
                     <div>
                         <input wire:model="repo_aId" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">  

@@ -203,7 +203,7 @@ class Repo_bs extends Component
             [
                 'judul_materi' => 'Judul Materi',
                 'isi_materi' => 'Isi Materi',
-                'repoa_id' => 'Repo A',
+                'repoa_id' => 'Repositori A',
                 'seksi_id' => 'Seksi',
                 'attachment' => 'Lampiran'
             ]
@@ -263,7 +263,7 @@ class Repo_bs extends Component
 
         $this->hideModal();
         $this->hideRepoA();
-        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Ditambahkan','title'=>'Berhasil']);     
+        $this->emit('alert',['type'=>'success','message'=>'Repositori B Berhasil Ditambahkan','title'=>'Berhasil']);     
     }
 
     public function update() {
@@ -285,7 +285,7 @@ class Repo_bs extends Component
             [
                 'judul_materi' => 'Judul Materi',
                 'isi_materi' => 'Isi Materi',
-                'repoa_id' => 'Repo A',
+                'repoa_id' => 'Repositori A',
                 'seksi_id' => 'Seksi',
                 'attachment' => 'Lampiran'
             ]
@@ -312,7 +312,7 @@ class Repo_bs extends Component
         ]);
        
         $this->hideModalEdit();
-        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Diupdate','title'=>'Berhasil']);
+        $this->emit('alert',['type'=>'success','message'=>'Repositori B Berhasil Diupdate','title'=>'Berhasil']);
     }
 
     public function remove($id, $repo_aId){
@@ -353,7 +353,7 @@ class Repo_bs extends Component
 
         $this->clearCache();
         $this->hideModalDelete();
-        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Dihapus','title'=>'Berhasil']);
+        $this->emit('alert',['type'=>'success','message'=>'Repositori B Berhasil Dihapus','title'=>'Berhasil']);
     }
 
     public function deleteStorage($id, $path, $index){

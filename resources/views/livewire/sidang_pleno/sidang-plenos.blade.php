@@ -5,7 +5,7 @@
 @if($sidang_current != null)
 
         <div class="lg:text-center">
-            <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Detail Sidang</h1>
+            <h1 class="text-base text-indigo-600 font-bold tracking-wide uppercase">Detail Sidang</h1>
         </div>
         <table class="custom-table">
             <tr>
@@ -63,7 +63,7 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Repo B
+                    Repositori B
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     {{$repo_b}}

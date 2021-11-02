@@ -1,7 +1,7 @@
 
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Repo B') }}
+        {{ __('Repositori B') }}
     </h2>
     <h4>
         <b>Sidang :</b> {{$sidangs->akta_sidang}} ({{$sidangs->status}})

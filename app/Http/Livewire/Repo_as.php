@@ -177,7 +177,7 @@ class Repo_as extends Component
         ]);
 
         $this->hideModal();
-        $this->emit('alert',['type'=>'success','message'=>'Repo A Berhasil Ditambahkan','title'=>'Berhasil']);    
+        $this->emit('alert',['type'=>'success','message'=>'Repositori A Berhasil Ditambahkan','title'=>'Berhasil']);    
     }
 
     public function update() {
@@ -216,7 +216,7 @@ class Repo_as extends Component
         ]);
        
         $this->hideModalEdit();
-        $this->emit('alert',['type'=>'success','message'=>'Repo A Berhasil Diupdate','title'=>'Berhasil']);
+        $this->emit('alert',['type'=>'success','message'=>'Repositori A Berhasil Diupdate','title'=>'Berhasil']);
     }
 
     public function remove($id){
@@ -241,7 +241,7 @@ class Repo_as extends Component
 
         $this->clearCache();
         $this->hideModalDelete();
-        $this->emit('alert',['type'=>'success','message'=>'Repo A Berhasil Dihapus','title'=>'Berhasil']);
+        $this->emit('alert',['type'=>'success','message'=>'Repositori A Berhasil Dihapus','title'=>'Berhasil']);
     }
 
     public function deleteStorage($id, $path, $index){
@@ -267,7 +267,7 @@ class Repo_as extends Component
     }
 
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~ REPO B ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~ Repositori B ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public function createRepoB($id){
         $repo_a = Repo_a::find($id);
@@ -309,7 +309,7 @@ class Repo_as extends Component
             [
                 'judul_materi' => 'Judul Materi',
                 'isi_materi' => 'Isi Materi',
-                'repoa_id' => 'Repo A',
+                'repoa_id' => 'Repositori A',
                 'seksi_id' => 'Seksi',
                 'attachment' => 'Lampiran'
             ]
@@ -368,7 +368,7 @@ class Repo_as extends Component
         ]);
 
         $this->hideModalRepoB();
-        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Ditambahkan','title'=>'Berhasil']);     
+        $this->emit('alert',['type'=>'success','message'=>'Repositori B Berhasil Ditambahkan','title'=>'Berhasil']);     
     }
    
 }

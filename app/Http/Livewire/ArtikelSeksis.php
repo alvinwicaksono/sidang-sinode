@@ -206,7 +206,7 @@ class ArtikelSeksis extends Component
         ]);
        
         $this->hideModalEdit();
-        $this->emit('alert',['type'=>'success','message'=>'Repo B Berhasil Diupdate','title'=>'Berhasil']);
+        $this->emit('alert',['type'=>'success','message'=>'Repositori B Berhasil Diupdate','title'=>'Berhasil']);
     }
 
     public function view($id){

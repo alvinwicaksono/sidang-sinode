@@ -31,7 +31,7 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Tambah Repo B</h3>
+                        <h3 class="text-center font-bold">Tambah Repositori B</h3>
                         <hr>
                     </div>
 
@@ -41,10 +41,10 @@
                         <input wire:model="sidang_id" type="hidden" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
 
                         <div class="mb-2">
-                            <label class="block">Repo A<label class="custom-red">*</label></label>
+                            <label class="block">Repositori A<label class="custom-red">*</label></label>
                             <div class="select">
                               <select wire:model="repoa_id" name="repoa_id" wire:click="chooseRepoA($event.target.value)">
-                                  <option value="" disabled>Pilih Repo A</option>
+                                  <option value="" disabled>Pilih Repositori A</option>
                                   @foreach ($repo_as as $repo_a)
                                   <option value="{{ $repo_a->id }}">{{ $repo_a->judul_materi }}</option>
                                   @endforeach
