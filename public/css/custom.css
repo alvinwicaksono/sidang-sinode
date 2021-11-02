@@ -56,6 +56,12 @@
     color: #FF5959;
 }
 
+/* ############# TABLE ################## */
+
+.custom-table td {
+    padding: 0 0 10px 40px;
+}
+
 /* ############# GIF LOADER ################## */
 
 .gif-loader {

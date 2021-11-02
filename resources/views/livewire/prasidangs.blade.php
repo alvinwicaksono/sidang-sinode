@@ -8,12 +8,32 @@
                 <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Detail Sidang</h1>
             </div>
         
-            <h1>Status Sidang: {{$sidang_current->status}} </h1>
-            <h2>Akta Sidang : {{$sidang_current->akta_sidang}}</h2>
-            <h2>Tema Sidang: {{$sidang_current->tema}}</h2>
-            <h2>Gereja Penghimpun: {{$sidang_current->penghimpun}}</h2>
-            <h2>Pelaksanaan Sidang : {{ date('d F Y', strtotime($sidang_current->periode_awal))}} - {{ date('d F Y', strtotime($sidang_current->periode_akhir))}}</h2>
-            <h2>Tempat Sidang :  {{$sidang_current->penghimpun}}</h2>
+            <table class="custom-table">
+                <tr>
+                    <td><b>Status Sidang</b></td>
+                    <td>: {{$sidang_current->status}} </td>
+                </tr>
+                <tr>
+                    <td><b>Akta Sidang </b></td>
+                    <td>: {{$sidang_current->akta_sidang}}</td>
+                </tr>
+                <tr>
+                    <td><b>Tema Sidang</b></td>
+                    <td>: {{$sidang_current->tema}}</b></td>
+                </tr>
+                <tr>
+                    <td><b>Gereja Penghimpun</b></td>
+                    <td>: {{$sidang_current->penghimpun}}</td>
+                </tr>
+                <tr>
+                    <td><b>Pelaksanaan Sidang </b></td>
+                    <td>: {{ date('d F Y', strtotime($sidang_current->periode_awal))}} - {{ date('d F Y', strtotime($sidang_current->periode_akhir))}}</td>
+                </tr>
+                <tr>
+                    <td><b>Tempat Sidang </b></td>
+                    <td>: {{$sidang_current->penghimpun}}</td>
+                </tr>
+            </table>
 
         </div>
 

@@ -7,12 +7,32 @@
             <div class="lg:text-center">
                 <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Detail Sidang</h1>
             </div>
-            <h1>Status Sidang: {{$sidang_current->status}} </h1>
-            <h2>Akta Sidang : {{$sidang_current->akta_sidang}}</h2>
-            <h2>Tema Sidang: {{$sidang_current->tema}}</h2>
-            <h2>Gereja Penghimpun: {{$sidang_current->penghimpun}}</h2>
-            <h2>Pelaksanaan Sidang : {{ date('d F Y', strtotime($sidang_current->periode_awal))}} - {{ date('d F Y', strtotime($sidang_current->periode_akhir))}}</h2>
-            <h2>Tempat Sidang :  {{$sidang_current->penghimpun}}</h2>
+            <table class="custom-table">
+                <tr>
+                    <td><b>Status Sidang</b></td>
+                    <td>: {{$sidang_current->status}} </td>
+                </tr>
+                <tr>
+                    <td><b>Akta Sidang </b></td>
+                    <td>: {{$sidang_current->akta_sidang}}</td>
+                </tr>
+                <tr>
+                    <td><b>Tema Sidang</b></td>
+                    <td>: {{$sidang_current->tema}}</b></td>
+                </tr>
+                <tr>
+                    <td><b>Gereja Penghimpun</b></td>
+                    <td>: {{$sidang_current->penghimpun}}</td>
+                </tr>
+                <tr>
+                    <td><b>Pelaksanaan Sidang </b></td>
+                    <td>: {{ date('d F Y', strtotime($sidang_current->periode_awal))}} - {{ date('d F Y', strtotime($sidang_current->periode_akhir))}}</td>
+                </tr>
+                <tr>
+                    <td><b>Tempat Sidang </b></td>
+                    <td>: {{$sidang_current->penghimpun}}</td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -21,21 +41,35 @@
             <div class="lg:text-center">
                 <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Moderamen Sidang</h1>
             </div>
-    @if($moderamen_ketua->count() > 0)
-        @foreach ($moderamen_ketua as $key => $ketua)
-            <h1>Ketua {{ ++$key }} : {{$ketua->nama}} </h1>
-        @endforeach
-    @else
-        <h1>Ketua : - </h1>
-    @endif
-    <br>
-    @if($moderamen_sekretaris->count() > 0)
-        @foreach ($moderamen_sekretaris as $key => $sekretaris)
-            <h2>Sekretaris Moderamen {{ ++$key }} : {{$sekretaris->nama}}</h2>
-        @endforeach
-    @else
-        <h1>Sekretaris Moderamen : - </h1>
-    @endif
+            <table class="custom-table">
+            @if($moderamen_ketua->count() > 0)
+                @foreach ($moderamen_ketua as $key => $ketua)
+                <tr>
+                    <td><b>Ketua {{ ++$key }}</b></td>
+                    <td> : {{$ketua->nama}}</td>
+                </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td><b>Ketua</b></td>
+                    <td> : -</td>
+                </tr>
+            @endif
+            <br>
+            @if($moderamen_sekretaris->count() > 0)
+                @foreach ($moderamen_sekretaris as $key => $sekretaris)
+                <tr>
+                    <td><b>Sekretaris Moderamen {{ ++$key }}</b></td>
+                    <td> : {{$sekretaris->nama}}</td>
+                </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td><b>Sekretaris Moderamen</b></td>
+                    <td> : -</td>
+                </tr>
+            @endif
+            </table>
         </div>
     </div>
 
