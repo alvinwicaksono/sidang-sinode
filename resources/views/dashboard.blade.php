@@ -21,14 +21,15 @@
             <div class="lg:text-center">
                 <h1 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Moderamen Sidang</h1>
             </div>
-    @if($moderamen_ketua != null)
+    @if($moderamen_ketua->count() > 0)
         @foreach ($moderamen_ketua as $key => $ketua)
             <h1>Ketua {{ ++$key }} : {{$ketua->nama}} </h1>
         @endforeach
     @else
         <h1>Ketua : - </h1>
     @endif
-    @if($moderamen_sekretaris != null)
+    <br>
+    @if($moderamen_sekretaris->count() > 0)
         @foreach ($moderamen_sekretaris as $key => $sekretaris)
             <h2>Sekretaris Moderamen {{ ++$key }} : {{$sekretaris->nama}}</h2>
         @endforeach
