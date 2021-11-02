@@ -107,8 +107,6 @@
 </div>
 
 
-    <div class="form-group">
-        <textarea wire:model.lazy="isOpen" class="ckeditor form-control" name="wysiwyg-editor"></textarea>
-    </div>
+
     
 

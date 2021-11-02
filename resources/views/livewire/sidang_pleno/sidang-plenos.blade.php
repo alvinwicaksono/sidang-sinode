@@ -137,11 +137,7 @@
 </div>
 
     
-<div class="form-group">
-    <div wire:ignore>
-        <textarea wire:model.debounce.999999ms="isOpen" class="ckeditor form-control" name="wysiwyg-editor"></textarea>
-    </div>
-</div>
+
 
         
 
