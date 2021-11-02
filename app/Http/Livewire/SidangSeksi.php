@@ -16,12 +16,19 @@ class SidangSeksi extends Component
 
     public function render()
     {
-            $user_seksi = Auth::User()->seksi_id;
-            $artikel_seksi = ArtikelSeksi::where('seksi_id',$user_seksi)
-                                ->count();
             $sidang_current = Sidang::latest()->first();
-            $repo_b = Repo_b::count();
-            $peserta_sidang = Peserta_sidang::count();
+
+            $user_seksi = Auth::User()->seksi_id;
+
+            $artikel_seksi = ArtikelSeksi::where('seksi_id',$user_seksi)
+                                            ->where('sidang_id',$sidang_current->id)
+                                            ->count();
+
+            $repo_b = Repo_b::where('sidang_id',$sidang_current->id)
+                                ->count();
+
+            $peserta_sidang = Peserta_sidang::where('sidang_id',$sidang_current->id)
+                                ->count();
 
             return view('livewire.sidang-seksi',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang'));
     }

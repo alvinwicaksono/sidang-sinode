@@ -20,13 +20,22 @@ class SidangPlenos extends Component
     {
         try{
             $user_seksi = Auth::User()->seksi_id;
+
             $sidang_current = Sidang::latest()->first();
+
             $artikel_seksi = ArtikelSeksi::where('sidang_id',$sidang_current->id)
                                 ->where('verified',1)
                                 ->count();
-            $repo_b = Repo_b::count();
-            $artikel_pleno = ArtikelPleno::count();
-            $peserta_sidang = Peserta_sidang::count();
+
+            $repo_b = Repo_b::where('sidang_id',$sidang_current->id)
+                                ->count();
+
+            $artikel_pleno = ArtikelPleno::where('sidang_id',$sidang_current->id)
+                                            ->count();
+
+            $peserta_sidang = Peserta_sidang::where('sidang_id',$sidang_current->id)
+                                                ->count();
+                                                
             return view('livewire.sidang_pleno.sidang-plenos',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'artikel_pleno'));
 
         } catch (\Exception $e) {

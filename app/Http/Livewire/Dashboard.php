@@ -26,8 +26,12 @@ class Dashboard extends Component
             $peserta_sidang = Peserta_sidang::count();
 
             //~~~~~~~~~~~~ MODERAMEN SIDANG ~~~~~~~~~~~~~~//
-            $moderamen_ketua = User::where('role','Ketua')->orderBy('id','asc')->get();
-            $moderamen_sekretaris = User::where('role','Sekretaris Moderamen')->orderBy('id','asc')->get();
+            $moderamen_ketua = Peserta_sidang::join('users','peserta_sidangs.user_id','=','users.id')
+                                ->where('peserta_sidangs.sidang_id',$sidang_current->id)
+                                ->where('users.role','Ketua')->orderBy('peserta_sidangs.id','asc')->get();
+            $moderamen_sekretaris = Peserta_sidang::join('users','peserta_sidangs.user_id','=','users.id')
+                                ->where('peserta_sidangs.sidang_id',$sidang_current->id)
+                                ->where('role','Sekretaris Moderamen')->orderBy('peserta_sidangs.id','asc')->get();
 
             return view('dashboard',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'moderamen_ketua', 'moderamen_sekretaris'));
     }

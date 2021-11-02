@@ -46,7 +46,7 @@
                 @foreach ($moderamen_ketua as $key => $ketua)
                 <tr>
                     <td><b>Ketua {{ ++$key }}</b></td>
-                    <td> : {{$ketua->nama}}</td>
+                    <td> : {{$ketua->nama_pengguna}}</td>
                 </tr>
                 @endforeach
             @else
@@ -60,7 +60,7 @@
                 @foreach ($moderamen_sekretaris as $key => $sekretaris)
                 <tr>
                     <td><b>Sekretaris Moderamen {{ ++$key }}</b></td>
-                    <td> : {{$sekretaris->nama}}</td>
+                    <td> : {{$sekretaris->nama_pengguna}}</td>
                 </tr>
                 @endforeach
             @else

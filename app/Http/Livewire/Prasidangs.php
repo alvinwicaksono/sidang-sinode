@@ -17,10 +17,10 @@ class Prasidangs extends Component
     public $tutup;
     public function render()
     {
-        $peserta_sidang = Peserta_sidang::count();
-        $repo_a = Repo_a::count();
-        $repo_b = Repo_b::count();
         $sidang_current = Sidang::latest()->first();
+        $peserta_sidang = Peserta_sidang::where('sidang_id',$sidang_current->id)->count();
+        $repo_a = Repo_a::where('sidang_id',$sidang_current->id)->count();
+        $repo_b = Repo_b::where('sidang_id',$sidang_current->id)->count();
      
         return view('livewire.prasidangs', compact('peserta_sidang','repo_a','repo_b','sidang_current'));
     }
