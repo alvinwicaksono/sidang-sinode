@@ -35,26 +35,37 @@
                         <hr>
                     </div>
                     <div>
+                      <table class="custom-table-view">
+                        <tr>
+                            <td><b>Akta Sidang</b></td>
+                            <td>: {{$akta_sidang}} ({{$status_sidang}}) </td>
+                        </tr>
+                        <tr>
+                            <td><b>Repo A</b></td>
+                            <td>: {{$repo_a}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Judul Materi</b></td>
+                            <td>: {{$judul_materi}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Isi Materi</b></td>
+                            <td>: {{$isi_materi}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Seksi</b></td>
+                            <td>: {{$seksi}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Status</b></td>
+                            <td>: {{$status}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Lampiran</b></td>
+                            <td>:</td>
+                        </tr>
+                      </table>
                         <div class="mb-2">
-                            <label class="block"><b>Repo A :</b> {{$repo_a}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Judul Materi :</b> {{$judul_materi}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Isi Materi :</b> {{$isi_materi}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Akta Sidang :</b> {{$sidang}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Seksi :</b> {{$seksi}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Status :</b> {{$status}}</label>
-                        </div>
-                        <div class="mb-2">
-                            <label class="block"><b>Lampiran :</b>
                               @foreach (json_decode($attachment) as $lampiran)
                                 <img src="<?php echo str_replace('public','storage',$lampiran); ?>"/><br>
                               @endforeach

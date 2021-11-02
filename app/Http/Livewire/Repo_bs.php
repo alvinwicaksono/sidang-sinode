@@ -145,7 +145,8 @@ class Repo_bs extends Component
         $this->status = $repo_b->status;
 
         $this->repo_a = $repo_as->judul_materi;
-        $this->sidang = $sidangs->akta_sidang;
+        $this->akta_sidang = $sidangs->akta_sidang;
+        $this->status_sidang = $sidangs->status;
         $this->seksi = $seksis->nama;
                             
         
