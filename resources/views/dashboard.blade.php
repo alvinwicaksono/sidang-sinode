@@ -5,7 +5,7 @@
     <div class="py-12 bg-white mb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h1 class="text-base text-indigo-600 font-bold tracking-wide uppercase">Detail Sidang</h1>
+                <h1 class="text-base tracking-wide custom-title">Detail Sidang</h1>
             </div>
             <table class="custom-table">
                 <tr>
@@ -39,7 +39,7 @@
     <div class="py-12 bg-white mb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h1 class="text-base text-indigo-600 font-bold tracking-wide uppercase">Moderamen Sidang</h1>
+                <h1 class="text-base tracking-wide custom-title">Moderamen Sidang</h1>
             </div>
             <table class="custom-table">
             @if($moderamen_ketua->count() > 0)

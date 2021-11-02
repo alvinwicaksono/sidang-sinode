@@ -5,7 +5,7 @@
 @if($sidang_current != null)
 
         <div class="lg:text-center">
-            <h1 class="text-base text-indigo-600 font-bold tracking-wide uppercase">Detail Sidang</h1>
+            <h1 class="text-base tracking-wide custom-title">Detail Sidang</h1>
         </div>
         <table class="custom-table">
             <tr>
@@ -34,8 +34,10 @@
             </tr>
         </table>
     </div>
-    @if($sidang_current->status!="Selesai")
-    <a wire:click="showModal()" class="myButton float-right mr-10"><i class="fas fa-deny"></i></i> Tutup Sidang</a>
+    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
+        @if($sidang_current->status!="Selesai")
+        <a wire:click="showModal()" class="myButton float-right mr-10"><i class="fas fa-deny"></i></i> Tutup Sidang</a>
+        @endif
     @endif
     </div>
     @if($isOpen)

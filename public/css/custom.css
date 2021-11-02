@@ -45,6 +45,15 @@
     margin-left: 10px;
 }
 
+/* ############# TITLE ################## */
+
+.custom-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #005c9e;
+    font-weight: 1000;
+}
+
 /* ############# DANGER ################## */
 
 .custom-danger {

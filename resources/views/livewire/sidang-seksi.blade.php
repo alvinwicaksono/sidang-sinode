@@ -5,7 +5,7 @@
 @if($sidang_current != null)
 
         <div class="lg:text-center">
-            <h1 class="text-base text-indigo-600 font-bold tracking-wide uppercase">Detail Sidang</h1>
+            <h1 class="text-base tracking-wide custom-title">Detail Sidang</h1>
         </div>
         <table class="custom-table">
             <tr>
