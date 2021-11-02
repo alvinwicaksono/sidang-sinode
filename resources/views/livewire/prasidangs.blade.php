@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 @if($sidang_current != null)
             <div class="lg:text-center">
-                <h1 class="text-base tracking-wide custom-title">Detail Sidang</h1>
+                <h1 class="text-base text-center tracking-wide custom-title">Detail Sidang</h1>
             </div>
         
             <table class="custom-table">

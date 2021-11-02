@@ -143,6 +143,31 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('prasidang') }}" :active="request()->routeIs('prasidang')">
+                {{ __('Pra Sidang') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('sidangseksi') }}" :active="request()->routeIs('sidangseksi')">
+                {{ __('Sidang Seksi') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        <!--
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('sidangpleno') }}" :active="request()->routeIs('sidangpleno')">
+                {{ __('Sidang Pleno') }}
+            </x-jet-responsive-nav-link> 
+        </div>
+        --> 
+        @if (Auth::user()->role == 'Admin')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
+                {{ __('Master Data') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        @endif
+        
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
