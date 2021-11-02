@@ -28,9 +28,6 @@
 .custom-grey {
     color: #9D9D9D;
 }
-.custom-grey:hover {
-    color: #D5D5D5;
-}
 
 .margin-right-custom {
     margin-right: 10px;
@@ -156,14 +153,6 @@
 	text-decoration:none;
 	text-shadow:0px 1px 0px #9D9D9D;
 }
-.myButtonGrey:hover {
-	background:linear-gradient(to bottom, #9D9D9D 5%, #D5D5D5 100%);
-	background-color:#9D9D9D;
-}
-.myButtonGrey:active {
-	position:relative;
-	top:1px;
-}
 
 .remove-button{
     color: red;
@@ -208,15 +197,6 @@
 	font-weight:bold;
 	padding:2px 20px;
 	text-decoration:none;
-}
-.myButton-addRepoB-grey:hover {
-	background:linear-gradient(to bottom, #9D9D9D 5%, #D5D5D5 100%);
-	background-color:#9D9D9D;
-    color : #fff;
-}
-.myButton-addRepoB-grey:active {
-	position:relative;
-	top:1px;
 }
 
 /* ############# DROPDOWN ################## */
