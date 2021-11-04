@@ -21,8 +21,8 @@ class CreateRepoBsTable extends Migration
             $table->foreign('repoa_id')->references('id')->on('repo_as');
             $table->bigInteger('seksi_id')->unsigned();
             $table->foreign('seksi_id')->references('id')->on('seksis');
-            $table->string('judul_materi');
-            $table->string('isi_materi');
+            $table->longText('judul_materi');
+            $table->longText('isi_materi');
             $table->longText('attachment')->nullable();
             $table->string('status');
             $table->timestamps();

@@ -17,9 +17,9 @@ class CreateRepoAsTable extends Migration
             $table->id();
             $table->bigInteger('sidang_id')->unsigned();
             $table->foreign('sidang_id')->references('id')->on('sidangs');
-            $table->string('judul_materi');
-            $table->string('isi_materi')->nullable();
-            $table->string('sumber_materi')->nullable();
+            $table->longText('judul_materi');
+            $table->longText('isi_materi')->nullable();
+            $table->longText('sumber_materi')->nullable();
             $table->longText('attachment')->nullable();
             $table->string('status');
             $table->bigInteger('count')->nullable();
