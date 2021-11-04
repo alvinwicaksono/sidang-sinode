@@ -124,7 +124,7 @@
             
             
 @else
-    <div class="lg:text-center">
+    <div class="lg:text-center text-center">
         <h1><i class="fas fa-exclamation-circle custom-red"></i> <b>Belum Ada Sidang</b></h1>
         <h1>Hubungi Admin untuk menambahkan Sidang</h1>
     </div>

@@ -76,7 +76,7 @@
 @else
     <div class="py-12 bg-white mb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
+            <div class="lg:text-center text-center">
                 <h1><i class="fas fa-exclamation-circle custom-red"></i> <b>Belum Ada Sidang</b></h1>
                 <h1>Hubungi Admin untuk menambahkan Sidang</h1>
             </div>

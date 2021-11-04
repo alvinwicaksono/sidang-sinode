@@ -17,6 +17,7 @@ class Dashboard extends Component
 
     public function render()
     {
+        try{
             //~~~~~~~~~~~~ DETAIL SIDANG ~~~~~~~~~~~~~~~~~//
             $user_seksi = Auth::User()->seksi_id;
             $artikel_seksi = ArtikelSeksi::where('seksi_id',$user_seksi)
@@ -34,5 +35,17 @@ class Dashboard extends Component
                                 ->where('role','Sekretaris Moderamen')->orderBy('peserta_sidangs.id','asc')->get();
 
             return view('dashboard',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'moderamen_ketua', 'moderamen_sekretaris'));
+        } catch (\Exception $e) {
+            $user_seksi = null;
+            $artikel_seksi = null;
+            $sidang_current = null;
+            $repo_b = null;
+            $peserta_sidang = null;
+
+            //~~~~~~~~~~~~ MODERAMEN SIDANG ~~~~~~~~~~~~~~//
+            $moderamen_ketua = null;
+            $moderamen_sekretaris = null;
+            return view('dashboard',compact('repo_b','artikel_seksi','sidang_current','peserta_sidang', 'moderamen_ketua', 'moderamen_sekretaris'));
+        }
     }
 }

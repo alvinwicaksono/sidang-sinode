@@ -19,12 +19,12 @@
                     <x-jet-nav-link href="{{ route('prasidang') }}" :active="request()->routeIs('prasidang')">
                         {{ __('Pra Sidang') }}
                     </x-jet-nav-link>
-                    <!-- <x-jet-nav-link href="{{ route('sidangseksi') }}" :active="request()->routeIs('sidangseksi')">
+                    <x-jet-nav-link href="{{ route('sidangseksi') }}" :active="request()->routeIs('sidangseksi')">
                         {{ __('Sidang Seksi') }}
-                    </x-jet-nav-link> -->
-                   <!-- <x-jet-nav-link href="{{ route('sidangpleno') }}" :active="request()->routeIs('sidangpleno')">
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('sidangpleno') }}" :active="request()->routeIs('sidangpleno')">
                         {{ __('Sidang Pleno') }}
-                    </x-jet-nav-link> -->
+                    </x-jet-nav-link>
                     @if (Auth::user()->role == 'Admin')
                     <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
                         {{ __('Master Data') }}
@@ -153,13 +153,11 @@
                 {{ __('Sidang Seksi') }}
             </x-jet-responsive-nav-link>
         </div>
-        <!--
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('sidangpleno') }}" :active="request()->routeIs('sidangpleno')">
                 {{ __('Sidang Pleno') }}
             </x-jet-responsive-nav-link> 
         </div>
-        --> 
         @if (Auth::user()->role == 'Admin')
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
