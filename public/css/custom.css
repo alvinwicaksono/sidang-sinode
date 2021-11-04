@@ -65,11 +65,11 @@
 /* ############# TABLE ################## */
 
 .custom-table td {
-    padding: 0 0 10px 40px;
+    padding: 0 0 10px 10px;
 }
 
 .custom-table-view td {
-    padding: 0 20px 10px 0;
+    padding: 0 10px 10px 0;
 }
 
 /* ############# GIF LOADER ################## */
