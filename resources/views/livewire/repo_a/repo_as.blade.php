@@ -92,11 +92,11 @@
                     </td>
                     @if ($repo_a->count == '0')
                     <td class="px-8 py-4 whitespace-nowrap"> 
-                        <div class="text-sm font-medium text-gray-900 custom-red">{{$repo_a->stat}}</div>
+                        <div class="text-sm font-medium text-gray-900 custom-red">Belum Terpilah</div>
                     </td>
                     @else
                     <td class="px-8 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900 custom-green">{{$repo_a->stat}}</div>
+                        <div class="text-sm font-medium text-gray-900 custom-green">Terpilah</div>
                     </td>
                     @endif
 

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Repo_b;
 use App\Models\artikelSeksi;
-use App\Models\artikelPleno;
+use App\Models\ArtikelPleno;
 use App\Models\Sidang;
 use App\Models\Peserta_sidang;
 

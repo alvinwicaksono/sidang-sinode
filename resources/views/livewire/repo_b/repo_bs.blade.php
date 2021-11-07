@@ -87,9 +87,9 @@
                     </td>
                     <td class="px-8 py-4 whitespace-nowrap">
                         @if ($repo_b->stat == 'Belum Terbahas')
-                        <div class="text-sm font-medium text-gray-900 custom-red">{{$repo_b->stat}}</div>
+                        <div class="text-sm font-medium text-gray-900 custom-red">Belum Diartikelkan</div>
                         @else
-                        <div class="text-sm font-medium text-gray-900 custom-green">{{$repo_b->stat}}</div>
+                        <div class="text-sm font-medium text-gray-900 custom-green">Sudah Diartikelkan</div>
                         @endif
                     </td>
                 @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
