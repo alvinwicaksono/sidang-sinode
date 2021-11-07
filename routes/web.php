@@ -20,6 +20,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return redirect('dashboard');
 });
 
+Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
+
 Route::get('/bidang', Bidangs::class);
 Route::get('/rak', \App\Http\Livewire\Raks::class);
 Route::get('/box', \App\Http\Livewire\Boxs::class);
@@ -50,6 +52,7 @@ Route::get('/artikel_seksi', \App\Http\Livewire\ArtikelSeksis::class)->name('art
 Route::get('/artikel_seksi_pleno', \App\Http\Livewire\ArtikelSeksisPleno::class)->name('artikel_seksi_pleno');
 Route::get('/artikel_pleno', \App\Http\Livewire\ArtikelPlenos::class)->name('artikel_pleno');
 
+});
 
 
 
