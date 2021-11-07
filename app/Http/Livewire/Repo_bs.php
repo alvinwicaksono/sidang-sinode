@@ -27,7 +27,7 @@ class Repo_bs extends Component
             'i' => 1,
             'sidangs' => $sidang,
             'seksis' => Seksi::all(),
-            'repo_as' => Repo_a::all(),
+            'repo_as' => Repo_a::where('sidang_id', $sidang->id)->get(),
             'repo_bs' => Repo_b::join('sidangs', 'repo_bs.sidang_id','=','sidangs.id')
                                 ->join('seksis', 'repo_bs.seksi_id','=','seksis.id')
                                 ->join('repo_as', 'repo_bs.repoa_id','=','repo_as.id')

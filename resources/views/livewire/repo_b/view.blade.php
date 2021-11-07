@@ -38,32 +38,39 @@
                       <table class="custom-table-view">
                         <tr>
                             <td><b>Akta Sidang</b></td>
-                            <td>: {{$akta_sidang}} ({{$status_sidang}}) </td>
+                            <td>:</td>
+                            <td> {{$akta_sidang}} ({{$status_sidang}}) </td>
                         </tr>
                         <tr>
-                            <td><b>Repositori A</b></td>
-                            <td>: {{$repo_a}} </td>
+                            <td><b>Repo A</b></td>
+                            <td>:</td>
+                            <td> {{$repo_a}} </td>
                         </tr>
                         <tr>
                             <td><b>Judul Materi</b></td>
-                            <td>: {{$judul_materi}} </td>
+                            <td>:</td>
+                            <td> {{$judul_materi}} </td>
                         </tr>
                         <tr>
                             <td><b>Isi Materi</b></td>
+                            <td>:</td>
                             <td><textarea disabled name="" id="" cols="30" rows="10">{{$isi_materi}}</textarea></td>
                         </tr>
                         <tr>
                             <td><b>Seksi</b></td>
-                            <td>: {{$seksi}} </td>
+                            <td>:</td>
+                            <td> {{$seksi}} </td>
                         </tr>
                         <tr>
                             <td><b>Status</b></td>
-                            <td>: {{$status}} </td>
+                            <td>:</td>
+                            <td> {{$status}} </td>
                         </tr>
                         <tr>
                             <td><b>Lampiran</b></td>
                             @if($attachment == '[]')
-                            <td>: -</td>
+                            <td>:</td>
+                            <td>-</td>
                             @else
                             <td>:</td>
                             @endif

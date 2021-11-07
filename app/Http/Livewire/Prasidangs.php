@@ -17,12 +17,21 @@ class Prasidangs extends Component
     public $tutup;
     public function render()
     {
-        $sidang_current = Sidang::latest()->first();
-        $peserta_sidang = Peserta_sidang::where('sidang_id',$sidang_current->id)->count();
-        $repo_a = Repo_a::where('sidang_id',$sidang_current->id)->count();
-        $repo_b = Repo_b::where('sidang_id',$sidang_current->id)->count();
-     
-        return view('livewire.prasidangs', compact('peserta_sidang','repo_a','repo_b','sidang_current'));
+        try{
+            $sidang_current = Sidang::latest()->first();
+            $peserta_sidang = Peserta_sidang::where('sidang_id',$sidang_current->id)->count();
+            $repo_a = Repo_a::where('sidang_id',$sidang_current->id)->count();
+            $repo_b = Repo_b::where('sidang_id',$sidang_current->id)->count();
+        
+            return view('livewire.prasidangs', compact('peserta_sidang','repo_a','repo_b','sidang_current'));
+        } catch (\Exception $e) {
+            $sidang_current = null;
+            $peserta_sidang = null;
+            $repo_a = null;
+            $repo_b = null;
+        
+            return view('livewire.prasidangs', compact('peserta_sidang','repo_a','repo_b','sidang_current'));
+        }
     }
 
     public function repo_a(){
