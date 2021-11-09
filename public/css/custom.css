@@ -104,6 +104,18 @@
     100% { transform: rotate(360deg); }
   }
 
+/* ############# FONT SHOW HIDE ################## */
+
+.custom-font {
+    font-size: 13px;
+}
+
+.custom-show-hide {
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 3px;
+}
+
 /* ############# BUTTON ################## */
 
 .button-table {
