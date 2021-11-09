@@ -50,7 +50,11 @@
     @if($isOpen)
         @include('livewire.pra_sidang.close')
     @endif
+@if (Auth::user()->role != 'Public')
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
+@else
+    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
+@endif
         <div
             wire:click="repo_a()"
             class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100 hover:bg-gray-100"
@@ -104,6 +108,7 @@
                 </div>
             </div>
         </div>
+        @if (Auth::user()->role != 'Public')
         <div
             wire:click="peserta_sidang()"
             class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800 hover:bg-gray-100"
@@ -127,6 +132,7 @@
                     </p>
                 </div>
             </div>
+        @endif
             
             
 @else

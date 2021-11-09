@@ -73,6 +73,7 @@
                                   <option value="Sekretaris Moderamen">Sekretaris Moderamen</option>
                                   <option value="Sekretaris Seksi">Sekretaris Seksi</option>
                                   <option value="Gereja Penghimpun">Gereja Penghimpun</option>
+                                  <option value="Public">Public</option>
                               </select>
                               <div class="select_arrow">
                               </div>
