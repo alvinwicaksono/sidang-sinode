@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Bidangs;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::get('/repo_b', \App\Http\Livewire\Repo_bs::class)->name('repo_b');
 Route::get('/artikel_seksi', \App\Http\Livewire\ArtikelSeksis::class)->name('artikel_seksi');
 Route::get('/artikel_seksi_pleno', \App\Http\Livewire\ArtikelSeksisPleno::class)->name('artikel_seksi_pleno');
 Route::get('/artikel_pleno', \App\Http\Livewire\ArtikelPlenos::class)->name('artikel_pleno');
+
+
+Route::get('/artikelPleno-pdf', [PDFController::class, 'generatePDF']);
 
 });
 

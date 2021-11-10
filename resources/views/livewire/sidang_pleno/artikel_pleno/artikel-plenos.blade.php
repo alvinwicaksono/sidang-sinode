@@ -15,6 +15,9 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="button-table text-right">
+                    <a class="myButton" href="{{ URL::to('/artikelPleno-pdf') }}"><i class="fas fa-download"></i> PDF</a>
+                </div>
             <div class="button-table">
             @if($isOpen)
                 <a wire:click="hideModal()" class="myButton"><i class="fas fa-minus"></i></i> Batalkan</a>
