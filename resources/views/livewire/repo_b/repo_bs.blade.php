@@ -18,9 +18,11 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
                 <div class="button-table text-right">
                     <a class="myButton" href="{{ URL::to('/RepoB-pdf') }}"><i class="fas fa-download"></i> PDF</a>
                 </div>
+                @endif
                 <div class="button-table">
                 @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
                     @if ($sidangs->status == 'Pra Sidang')
@@ -31,6 +33,7 @@
                     <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
                 @else
                     <input type="text" class="form-control mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+                    <a class="myButton float-right" href="{{ URL::to('/RepoB-pdf') }}"><i class="fas fa-download"></i> PDF</a>
                 @endif
                 </div>
             
