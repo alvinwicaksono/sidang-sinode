@@ -9,7 +9,7 @@ use App\Models\Sidang;
 use App\Models\Peserta_sidang;
 use App\Models\User;
   
-class PDFController extends Controller
+class PDFArtikel extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,6 +41,6 @@ class PDFController extends Controller
                                 'isPhpEnabled' => true
                     ]);
     
-        return $pdf->download('Artikel Pleno '.$sidang->akta_sidang.'.pdf');
+        return $pdf->stream('Artikel Pleno '.$sidang->akta_sidang.'.pdf');
     }
 }

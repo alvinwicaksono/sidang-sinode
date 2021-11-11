@@ -67,19 +67,19 @@
             <h3 style="text-align:center">
               <b>Artikel {{$artikel->nomor_artikel}}</b>
             </h3>
-            <h3 style="text-align:center">{{$artikel->judul}}</h3></br></br></br>
+            <h3 style="text-align:center">{{$artikel->judul}}</h3><br><br><br>
 
             @if($artikel->setelah_sidang_bahas != null)
             <h4>Setelah Sidang Membahas : </h4>
-            {!! $artikel->setelah_sidang_bahas !!}</br>
+            {!! $artikel->setelah_sidang_bahas !!}<br>
             @endif
             @if($artikel->Mengingat != null)
             <h4>Mengingat :</h4>
-            {!! $artikel->Mengingat !!}</br>
+            {!! $artikel->Mengingat !!}<br>
             @endif
             @if($artikel->Mempertimbangkan != null)
             <h4>Mempertimbangkan :</h4>
-            {!! $artikel->Mempertimbangkan !!}</br>
+            {!! $artikel->Mempertimbangkan !!}<br>
             @endif
             @if($artikel->Memutuskan != null)
             <h4>Memutuskan :</h4>
@@ -90,6 +90,8 @@
     </div>
   </div>
 @endforeach
+
+    <br><br><br><br><br>
 
     <p style="text-align:center">{{$sidang->tempat}}, {{ date('d F Y', strtotime($sidang->periode_akhir))}} </p>
     <p style="text-align:center">Pemimpin Sidang {{$sidang->akta_sidang}}</p>
