@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Bidangs;
 use App\Http\Controllers\PDFArtikel;
+use App\Http\Controllers\PDFRepoB;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::get('/artikel_pleno', \App\Http\Livewire\ArtikelPlenos::class)->name('art
 
 
 Route::get('/artikelPleno-pdf', [PDFArtikel::class, 'generatePDF']);
+Route::get('/RepoB-pdf', [PDFRepoB::class, 'generatePDF']);
 
 });
 

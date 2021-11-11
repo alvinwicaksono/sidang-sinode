@@ -15,4 +15,8 @@ class Repo_a extends Model
     public function Sidang(){
         return $this->belongsTo(Sidang::class);
     }
+
+    public function Repo_b(){
+        return $this->hasMany(Repo_b::class);
+    }
 }

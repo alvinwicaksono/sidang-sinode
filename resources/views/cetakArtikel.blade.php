@@ -67,7 +67,7 @@
             <h3 style="text-align:center">
               <b>Artikel {{$artikel->nomor_artikel}}</b>
             </h3>
-            <h3 style="text-align:center">{{$artikel->judul}}</h3><br><br><br>
+            <h3 style="text-align:center">{{$artikel->judul}}</h3>
 
             @if($artikel->setelah_sidang_bahas != null)
             <h4>Setelah Sidang Membahas : </h4>
@@ -89,6 +89,7 @@
       </div>
     </div>
   </div>
+  <br><br><br>
 @endforeach
 
     <br><br><br><br><br>
