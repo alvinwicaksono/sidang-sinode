@@ -46,6 +46,12 @@ class ArtikelSeksis extends Component
         ]);
     }
 
+    public function createnew(){
+       
+        return $this->redirect('/createartikelseksi');
+            
+    }
+
     private function clearCache() {
         $this->repo_bId='';
         $this->sidang_id='';

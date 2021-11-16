@@ -138,6 +138,24 @@ class ArtikelSeksisPleno extends Component
         }
     
 
+        public function view($id){
+     
+            $artikel_pleno = ArtikelSeksi::findOrFail($id);
+          
+            $this->artikelpleno_id = $artikel_pleno->id;
+            $this->sidang_id = $artikel_pleno->sidang_id;
+            $this->seksi_id = $artikel_pleno->seksi_id;
+            $this->nomor_artikel_seksi = $artikel_pleno->nomor_artikel_seksi;
+            $this->nomor_artikel = $artikel_pleno->nomor_artikel;
+            $this->repo_bId = $artikel_pleno->repob_id;
+            $this->judul = $artikel_pleno->judul;
+            $this->setelah_sidang_bahas = $artikel_pleno->setelah_sidang_bahas;
+            $this->Mengingat = $artikel_pleno->Mengingat;
+            $this->Mempertimbangkan = $artikel_pleno->Mempertimbangkan;
+            $this->Memutuskan = $artikel_pleno->Memutuskan;
+            $this->lampiran = $artikel_pleno->lampiran; 
+            $this->showModalView();
+        }
 
 
         

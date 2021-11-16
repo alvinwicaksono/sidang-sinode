@@ -15,14 +15,10 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="button-table">
-            @if($isOpen)
-                <a wire:click="hideModal()" class="myButton"><i class="fas fa-minus"></i></i> Batalkan</a>
-             @else
-                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
-           @endif 
+            <div class="button-table align-right">
+         
                    
-                <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+                <input type="text" class="form-control mt-5 ml-5 search-custom" placeholder='Cari' wire:model="search">
             </div>
             
             @if($isOpen)
@@ -30,7 +26,7 @@
             @endif
 
             @if($isOpenView)
-                @include('livewire.artikel_seksi.view')
+                @include('livewire.sidang_pleno.artikel_seksi.view')
             @endif
 
            

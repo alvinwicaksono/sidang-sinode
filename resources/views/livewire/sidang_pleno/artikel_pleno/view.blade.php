@@ -46,15 +46,15 @@
                           </div>
                         <div class="mb-2">
                         <h2><b>Mengingat :</b> </h2> 
-                        <h3> {{$Mengingat}}</h3>
+                        <h3 style="white-space: pre-wrap;"> {{$Mengingat}}</h3>
                         </div>
                         <div class="mb-2">
                           <h2><b>Mempertimbangkan :</b></h2>
-                          <h3>  {{$Mempertimbangkan}}</h3>
+                          <h3 style="white-space: pre-wrap;">  {{$Mempertimbangkan}}</h3>
                         </div>
                         <div class="mb-2">
                           <h2><b>Memutuskan :</b></h2>
-                          <h3>{{$Memutuskan}}</h3>
+                          <h3 style="white-space: pre-wrap;">{{$Memutuskan}}</h3>
                              
                         </div>
                         

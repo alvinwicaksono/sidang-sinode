@@ -69,23 +69,23 @@
             </h3>
             <h3 style="text-align:center">{{$artikel->judul}}</h3>
 
-            <p style="white-space: pre-wrap;">
+           
             @if($artikel->setelah_sidang_bahas != null)
-            </p>
             <h4>Setelah Sidang Membahas : </h4>
-            {!! $artikel->setelah_sidang_bahas !!}<br>
+            <p style="white-space: pre-wrap;">{!! $artikel->setelah_sidang_bahas !!}</p>
+            <br>
             @endif
             @if($artikel->Mengingat != null)
             <h4>Mengingat :</h4>
-            {!! $artikel->Mengingat !!}<br>
+            <p style="white-space: pre-wrap;">{!! $artikel->Mengingat !!}</p><br>
             @endif
             @if($artikel->Mempertimbangkan != null)
             <h4>Mempertimbangkan :</h4>
-            {!! $artikel->Mempertimbangkan !!}<br>
+            <p style="white-space: pre-wrap;">{!! $artikel->Mempertimbangkan !!}</p><br>
             @endif
             @if($artikel->Memutuskan != null)
             <h4>Memutuskan :</h4>
-            {!! $artikel->Memutuskan !!}
+            <p style="white-space: pre-wrap;">{!! $artikel->Memutuskan !!}</p>
             @endif
         </a>
       </div>

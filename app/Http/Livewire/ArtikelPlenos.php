@@ -38,7 +38,7 @@ class ArtikelPlenos extends Component
             'pesertas'=>Peserta_sidang::all(),
             'artikel_seksis' => ArtikelPleno::join('sidangs','artikel_plenos.sidang_id','=','sidangs.id')
                                             ->join('seksis','artikel_plenos.seksi_id','=','seksis.id')
-                                            ->join('repo_bs','artikel_plenos.repob_id','=','repo_bs.id')
+                                            // ->join('repo_bs','artikel_plenos.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_plenos.peserta_id','=','peserta_sidangs.id')
                                             ->where('artikel_plenos.judul','LIKE',$search)
                                             ->select('*','artikel_plenos.id as ap_id', 'artikel_plenos.verified as verif', 'artikel_plenos.judul as judulartikel', 'artikel_plenos.seksi_id as s_id')
@@ -137,14 +137,26 @@ class ArtikelPlenos extends Component
 
     public function store() {
        
+        $sidang_current= Sidang::latest()->first();
         
-        $peserta = Peserta_sidang::where('sidang_id',$this->sidang_id)
+        if($this->seksi_id == null)
+        {
+            $this->seksi_id=Auth::User()->seksi_id;
+        }
+
+        if($this->repo_bId == null)
+        {
+            $this->repo_bId='';
+        }
+        
+        
+        $peserta = Peserta_sidang::where('sidang_id',$sidang_current->id)
                 ->where('user_id',Auth::user()->id)->first();
         ArtikelPleno::create(
         [
-            'sidang_id' => $this->sidang_id,
+            'sidang_id' => $sidang_current->id,
             'seksi_id' => $this->seksi_id,
-            'repob_id' => $this->repo_bId,
+            // 'repob_id' => $this->repo_bId,
             'peserta_id' => $peserta->id,
             'judul' => $this->judul,
             'setelah_sidang_bahas' => $this->setelah_sidang_bahas,

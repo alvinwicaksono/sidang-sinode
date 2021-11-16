@@ -2,7 +2,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-        <img src="../GKJ.png" class="block h-9 sm:w-auto">
+        <img src="../GKJ.png" class="block h-24 sm:w-auto">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

@@ -89,6 +89,8 @@
 
 <script src="https://cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
 
+@yield('script')
+
     </body>
 
 </html>
