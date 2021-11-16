@@ -69,7 +69,9 @@
             </h3>
             <h3 style="text-align:center">{{$artikel->judul}}</h3>
 
+            <p style="white-space: pre-wrap;">
             @if($artikel->setelah_sidang_bahas != null)
+            </p>
             <h4>Setelah Sidang Membahas : </h4>
             {!! $artikel->setelah_sidang_bahas !!}<br>
             @endif

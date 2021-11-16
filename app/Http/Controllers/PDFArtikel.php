@@ -20,7 +20,8 @@ class PDFArtikel extends Controller
     {
         $sidang = Sidang::latest()->first();
         $artikels = ArtikelPleno::where('sidang_id','=',$sidang->id)
-                                ->orderBy('id','asc')
+                                ->where('verified','=',1)
+                                ->orderBy('nomor_artikel','asc')
                                 ->get();
         $ketuas = Peserta_sidang::join('users','peserta_sidangs.user_id','=','users.id')
                                 ->where('peserta_sidangs.sidang_id',$sidang->id)

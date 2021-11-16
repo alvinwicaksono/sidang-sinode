@@ -59,6 +59,12 @@
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                    <th scope="col" class="relative px-2 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -88,14 +94,22 @@
                     </td>
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$artikel_seksi->ap_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
-                        @if(!$artikel_seksi->nomor_artikel)
-                        <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
-                        <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
-                        @else
-                        <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
-                        <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
-                        @endif
                     </td>
+                @if(!$artikel_seksi->nomor_artikel)
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                @else
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
+                    </td>
+                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                @endif
                     </tr>
                      @endforeach  
                 </tbody>

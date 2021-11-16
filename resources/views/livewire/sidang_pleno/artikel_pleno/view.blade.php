@@ -42,7 +42,7 @@
                         </div>
                         <div class="mb-2">
                             <h2><b>Setelah Sidang Membahas : </b></h2>
-                            <h3>{{$setelah_sidang_bahas}}</h3>
+                            <textarea disabled name="" id="" cols="50" rows="10">{{$setelah_sidang_bahas}}</textarea>
                           </div>
                         <div class="mb-2">
                         <h2><b>Mengingat :</b> </h2> 

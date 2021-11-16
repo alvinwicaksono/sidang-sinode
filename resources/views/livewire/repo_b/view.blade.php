@@ -54,7 +54,7 @@
                         <tr>
                             <td><b>Isi Materi</b></td>
                             <td>:</td>
-                            <td><textarea disabled name="" id="" cols="30" rows="10">{{$isi_materi}}</textarea></td>
+                            <td><textarea disabled name="" id="" cols="40" rows="10">{{$isi_materi}}</textarea></td>
                         </tr>
                         <tr>
                             <td><b>Seksi</b></td>
