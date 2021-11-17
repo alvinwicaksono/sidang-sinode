@@ -32,7 +32,6 @@
               <h3 class="card-title" style="text-align:center">Akta Sidang</h3>
               <h3 class="card-title" style="text-align:center">{{ $sidang->akta_sidang}} </h3>
               <h3 class="card-title" style="text-align:center">GEREJA-GEREJA KRISTEN JAWA</h3>
-              <h3 class="card-title" style="text-align:center">{{$sidang->penyelenggara}}</h3>
               <hr>
 
             <div class="logo" style="text-align:center; margin: 4em 1em 1em 1em";>
@@ -51,6 +50,8 @@
 
 			      <h5>{{ $sidang->tempat}}</h5>
 			      <h5>{{ date('d F Y', strtotime($sidang->periode_awal))}} - {{ date('d F Y', strtotime($sidang->periode_akhir))}}</h5>
+                  <h5 class="card-title" style="text-align:center">Gereja Penghimpun: {{$sidang->penghimpun}}</h4>
+
             </div>
             <hr>
             </div>
@@ -64,24 +65,24 @@
     <div class="card-body ">
       <div class="mb-3">
         <a>
-            <h3 style="text-align:center">
+            <h4 style="text-align:center">
               <b>Artikel {{$artikel->nomor_artikel}}</b>
-            </h3>
-            <h3 style="text-align:center">{{$artikel->judul}}</h3>
+            </h4>
+            <h4 style="text-align:center">{{$artikel->judul}}</h4>
 
            
             @if($artikel->setelah_sidang_bahas != null)
             <h4>Setelah Sidang Membahas : </h4>
             <p style="white-space: pre-wrap;">{!! $artikel->setelah_sidang_bahas !!}</p>
-            <br>
+            
             @endif
             @if($artikel->Mengingat != null)
             <h4>Mengingat :</h4>
-            <p style="white-space: pre-wrap;">{!! $artikel->Mengingat !!}</p><br>
+            <p style="white-space: pre-wrap;">{!! $artikel->Mengingat !!}</p>
             @endif
             @if($artikel->Mempertimbangkan != null)
             <h4>Mempertimbangkan :</h4>
-            <p style="white-space: pre-wrap;">{!! $artikel->Mempertimbangkan !!}</p><br>
+            <p style="white-space: pre-wrap;">{!! $artikel->Mempertimbangkan !!}</p>
             @endif
             @if($artikel->Memutuskan != null)
             <h4>Memutuskan :</h4>
@@ -91,7 +92,7 @@
       </div>
     </div>
   </div>
-  <br><br><br>
+  <br>
 @endforeach
 
     <br><br><br><br><br>

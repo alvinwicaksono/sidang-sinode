@@ -19,13 +19,20 @@
                     <a class="myButton" href="{{ URL::to('/artikelPleno-pdf') }}"><i class="fas fa-download"></i> PDF</a>
                 </div>
             <div class="button-table">
-            @if($isOpen)
-                <a wire:click="hideModal()" class="myButton"><i class="fas fa-minus"></i></i> Batalkan</a>
-             @else
-                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
-           @endif 
-                   
-                <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+            @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
+                    @if ($sidangs->status == 'Sidang')
+                        @if($isOpen)
+                            <a wire:click="hideModal()" class="myButton"><i class="fas fa-minus"></i></i> Batalkan</a>
+                        @else
+                            <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
+                        @endif 
+                    @else
+                    <a class="myButtonGrey"><i class="fas fa-plus"></i> Tambah</a>
+                    @endif
+                    <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+                @else
+                    <input type="text" class="form-control mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+             @endif
             </div>
             
             @if($isOpen)
@@ -34,6 +41,14 @@
 
             @if($isOpenView)
                 @include('livewire.sidang_pleno.artikel_pleno.view')
+            @endif
+
+            @if($isOpenEdit)
+                @include('livewire.sidang_pleno.artikel_pleno.edit')
+            @endif
+
+            @if($isOpenDelete)
+                @include('livewire.sidang_pleno.artikel_pleno.delete')
             @endif
 
            
@@ -56,12 +71,16 @@
                     <th scope="col" class="px-15 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
                     </th>
-                    <th scope="col" class="relative px-2 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                    <th scope="col" class="relative px-2 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Sekretaris Seksi')
+                        @if ($sidangs->status == 'Sidang')
+                            <th scope="col" class="relative px-2 py-3">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                            <th scope="col" class="relative px-2 py-3">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        @endif
+                    @endif
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
@@ -95,21 +114,26 @@
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$artikel_seksi->ap_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
                     </td>
-                @if(!$artikel_seksi->nomor_artikel)
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                @else
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                @endif
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Sekretaris Seksi')
+                        @if ($sidangs->status == 'Sidang')
+                            @if(!$artikel_seksi->nomor_artikel)
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="edit({{$artikel_seksi->ap_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
+                                </td>
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="remove({{$artikel_seksi->ap_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            @else
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
+                                </td>
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            @endif
+                        @endif
+                    @endif
+
                     </tr>
                      @endforeach  
                 </tbody>

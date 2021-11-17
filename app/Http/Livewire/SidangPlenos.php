@@ -84,10 +84,10 @@ class SidangPlenos extends Component
         $sidang_current = Sidang::latest()->first();
         if($this->tutup == 'tutup sidang')
         {
-            // Sidang::where('id',$sidang_current->id)
-            //     ->update([
-            //         'status'=>'Selesai'
-            //     ]);
+            Sidang::where('id',$sidang_current->id)
+                ->update([
+                    'status'=>'Selesai'
+                ]);
                 $this->hideModal();
                 $this->clear();
                 $this->emit('alert',['type'=>'success','message'=>'Penutupan Sidang Berhasil','title'=>'Berhasil']);

@@ -76,12 +76,15 @@
                         <div class="text-sm font-medium text-grey-900 custom-red">Belum Terverifikasi</div>
                         @endif
                     </td>
-                   
-                    <td class="px-2 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-900">
-                                <a wire:click="createPleno({{$artikel_seksi->as_id}})" class="myButton-addRepoB">Pleno</a> 
-                            </div>
-                        </td>
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen')
+                        @if ($sidangs->status == 'Sidang')
+                            <td class="px-2 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        <a wire:click="createPleno({{$artikel_seksi->as_id}})" class="myButton-addRepoB">Pleno</a> 
+                                    </div>
+                                </td>
+                        @endif
+                    @endif
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         
                         <a wire:click="view({{$artikel_seksi->as_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>

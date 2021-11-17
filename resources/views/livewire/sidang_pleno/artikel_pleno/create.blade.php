@@ -79,11 +79,11 @@
                             <textarea wire:model="Memutuskan" name="Memutuskan" id="Memutuskan" cols="30" rows="10" placeholder="Masukan Isi Materi" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black"></textarea>
                           </div>
                          
-                        <div class="mb-2">
+                        <!-- <div class="mb-2">
                             <label for="lampiran" class="block">Lampiran ( Bisa lebih dari 1 )</label>
                             <input wire:model="lampiran" type="file" placeholder="Tambah File" name="lampiran" class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-black">
                             <div wire:loading wire:target="lampiran">Uploading...</div>
-                          </div>
+                          </div> -->
                           <!-- @if ($lampiran)
                               Lampiran Preview:
                               <div class="row">

@@ -19,13 +19,21 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="button-table">
-            @if($isOpen)
-                <a wire:click="hideModal()" class="myButton"><i class="fas fa-minus"></i></i> Batalkan</a>
-             @else
-                 <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
-           @endif 
-                   
-                <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+            @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Sekretaris Seksi')
+                    @if ($sidangs->status == 'Sidang')
+                        @if($isOpen)
+                            <a wire:click="hideModal()" class="myButton"><i class="fas fa-minus"></i></i> Batalkan</a>
+                        @else
+                            <a wire:click="showModal()" class="myButton"><i class="fas fa-plus"></i></i> Tambah</a>
+                        @endif 
+                    @else
+                    <a class="myButtonGrey"><i class="fas fa-plus"></i> Tambah</a>
+                    @endif
+                    <input type="text" class="form-control float-right mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+                @else
+                    <input type="text" class="form-control mt-5 mr-5 search-custom" placeholder='Cari' wire:model="search">
+             @endif
+            
             </div>
             
             @if($isOpen)
@@ -67,12 +75,14 @@
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Sekretaris Seksi')
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                     <th scope="col" class="relative px-2 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -103,21 +113,25 @@
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$artikel_seksi->as_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
                     </td>
-                        @if(!$artikel_seksi->nomor_artikel_seksi)
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="edit({{$artikel_seksi->as_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="remove({{$artikel_seksi->as_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                        @else
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
-                    </td>
-                    <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
-                        <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
-                    </td>
+                    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Sekretaris Moderamen' || Auth::user()->role == 'Sekretaris Seksi')
+                        @if ($sidangs->status == 'Sidang')
+                            @if(!$artikel_seksi->nomor_artikel_seksi)
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="edit({{$artikel_seksi->as_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
+                                </td>
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="remove({{$artikel_seksi->as_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                    @else
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
+                                </td>
+                                <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            @endif
                         @endif
+                    @endif
                 </tr>
                      @endforeach  
                 </tbody>

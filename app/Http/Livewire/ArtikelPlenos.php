@@ -22,8 +22,8 @@ class ArtikelPlenos extends Component
     use WithFileUploads;
     public $search;
 
-    public $isOpen=0, $isOpenView=0, $isOpenEdit=0, $isOpenPleno=0, $isOpenRepoB=0;
-    public $artikelseksi_id, $nomor_artikel, $nomor_artikel_seksi, $seksi_id, $repo_bId, $peserta_id, $judul, $setelah_sidang_bahas, $Mengingat, $Mempertimbangkan, $Memutuskan, $lampiran=[], $lampiranString, $verified;
+    public $isOpen=0, $isOpenView=0, $isOpenEdit=0, $isOpenPleno=0, $isOpenRepoB=0, $isOpenDelete=0;
+    public $artikelpleno_id, $artikelseksi_id, $nomor_artikel, $nomor_artikel_seksi, $seksi_id, $repo_bId, $peserta_id, $judul, $setelah_sidang_bahas, $Mengingat, $Mempertimbangkan, $Memutuskan, $lampiran=[], $lampiranString, $verified;
 
     public function render()
     {
@@ -93,6 +93,15 @@ class ArtikelPlenos extends Component
         $this->clearCache();
         $this->isOpenView = false;
     }
+
+    public function showModalDelete() {
+        $this->isOpenDelete = true;
+    }
+    public function hideModalDelete() {
+        $this->clearCache();
+        $this->isOpenDelete = false;
+    }
+
 
     public function chooseArtikelSeksi($id){
         if($id != null) {
@@ -189,6 +198,73 @@ class ArtikelPlenos extends Component
         $this->lampiran = $artikel_pleno->lampiran; 
         $this->showModalView();
     }
+
+    public function edit($id)
+    {
+        $artikel_pleno = ArtikelPleno::findOrFail($id);
+       
+        $this->artikelpleno_id = $artikel_pleno->id;
+        $this->sidang_id = $artikel_pleno->sidang_id;
+        $this->seksi_id = $artikel_pleno->seksi_id;
+        $this->nomor_artikel_seksi = $artikel_pleno->nomor_artikel_seksi;
+        $this->nomor_artikel = $artikel_pleno->nomor_artikel;
+        $this->repo_bId = $artikel_pleno->repob_id;
+        $this->judul = $artikel_pleno->judul;
+        $this->setelah_sidang_bahas = $artikel_pleno->setelah_sidang_bahas;
+        $this->Mengingat = $artikel_pleno->Mengingat;
+        $this->Mempertimbangkan = $artikel_pleno->Mempertimbangkan;
+        $this->Memutuskan = $artikel_pleno->Memutuskan;
+        $this->lampiran = $artikel_pleno->lampiran; 
+        $this->showModalEdit();
+    }
+
+    public function update() {
+       
+        $peserta = Peserta_sidang::where('sidang_id',$this->sidang_id)
+                ->where('user_id',Auth::user()->id)->first();
+        $this->validate([
+            'sidang_id' => 'required',
+            'judul' => 'required'
+        ]);
+
+        $artikel_pleno = ArtikelPleno::find($this->artikelpleno_id);
+
+        $artikel_pleno->update([
+            'peserta_id' => $peserta->id,
+            'judul' => $this->judul,
+            'setelah_sidang_bahas' => $this->setelah_sidang_bahas,
+            'Mengingat' => $this->Mengingat,
+            'Mempertimbangkan' => $this->Mempertimbangkan,
+            'Memutuskan' => $this->Memutuskan,
+
+        ]);
+       
+        $this->hideModalEdit();
+        $this->emit('alert',['type'=>'success','message'=>'Artikel Berhasil Diupdate','title'=>'Berhasil']);
+    }
+
+    public function remove($id){
+        $artikel_pleno = ArtikelPleno::find($id);
+
+        $this->artikelpleno_id = $id;
+        $this->judul = $artikel_pleno->judul;
+
+        $this->showModalDelete();
+    }
+
+    public function delete(){
+        $artikel_pleno = ArtikelPleno::find($this->artikelpleno_id);
+       
+
+        $artikel_pleno->delete();
+        
+        
+        $this->clearCache();
+        $this->hideModalDelete();
+        $this->emit('alert',['type'=>'success','message'=>'Artikel Berhasil Dihapus','title'=>'Berhasil']);
+    }
+
+
 
 
 
