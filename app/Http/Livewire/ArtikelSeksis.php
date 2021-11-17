@@ -44,7 +44,7 @@ class ArtikelSeksis extends Component
                                             ->where('artikel_seksis.judul','LIKE',$search)
                                             ->select('*','artikel_seksis.id as as_id', 'artikel_seksis.verified as verif', 'artikel_seksis.judul as judulartikel', 'artikel_seksis.seksi_id as s_id')
                                             ->orderBy('artikel_seksis.id','asc')
-                                            ->paginate(5)
+                                            ->paginate(10)
 
             
         ]);
