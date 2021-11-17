@@ -39,6 +39,7 @@ class ArtikelSeksis extends Component
                                             ->join('seksis','artikel_seksis.seksi_id','=','seksis.id')
                                             ->join('repo_bs','artikel_seksis.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_seksis.peserta_id','=','peserta_sidangs.id')
+                                            ->where('artikel_seksis.sidang_id',$sidang_current->id)
                                             ->where('artikel_seksis.seksi_id',Auth::User()->seksi_id)
                                             ->where('artikel_seksis.judul','LIKE',$search)
                                             ->select('*','artikel_seksis.id as as_id', 'artikel_seksis.verified as verif', 'artikel_seksis.judul as judulartikel', 'artikel_seksis.seksi_id as s_id')

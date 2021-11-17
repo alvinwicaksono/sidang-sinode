@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Bidangs;
 use App\Http\Controllers\PDFArtikel;
 use App\Http\Controllers\PDFRepoB;
 
@@ -24,17 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
-Route::get('/bidang', Bidangs::class);
-Route::get('/rak', \App\Http\Livewire\Raks::class);
-Route::get('/box', \App\Http\Livewire\Boxs::class);
-Route::get('/klasis', \App\Http\Livewire\Klasiss::class);
-Route::get('/lembaga', \App\Http\Livewire\Lembagas::class);
-Route::get('/lembagashow', \App\Http\Livewire\LembagaShows::class);
-
-
-Route::get('/format', \App\Http\Livewire\Formats::class);
-Route::get('/subBidang', \App\Http\Livewire\SubBidangs::class);
-Route::get('/document', \App\Http\Livewire\Documents::class)->name('document');
 Route::get('/master', \App\Http\Livewire\Masterdata::class)->name('master');
 
 Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');

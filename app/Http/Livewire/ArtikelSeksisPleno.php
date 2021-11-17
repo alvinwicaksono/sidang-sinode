@@ -30,6 +30,7 @@ class ArtikelSeksisPleno extends Component
     public function render()
     {
         $search = '%'.$this->search.'%';
+        $sidang_current= Sidang::latest()->first();
         return view('livewire.sidang_pleno.artikel_seksi.artikel-seksis-pleno',[
             'i' => 1,
             'sidangs'=> Sidang::latest()->first(),
@@ -40,6 +41,7 @@ class ArtikelSeksisPleno extends Component
                                             ->join('seksis','artikel_seksis.seksi_id','=','seksis.id')
                                             ->join('repo_bs','artikel_seksis.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_seksis.peserta_id','=','peserta_sidangs.id')
+                                            ->where('artikel_seksis.sidang_id',$sidang_current->id)
                                             ->where('artikel_seksis.verified','=','1')
                                             ->where('artikel_seksis.judul','LIKE',$search)
                                             ->select('*','artikel_seksis.id as as_id', 'artikel_seksis.verified as verif', 'artikel_seksis.judul as judulartikel', 'artikel_seksis.seksi_id as s_id')

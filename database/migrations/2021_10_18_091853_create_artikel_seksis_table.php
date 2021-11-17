@@ -25,12 +25,12 @@ class CreateArtikelSeksisTable extends Migration
             $table->foreign('seksi_id')->references('id')->on('seksis');
             $table->bigInteger('peserta_id')->unsigned();
             $table->foreign('peserta_id')->references('id')->on('peserta_sidangs');
-            $table->TEXT('judul');
-            $table->TEXT('setelah_sidang_bahas')->nullable();
-            $table->TEXT('Mengingat')->nullable();
-            $table->TEXT('Mempertimbangkan')->nullable();
-            $table->TEXT('Memutuskan')->nullable();
-            $table->string('lampiran')->nullable();
+            $table->longText('judul');
+            $table->longText('setelah_sidang_bahas')->nullable();
+            $table->longText('Mengingat')->nullable();
+            $table->longText('Mempertimbangkan')->nullable();
+            $table->longText('Memutuskan')->nullable();
+            $table->longText('lampiran')->nullable();
             $table->boolean('verified')->default(0);
             $table->timestamps();
         });

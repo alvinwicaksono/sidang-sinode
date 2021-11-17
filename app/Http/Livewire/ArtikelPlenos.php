@@ -38,8 +38,8 @@ class ArtikelPlenos extends Component
             'pesertas'=>Peserta_sidang::all(),
             'artikel_seksis' => ArtikelPleno::join('sidangs','artikel_plenos.sidang_id','=','sidangs.id')
                                             ->join('seksis','artikel_plenos.seksi_id','=','seksis.id')
-                                            // ->join('repo_bs','artikel_plenos.repob_id','=','repo_bs.id')
                                             ->join('peserta_sidangs','artikel_plenos.peserta_id','=','peserta_sidangs.id')
+                                            ->where('artikel_plenos.sidang_id',$sidang_current->id)
                                             ->where('artikel_plenos.judul','LIKE',$search)
                                             ->select('*','artikel_plenos.id as ap_id', 'artikel_plenos.verified as verif', 'artikel_plenos.judul as judulartikel', 'artikel_plenos.seksi_id as s_id')
                                             ->orderBy('artikel_plenos.id','asc')

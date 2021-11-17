@@ -32,12 +32,7 @@
                         {{ __('Master Data') }}
                     </x-jet-nav-link>
                     @endif
-                    <!-- <x-jet-nav-link href="{{ route('document') }}" :active="request()->routeIs('document')">
-                        {{ __('Dokumen Arsip') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
-                        {{ __('Master Data') }}
-                    </x-jet-nav-link> -->
+                   
                     
                 </div>
             </div>
