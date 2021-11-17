@@ -36,7 +36,7 @@
             <tr>
                 <td><b>Tempat Sidang </b></td>
                 <td>:</td>
-                <td> {{$sidang_current->penghimpun}}</td>
+                <td> {{$sidang_current->tempat}}</td>
             </tr>
         </table>
     </div>
