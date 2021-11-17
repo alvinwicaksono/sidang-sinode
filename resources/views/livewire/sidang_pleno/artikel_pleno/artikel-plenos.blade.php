@@ -7,13 +7,17 @@
 
 
 <div style="margin-top: 50px;" class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
-
-{{--        <div>--}}
-{{--        @if(session()->has('toast_success'))--}}
-{{--        @endif--}}
     
-    <div class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    {{--        <div>--}}
+        {{--        @if(session()->has('toast_success'))--}}
+        {{--        @endif--}}
+        
+        @if($isOpenView)
+            @include('livewire.sidang_pleno.artikel_pleno.view')
+        @endif
+        
+        <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="button-table text-right">
                     <a class="myButton" href="{{ URL::to('/artikelPleno-pdf') }}"><i class="fas fa-download"></i> PDF</a>
@@ -39,9 +43,6 @@
                 @include('livewire.sidang_pleno.artikel_pleno.create')
             @endif
 
-            @if($isOpenView)
-                @include('livewire.sidang_pleno.artikel_pleno.view')
-            @endif
 
             @if($isOpenEdit)
                 @include('livewire.sidang_pleno.artikel_pleno.edit')
