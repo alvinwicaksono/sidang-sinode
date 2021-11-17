@@ -36,6 +36,14 @@
                 @include('livewire.artikel_seksi.view')
             @endif
 
+            @if($isOpenEdit)
+                @include('livewire.artikel_seksi.edit') 
+            @endif
+
+            @if($isOpenDelete)
+                @include('livewire.artikel_seksi.delete') 
+            @endif
+
            
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -89,8 +97,8 @@
                     <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                         <a wire:click="view({{$artikel_seksi->as_id}})" class="margin-right-custom custom-green"><i class="far fa-eye"></i></a>
                         @if(!$artikel_seksi->nomor_artikel_seksi)
-                        <a wire:click="" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
-                        <a wire:click="" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
+                        <a wire:click="edit({{$artikel_seksi->as_id}})" class="margin-both-custom custom-blue"><i class="far fa-edit"></i></a>
+                        <a wire:click="remove({{$artikel_seksi->as_id}})" class="margin-left-custom custom-red"><i class="fas fa-trash-alt"></i></a>
                         @else
                         <a wire:click="" class="margin-both-custom custom-grey"><i class="far fa-edit"></i></a>
                         <a wire:click="" class="margin-left-custom custom-grey"><i class="fas fa-trash-alt"></i></a>
