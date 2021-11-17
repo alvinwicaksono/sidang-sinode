@@ -171,6 +171,13 @@ class ArtikelSeksis extends Component
 
         $peserta = Peserta_sidang::where('sidang_id',$this->sidang_id)
                 ->where('user_id',Auth::user()->id)->first();
+        
+        if($peserta==null)
+        {
+            $this->hideModal();
+            $this->emit('alert',['type'=>'error','message'=>'Anda bukan peserta sidang','title'=>'Gagal']);     
+        }
+        else{
         ArtikelSeksi::create(
         [
             'sidang_id' => $this->sidang_id,
@@ -191,6 +198,7 @@ class ArtikelSeksis extends Component
 
         $this->hideModal();
         $this->emit('alert',['type'=>'success','message'=>'Artikel Seksi Berhasil Ditambahkan','title'=>'Berhasil']);     
+        }
     }
 
     public function update() {
