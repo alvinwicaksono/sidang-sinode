@@ -67,15 +67,15 @@
             <h3 style="text-align:center">
               <b>Repositori B</b>
             </h3>
-            <h3 style="text-align:center">{{$repo->judul_materi}}</h3>
+            <h3 style="text-align:center">{{$repo->judul}}</h3>
 
             @if($repo->sumber != null)
             <h4>Sumber Materi : </h4>
-            {!! $repo->sumber !!}<br>
+            <p style="white-space: pre-wrap;">{!! $repo->sumber !!}</p><br>
             @endif
-            @if($repo->isi_materi != null)
+            @if($repo->isi != null)
             <h4>Isi Materi :</h4>
-            {!! $repo->isi_materi !!}<br>
+            <p style="white-space: pre-wrap;">{!! $repo->isi !!}</p><br>
             @endif
         </a>
       </div>

@@ -19,8 +19,8 @@ class PDFRepoB extends Controller
         $sidang = Sidang::latest()->first();
         $repo_b = Repo_b::join('repo_as', 'repo_bs.repoa_id','=','repo_as.id')
                             ->where('repo_bs.sidang_id', $sidang->id)
-                            ->select('*','repo_as.sumber_materi as sumber')
-                            ->orderBy('repo_bs.id', 'asc')->get();
+                            ->select('*','repo_as.sumber_materi as sumber', 'repo_bs.judul_materi as judul', 'repo_bs.isi_materi as isi')
+                            ->orderBy('repo_bs.id', 'asc')->get(); 
 
         $pdf = \PDF::loadView('cetakRepoB', compact(
                                 'sidang',
