@@ -68,6 +68,7 @@
             <main>
                 {{ $slot }}
             </main>
+            <br><br><br>
         </div>
 
         @stack('modals')
@@ -91,6 +92,7 @@
 
 @yield('script')
 
+    
     </body>
 
 </html>
