@@ -112,7 +112,7 @@ class Repo_as extends Component
         $this->isi_materi = $repo_a->isi_materi;
         $this->sumber_materi = $repo_a->sumber_materi;
         $this->attachment = $repo_a->attachment;
-        $this->status = $repo_a->status;
+        $this->count = $repo_a->count;
                             
         $this->showModalView();
     }

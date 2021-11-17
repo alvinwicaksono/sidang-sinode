@@ -64,7 +64,11 @@
                         <tr>
                             <td><b>Status</b></td>
                             <td>:</td>
-                            <td> {{$status}} </td>
+                            @if ($status == 'Belum Terbahas')
+                            <td> Belum Diartikelkan </td>
+                            @else
+                            <td> Sudah Diartikelkan </td>
+                            @endif
                         </tr>
                         <tr>
                             <td><b>Lampiran</b></td>
