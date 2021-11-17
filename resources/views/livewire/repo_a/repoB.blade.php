@@ -31,7 +31,7 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="mb-4 ">
-                        <h3 class="text-center font-bold">Tambah Repositori B {{$judul_materi}}</h3>
+                        <h3 class="text-center font-bold">Tambah Repositori B<br>{{$judul_materi}}</h3>
                         <hr>
                     </div>
 
