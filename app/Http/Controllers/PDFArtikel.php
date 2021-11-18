@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
 use PDF;
-use App\Models\artikelPleno;
+use App\Models\ArtikelPleno;
 use App\Models\Sidang;
 use App\Models\Peserta_sidang;
 use App\Models\User;
